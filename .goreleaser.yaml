@@ -57,15 +57,15 @@ changelog:
 
 release:
   github:
-    owner: hasdata-com
+    owner: HasData
     name: hasdata-cli
   draft: false
   prerelease: auto
 
 # Homebrew / Scoop / Winget publishing is disabled for the first release.
 # Enable by:
-#   1. Creating repos: gh repo create hasdata-com/homebrew-tap --public
-#                      gh repo create hasdata-com/scoop-bucket --public
+#   1. Creating repos: gh repo create HasData/homebrew-tap --public
+#                      gh repo create HasData/scoop-bucket --public
 #   2. Setting up a GitHub App with Contents: read/write on those repos and
 #      adding RELEASE_APP_ID / RELEASE_APP_PRIVATE_KEY secrets to this repo.
 #   3. Restoring the `generate github app token` step in release.yml.
@@ -74,7 +74,7 @@ release:
 # brews:
 #   - name: hasdata
 #     repository:
-#       owner: hasdata-com
+#       owner: HasData
 #       name: homebrew-tap
 #       token: "{{ .Env.HOMEBREW_TAP_TOKEN }}"
 #     homepage: "https://hasdata.com"
@@ -88,7 +88,7 @@ release:
 #
 # scoops:
 #   - repository:
-#       owner: hasdata-com
+#       owner: HasData
 #       name: scoop-bucket
 #       token: "{{ .Env.SCOOP_BUCKET_TOKEN }}"
 #     homepage: "https://hasdata.com"
@@ -97,12 +97,12 @@ release:
 #
 # winget:
 #   - name: hasdata
-#     publisher: hasdata-com
+#     publisher: HasData
 #     license: MIT
 #     homepage: "https://hasdata.com"
 #     short_description: "Command-line interface for api.hasdata.com"
 #     repository:
-#       owner: hasdata-com
+#       owner: HasData
 #       name: winget-pkgs
 #       token: "{{ .Env.WINGET_PKGS_TOKEN }}"
 #       branch: "hasdata-{{ .Version }}"

@@ -13,8 +13,8 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/hasdata-com/hasdata-cli/internal/client"
-	"github.com/hasdata-com/hasdata-cli/internal/config"
+	"github.com/HasData/hasdata-cli/internal/client"
+	"github.com/HasData/hasdata-cli/internal/config"
 	"github.com/spf13/cobra"
 )
 

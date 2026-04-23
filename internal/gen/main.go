@@ -21,7 +21,7 @@ import (
 	"text/template"
 	"time"
 
-	"github.com/hasdata-com/hasdata-cli/internal/spec"
+	"github.com/HasData/hasdata-cli/internal/spec"
 )
 
 //go:embed templates/*.tmpl

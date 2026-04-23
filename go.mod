@@ -1,4 +1,4 @@
-module github.com/hasdata-com/hasdata-cli
+module github.com/HasData/hasdata-cli
 
 go 1.24.11
 

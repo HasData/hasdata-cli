@@ -2,14 +2,14 @@
 
 **The official command-line interface for [HasData](https://hasdata.com) — web scraping, SERP, and real-estate/e-commerce data APIs, wired for shell scripts, LLM agents, and RAG pipelines.**
 
-[![CI](https://github.com/hasdata-com/hasdata-cli/actions/workflows/ci.yml/badge.svg)](https://github.com/hasdata-com/hasdata-cli/actions/workflows/ci.yml)
-[![Release](https://img.shields.io/github/v/release/hasdata-com/hasdata-cli?sort=semver)](https://github.com/hasdata-com/hasdata-cli/releases)
+[![CI](https://github.com/HasData/hasdata-cli/actions/workflows/ci.yml/badge.svg)](https://github.com/HasData/hasdata-cli/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/HasData/hasdata-cli?sort=semver)](https://github.com/HasData/hasdata-cli/releases)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 One static binary. Every API at [`hasdata.com`](https://hasdata.com/apis) exposed as a subcommand. No SDK install, no dependencies, no glue code — `curl | sh`, export a key, pipe JSON to `jq` or straight into your LLM prompt.
 
 ```sh
-curl -sSL https://raw.githubusercontent.com/hasdata-com/hasdata-cli/main/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/HasData/hasdata-cli/main/install.sh | sh
 export HASDATA_API_KEY=hd_xxx
 hasdata google-serp --q "best espresso machine 2026"
 ```
@@ -28,9 +28,9 @@ hasdata google-serp --q "best espresso machine 2026"
 
 | Platform | Command |
 |---|---|
-| macOS / Linux | `curl -sSL https://raw.githubusercontent.com/hasdata-com/hasdata-cli/main/install.sh \| sh` |
-| Windows manual | download the `.zip` from [Releases](https://github.com/hasdata-com/hasdata-cli/releases), extract, put `hasdata.exe` on `%PATH%` |
-| From source   | `go install github.com/hasdata-com/hasdata-cli@latest` |
+| macOS / Linux | `curl -sSL https://raw.githubusercontent.com/HasData/hasdata-cli/main/install.sh \| sh` |
+| Windows manual | download the `.zip` from [Releases](https://github.com/HasData/hasdata-cli/releases), extract, put `hasdata.exe` on `%PATH%` |
+| From source   | `go install github.com/HasData/hasdata-cli@latest` |
 
 The `install.sh` script detects your OS/arch, downloads the matching asset, and verifies its SHA-256 against the published `checksums.txt` before installing.
 
@@ -192,8 +192,8 @@ go test ./...
 
 - **HasData docs** — <https://docs.hasdata.com>
 - **API catalog** — <https://hasdata.com/apis>
-- **Releases** — <https://github.com/hasdata-com/hasdata-cli/releases>
-- **Issues & feature requests** — <https://github.com/hasdata-com/hasdata-cli/issues>
+- **Releases** — <https://github.com/HasData/hasdata-cli/releases>
+- **Issues & feature requests** — <https://github.com/HasData/hasdata-cli/issues>
 
 ## License
 

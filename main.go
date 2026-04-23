@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/hasdata-com/hasdata-cli/cmd"
+	"github.com/HasData/hasdata-cli/cmd"
 )
 
 var (

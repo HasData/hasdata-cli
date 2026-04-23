@@ -8,12 +8,12 @@ import (
 	"time"
 
 	"github.com/creativeprojects/go-selfupdate"
-	"github.com/hasdata-com/hasdata-cli/internal/config"
+	"github.com/HasData/hasdata-cli/internal/config"
 	"github.com/spf13/cobra"
 )
 
 const (
-	githubOwner = "hasdata-com"
+	githubOwner = "HasData"
 	githubRepo  = "hasdata-cli"
 )
 

@@ -6,7 +6,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/hasdata-com/hasdata-cli/internal/config"
+	"github.com/HasData/hasdata-cli/internal/config"
 	"github.com/spf13/cobra"
 )
 

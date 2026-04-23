@@ -5,12 +5,12 @@
 # $HOME/.local/bin if the former is not writable).
 #
 # Usage:
-#   curl -sSL https://raw.githubusercontent.com/hasdata-com/hasdata-cli/main/install.sh | sh
+#   curl -sSL https://raw.githubusercontent.com/HasData/hasdata-cli/main/install.sh | sh
 #   curl -sSL .../install.sh | HASDATA_VERSION=v1.2.3 sh
 #   curl -sSL .../install.sh | PREFIX=$HOME/bin sh
 set -eu
 
-REPO="hasdata-com/hasdata-cli"
+REPO="HasData/hasdata-cli"
 BIN="hasdata"
 VERSION="${HASDATA_VERSION:-latest}"
 
