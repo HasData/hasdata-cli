@@ -1,0 +1,114 @@
+version: 2
+
+project_name: hasdata
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - id: hasdata
+    main: ./
+    binary: hasdata
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+    ldflags:
+      - -s -w
+      - -X main.version={{ .Version }}
+      - -X main.commit={{ .ShortCommit }}
+      - -X main.date={{ .Date }}
+
+archives:
+  - id: default
+    name_template: >-
+      {{ .ProjectName }}_{{ .Version }}_
+      {{- title .Os }}_
+      {{- if eq .Arch "amd64" }}x86_64
+      {{- else if eq .Arch "arm64" }}arm64
+      {{- else }}{{ .Arch }}{{ end }}
+    format_overrides:
+      - goos: windows
+        format: zip
+    files:
+      - LICENSE
+      - README.md
+
+checksum:
+  name_template: "checksums.txt"
+
+snapshot:
+  version_template: "{{ incpatch .Version }}-next"
+
+changelog:
+  sort: asc
+  use: github
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+      - "^chore(gen):"
+
+release:
+  github:
+    owner: hasdata-com
+    name: hasdata-cli
+  draft: false
+  prerelease: auto
+
+# Homebrew / Scoop / Winget publishing is disabled for the first release.
+# Enable by:
+#   1. Creating repos: gh repo create hasdata-com/homebrew-tap --public
+#                      gh repo create hasdata-com/scoop-bucket --public
+#   2. Setting up a GitHub App with Contents: read/write on those repos and
+#      adding RELEASE_APP_ID / RELEASE_APP_PRIVATE_KEY secrets to this repo.
+#   3. Restoring the `generate github app token` step in release.yml.
+#   4. Uncommenting the blocks below.
+#
+# brews:
+#   - name: hasdata
+#     repository:
+#       owner: hasdata-com
+#       name: homebrew-tap
+#       token: "{{ .Env.HOMEBREW_TAP_TOKEN }}"
+#     homepage: "https://hasdata.com"
+#     description: "Command-line interface for api.hasdata.com"
+#     license: MIT
+#     install: |
+#       bin.install "hasdata"
+#       generate_completions_from_executable(bin/"hasdata", "completion")
+#     test: |
+#       system "#{bin}/hasdata version"
+#
+# scoops:
+#   - repository:
+#       owner: hasdata-com
+#       name: scoop-bucket
+#       token: "{{ .Env.SCOOP_BUCKET_TOKEN }}"
+#     homepage: "https://hasdata.com"
+#     description: "Command-line interface for api.hasdata.com"
+#     license: MIT
+#
+# winget:
+#   - name: hasdata
+#     publisher: hasdata-com
+#     license: MIT
+#     homepage: "https://hasdata.com"
+#     short_description: "Command-line interface for api.hasdata.com"
+#     repository:
+#       owner: hasdata-com
+#       name: winget-pkgs
+#       token: "{{ .Env.WINGET_PKGS_TOKEN }}"
+#       branch: "hasdata-{{ .Version }}"
+#       pull_request:
+#         enabled: true
+#         base:
+#           owner: microsoft
+#           name: winget-pkgs
+#           branch: master

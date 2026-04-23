@@ -1,0 +1,9 @@
+/hasdata
+/hasdata.exe
+/dist/
+*.out
+
+# Editor / IDE
+.idea/
+.vscode/
+.DS_Store

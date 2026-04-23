@@ -1,0 +1,61 @@
+name: regen
+
+on:
+  schedule:
+    - cron: "0 7 * * *"
+  workflow_dispatch:
+  repository_dispatch:
+    types: [spec-changed]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  regen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.24"
+          cache: true
+
+      - name: regenerate
+        run: go generate ./...
+
+      - name: check for diff
+        id: diff
+        run: |
+          if git diff --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: summarize diff
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          {
+            echo "## Changes"
+            echo
+            git diff --stat
+            echo
+            if [ -f GENERATION_REPORT.md ]; then
+              echo "## Generation Report"
+              cat GENERATION_REPORT.md
+            fi
+          } > pr-body.md
+
+      - name: open pr
+        if: steps.diff.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "chore(gen): refresh API specs"
+          branch: chore/gen-refresh
+          delete-branch: true
+          title: "chore(gen): refresh API specs"
+          body-path: pr-body.md
+          labels: |
+            automated
+            generated

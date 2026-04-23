@@ -1,0 +1,65 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.24"
+          cache: true
+
+      - name: go vet
+        run: go vet ./...
+
+      - name: go build
+        run: go build ./...
+
+      - name: go test
+        run: go test ./...
+
+      - name: smoke-test generated commands
+        shell: bash
+        run: |
+          go build -o ./hasdata${{ runner.os == 'Windows' && '.exe' || '' }} .
+          BIN="./hasdata${{ runner.os == 'Windows' && '.exe' || '' }}"
+          "$BIN" --help > /dev/null
+          # Every generated command (hidden or not) must respond to --help cleanly.
+          for f in cmd/gen_*.go; do
+            base=$(basename "$f" .go)
+            slug=${base#gen_}
+            slug=${slug//_/-}
+            [ "$slug" = "helpers" ] && continue
+            "$BIN" "$slug" --help > /dev/null || { echo "FAIL: $slug --help"; exit 1; }
+          done
+          echo "smoke-test passed"
+
+  verify-generated:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.24"
+          cache: true
+      - name: ensure generated files are up to date
+        run: |
+          go generate ./...
+          if ! git diff --quiet; then
+            echo "Generated files are out of date. Run 'go generate ./...' and commit."
+            git diff --stat
+            exit 1
+          fi
