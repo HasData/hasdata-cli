@@ -19,9 +19,65 @@ var (
 )
 
 func newRedfinListingCmd() *cobra.Command {
+	var p_bathsVar string
+	var p_beds_maxVar float64
+	var p_beds_minVar float64
+	var p_cost_acceptedFinancingVar string
+	var p_cost_excludeLandLeasesVar bool
+	var p_cost_hoaVar float64
+	var p_cost_maxPropertyTaxPerYearVar float64
+	var p_cost_pricePerSqft_maxVar string
+	var p_cost_pricePerSqft_minVar string
+	var p_cost_priceReducedVar string
+	var p_exclude55PlusCommunitiesVar bool
+	var p_forRentSquareFootage_maxVar float64
+	var p_forRentSquareFootage_minVar float64
+	var p_forSaleSquareFeet_maxVar string
+	var p_forSaleSquareFeet_minVar string
+	var p_homeFeatures_basementVar string
+	var p_homeFeatures_garageSpotsMinVar string
+	var p_homeFeatures_keywordSearchVar string
+	var p_homeFeatures_optionsVar []string
+	var p_homeFeatures_poolTypeVar string
+	var p_homeTypesVar []string
 	var p_keywordVar string
+	var p_listingType_categoryVar []string
+	var p_listingType_excludeShortSalesVar bool
+	var p_listingType_redfinListingsOnlyVar bool
+	var p_lotSize_maxVar string
+	var p_lotSize_minVar string
+	var p_monthlyPayment_downPaymentAmountVar float64
+	var p_monthlyPayment_downPaymentPercentVar float64
+	var p_monthlyPayment_insuranceRateVar float64
+	var p_monthlyPayment_interestRateVar float64
+	var p_monthlyPayment_maxVar float64
+	var p_monthlyPayment_minVar float64
+	var p_monthlyPayment_mortgageTermVar string
+	var p_moveInDateVar string
+	var p_onlyWithDealOrPromotionVar bool
+	var p_openHouseAndTour_openHouseVar string
+	var p_openHouseAndTour_videoTourVar bool
 	var p_pageVar float64
+	var p_petsVar []string
+	var p_price_maxVar float64
+	var p_price_minVar float64
+	var p_rentalAmenitiesVar []string
+	var p_rentalOtherTermsVar []string
+	var p_schools_greatSchoolRatingVar float64
+	var p_schools_includeUnratedSchoolsVar bool
+	var p_schools_schoolTypeVar []string
+	var p_soldWithinOptionVar string
+	var p_sortVar string
+	var p_statusOptionsVar []string
+	var p_stories_maxVar string
+	var p_stories_minVar string
+	var p_timeOnRedfinVar string
+	var p_transportScores_bikeScoreVar float64
+	var p_transportScores_transitScoreVar float64
+	var p_transportScores_walkScoreVar float64
 	var p_typeVar string
+	var p_yearBuilt_maxVar string
+	var p_yearBuilt_minVar string
 
 	cmd := &cobra.Command{
 		Use:   "redfin-listing",
@@ -29,8 +85,153 @@ func newRedfinListingCmd() *cobra.Command {
 		Long:  "The Redfin Listing API allows you to retrieve real estate listings from Redfin based on various search parameters.\n\nEndpoint: GET https://api.hasdata.com/scrape/redfin/listing\nCost: 5 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
+			if c.Flags().Changed("baths") {
+				if err := validateEnumString("baths", p_bathsVar, []string{"one", "oneAndHalf", "two", "twoAndHalf", "three", "four"}); err != nil {
+					return err
+				}
+			}
+			if c.Flags().Changed("cost-accepted-financing") {
+				if err := validateEnumString("cost-accepted-financing", p_cost_acceptedFinancingVar, []string{"FHA", "VA"}); err != nil {
+					return err
+				}
+			}
+			if c.Flags().Changed("cost-price-per-sqft-max") {
+				if err := validateEnumString("cost-price-per-sqft-max", p_cost_pricePerSqft_maxVar, []string{"50", "100", "150", "200", "250", "300", "400", "500", "600", "800", "1000", "1400", "1800", "2200", "2600", "3000"}); err != nil {
+					return err
+				}
+			}
+			if c.Flags().Changed("cost-price-per-sqft-min") {
+				if err := validateEnumString("cost-price-per-sqft-min", p_cost_pricePerSqft_minVar, []string{"50", "100", "150", "200", "250", "300", "400", "500", "600", "800", "1000", "1400", "1800", "2200", "2600", "3000"}); err != nil {
+					return err
+				}
+			}
+			if c.Flags().Changed("cost-price-reduced") {
+				if err := validateEnumString("cost-price-reduced", p_cost_priceReducedVar, []string{"inTheLastDay", "inTheLast3Days", "inTheLast7Days", "inTheLast14Days", "inTheLast30Days", "moreThan30Days", "moreThan60Days", "moreThan120Days"}); err != nil {
+					return err
+				}
+			}
+			if c.Flags().Changed("for-sale-square-feet-max") {
+				if err := validateEnumString("for-sale-square-feet-max", p_forSaleSquareFeet_maxVar, []string{"750", "1000", "1100", "1200", "1300", "1400", "1500", "1600", "1700", "1800", "1900", "2000", "2250", "2500", "2750", "3000", "4000", "5000", "7500", "10000"}); err != nil {
+					return err
+				}
+			}
+			if c.Flags().Changed("for-sale-square-feet-min") {
+				if err := validateEnumString("for-sale-square-feet-min", p_forSaleSquareFeet_minVar, []string{"750", "1000", "1100", "1200", "1300", "1400", "1500", "1600", "1700", "1800", "1900", "2000", "2250", "2500", "2750", "3000", "4000", "5000", "7500", "10000"}); err != nil {
+					return err
+				}
+			}
+			if c.Flags().Changed("home-features-basement") {
+				if err := validateEnumString("home-features-basement", p_homeFeatures_basementVar, []string{"finished", "unfinished"}); err != nil {
+					return err
+				}
+			}
+			if c.Flags().Changed("home-features-garage-spots-min") {
+				if err := validateEnumString("home-features-garage-spots-min", p_homeFeatures_garageSpotsMinVar, []string{"1", "2", "3", "4", "5"}); err != nil {
+					return err
+				}
+			}
+			if c.Flags().Changed("home-features-options") {
+				if err := validateEnumStringSlice("home-features-options", p_homeFeatures_optionsVar, []string{"airConditioning", "waterfront", "hasAView", "fireplace", "fixerUpper", "guestHouse", "elevator", "washerDryerHookup", "petsAllowed", "primaryBedroomOnMainFloor", "rvparking", "greenHome", "accessibleHome", "includeOutdoorParking"}); err != nil {
+					return err
+				}
+			}
+			if c.Flags().Changed("home-features-pool-type") {
+				if err := validateEnumString("home-features-pool-type", p_homeFeatures_poolTypeVar, []string{"privatePool", "communityPool", "privateOrCommunityPool", "noPrivatePool"}); err != nil {
+					return err
+				}
+			}
+			if c.Flags().Changed("home-types") {
+				if err := validateEnumStringSlice("home-types", p_homeTypesVar, []string{"house", "townhouse", "townhome", "condo", "land", "multiFamily", "mobile", "coOp", "other", "apartment"}); err != nil {
+					return err
+				}
+			}
+			if c.Flags().Changed("listing-type-category") {
+				if err := validateEnumStringSlice("listing-type-category", p_listingType_categoryVar, []string{"byAgent", "byOwnerFsbo", "newConstruction", "foreclosures"}); err != nil {
+					return err
+				}
+			}
+			if c.Flags().Changed("lot-size-max") {
+				if err := validateEnumString("lot-size-max", p_lotSize_maxVar, []string{"2000 sqft", "4500 sqft", "6500 sqft", "8000 sqft", "9500 sqft", "0.25 acres", "0.5 acres", "1 acres", "2 acres", "3 acres", "4 acres", "5 acres", "10 acres", "20 acres", "40 acres", "100 acres"}); err != nil {
+					return err
+				}
+			}
+			if c.Flags().Changed("lot-size-min") {
+				if err := validateEnumString("lot-size-min", p_lotSize_minVar, []string{"2000 sqft", "4500 sqft", "6500 sqft", "8000 sqft", "9500 sqft", "0.25 acres", "0.5 acres", "1 acres", "2 acres", "3 acres", "4 acres", "5 acres", "10 acres", "20 acres", "40 acres", "100 acres"}); err != nil {
+					return err
+				}
+			}
+			if c.Flags().Changed("monthly-payment-mortgage-term") {
+				if err := validateEnumString("monthly-payment-mortgage-term", p_monthlyPayment_mortgageTermVar, []string{"fixed15Years", "fixed20Years", "fixed30Years", "fixed30YearsFha", "fixed30YearsVa", "fixed30YearsJumbo"}); err != nil {
+					return err
+				}
+			}
+			if c.Flags().Changed("open-house-and-tour-open-house") {
+				if err := validateEnumString("open-house-and-tour-open-house", p_openHouseAndTour_openHouseVar, []string{"thisWeekend", "anytime"}); err != nil {
+					return err
+				}
+			}
+			if c.Flags().Changed("pets") {
+				if err := validateEnumStringSlice("pets", p_petsVar, []string{"dogsAllowed", "catsAllowed"}); err != nil {
+					return err
+				}
+			}
+			if c.Flags().Changed("rental-amenities") {
+				if err := validateEnumStringSlice("rental-amenities", p_rentalAmenitiesVar, []string{"airConditioning", "dishwasher", "inUnitWasherDryer", "parkingAllowed", "utilitiesIncluded", "attFiber", "furnished", "laundryFacility", "pool", "washerDryerHookup"}); err != nil {
+					return err
+				}
+			}
+			if c.Flags().Changed("rental-other-terms") {
+				if err := validateEnumStringSlice("rental-other-terms", p_rentalOtherTermsVar, []string{"incomeRestricted", "student", "shortTerm", "seniorLiving", "military"}); err != nil {
+					return err
+				}
+			}
+			if c.Flags().Changed("schools-school-type") {
+				if err := validateEnumStringSlice("schools-school-type", p_schools_schoolTypeVar, []string{"elementary", "middle", "high"}); err != nil {
+					return err
+				}
+			}
+			if c.Flags().Changed("sold-within-option") {
+				if err := validateEnumString("sold-within-option", p_soldWithinOptionVar, []string{"lastOneWeek", "lastOneMonth", "lastThreeMonth", "lastSixMonth", "lastYear", "lastTwoYear", "lastThreeYear", "lastFiveYear"}); err != nil {
+					return err
+				}
+			}
+			if c.Flags().Changed("sort") {
+				if err := validateEnumString("sort", p_sortVar, []string{"recommended", "newest", "oldest", "priceLowToHigh", "priceHighToLow", "minSquareFeet", "maxSquareFeet", "bedrooms", "bathrooms", "lotSize", "squareFeetPrice", "mostRecentlySold"}); err != nil {
+					return err
+				}
+			}
+			if c.Flags().Changed("status-options") {
+				if err := validateEnumStringSlice("status-options", p_statusOptionsVar, []string{"active", "comingSoon", "contingentPending"}); err != nil {
+					return err
+				}
+			}
+			if c.Flags().Changed("stories-max") {
+				if err := validateEnumString("stories-max", p_stories_maxVar, []string{"1", "2", "3", "4", "5", "10", "15", "20"}); err != nil {
+					return err
+				}
+			}
+			if c.Flags().Changed("stories-min") {
+				if err := validateEnumString("stories-min", p_stories_minVar, []string{"1", "2", "3", "4", "5", "10", "15", "20"}); err != nil {
+					return err
+				}
+			}
+			if c.Flags().Changed("time-on-redfin") {
+				if err := validateEnumString("time-on-redfin", p_timeOnRedfinVar, []string{"newListing", "lessThan3Days", "lessThan7Days", "lessThan14Days", "lessThan30Days", "moreThan7Days", "moreThan14Days", "moreThan30Days", "moreThan45Days", "moreThan60Days", "moreThan90Days", "moreThan180Days"}); err != nil {
+					return err
+				}
+			}
 			if c.Flags().Changed("type") {
 				if err := validateEnumString("type", p_typeVar, []string{"forSale", "forRent", "sold"}); err != nil {
+					return err
+				}
+			}
+			if c.Flags().Changed("year-built-max") {
+				if err := validateEnumString("year-built-max", p_yearBuilt_maxVar, []string{"2026", "2025", "2024", "2023", "2022", "2021", "2020", "2019", "2018", "2017", "2016", "2015", "2010", "2005", "2000", "1990", "1980", "1970", "1960", "1950", "1940", "1920", "1900"}); err != nil {
+					return err
+				}
+			}
+			if c.Flags().Changed("year-built-min") {
+				if err := validateEnumString("year-built-min", p_yearBuilt_minVar, []string{"2026", "2025", "2024", "2023", "2022", "2021", "2020", "2019", "2018", "2017", "2016", "2015", "2010", "2005", "2000", "1990", "1980", "1970", "1960", "1950", "1940", "1920", "1900"}); err != nil {
 					return err
 				}
 			}
@@ -43,11 +244,195 @@ func newRedfinListingCmd() *cobra.Command {
 				return err
 			}
 			params := url.Values{}
+			if c.Flags().Changed("baths") {
+				params.Set("baths", p_bathsVar)
+			}
+			if c.Flags().Changed("beds-max") {
+				params.Set("beds[max]", strconv.FormatFloat(p_beds_maxVar, 'f', -1, 64))
+			}
+			if c.Flags().Changed("beds-min") {
+				params.Set("beds[min]", strconv.FormatFloat(p_beds_minVar, 'f', -1, 64))
+			}
+			if c.Flags().Changed("cost-accepted-financing") {
+				params.Set("cost[acceptedFinancing]", p_cost_acceptedFinancingVar)
+			}
+			if c.Flags().Changed("cost-exclude-land-leases") {
+				params.Set("cost[excludeLandLeases]", strconv.FormatBool(p_cost_excludeLandLeasesVar))
+			}
+			if c.Flags().Changed("cost-hoa") {
+				params.Set("cost[hoa]", strconv.FormatFloat(p_cost_hoaVar, 'f', -1, 64))
+			}
+			if c.Flags().Changed("cost-max-property-tax-per-year") {
+				params.Set("cost[maxPropertyTaxPerYear]", strconv.FormatFloat(p_cost_maxPropertyTaxPerYearVar, 'f', -1, 64))
+			}
+			if c.Flags().Changed("cost-price-per-sqft-max") {
+				params.Set("cost[pricePerSqft][max]", p_cost_pricePerSqft_maxVar)
+			}
+			if c.Flags().Changed("cost-price-per-sqft-min") {
+				params.Set("cost[pricePerSqft][min]", p_cost_pricePerSqft_minVar)
+			}
+			if c.Flags().Changed("cost-price-reduced") {
+				params.Set("cost[priceReduced]", p_cost_priceReducedVar)
+			}
+			if c.Flags().Changed("exclude55-plus-communities") {
+				params.Set("exclude55PlusCommunities", strconv.FormatBool(p_exclude55PlusCommunitiesVar))
+			}
+			if c.Flags().Changed("for-rent-square-footage-max") {
+				params.Set("forRentSquareFootage[max]", strconv.FormatFloat(p_forRentSquareFootage_maxVar, 'f', -1, 64))
+			}
+			if c.Flags().Changed("for-rent-square-footage-min") {
+				params.Set("forRentSquareFootage[min]", strconv.FormatFloat(p_forRentSquareFootage_minVar, 'f', -1, 64))
+			}
+			if c.Flags().Changed("for-sale-square-feet-max") {
+				params.Set("forSaleSquareFeet[max]", p_forSaleSquareFeet_maxVar)
+			}
+			if c.Flags().Changed("for-sale-square-feet-min") {
+				params.Set("forSaleSquareFeet[min]", p_forSaleSquareFeet_minVar)
+			}
+			if c.Flags().Changed("home-features-basement") {
+				params.Set("homeFeatures[basement]", p_homeFeatures_basementVar)
+			}
+			if c.Flags().Changed("home-features-garage-spots-min") {
+				params.Set("homeFeatures[garageSpotsMin]", p_homeFeatures_garageSpotsMinVar)
+			}
+			if c.Flags().Changed("home-features-keyword-search") {
+				params.Set("homeFeatures[keywordSearch]", p_homeFeatures_keywordSearchVar)
+			}
+			if c.Flags().Changed("home-features-options") {
+				for _, v := range p_homeFeatures_optionsVar {
+					params.Add("homeFeatures[options]"+"[]", v)
+				}
+			}
+			if c.Flags().Changed("home-features-pool-type") {
+				params.Set("homeFeatures[poolType]", p_homeFeatures_poolTypeVar)
+			}
+			if c.Flags().Changed("home-types") {
+				for _, v := range p_homeTypesVar {
+					params.Add("homeTypes"+"[]", v)
+				}
+			}
 			params.Set("keyword", p_keywordVar)
+			if c.Flags().Changed("listing-type-category") {
+				for _, v := range p_listingType_categoryVar {
+					params.Add("listingType[category]"+"[]", v)
+				}
+			}
+			if c.Flags().Changed("listing-type-exclude-short-sales") {
+				params.Set("listingType[excludeShortSales]", strconv.FormatBool(p_listingType_excludeShortSalesVar))
+			}
+			if c.Flags().Changed("listing-type-redfin-listings-only") {
+				params.Set("listingType[redfinListingsOnly]", strconv.FormatBool(p_listingType_redfinListingsOnlyVar))
+			}
+			if c.Flags().Changed("lot-size-max") {
+				params.Set("lotSize[max]", p_lotSize_maxVar)
+			}
+			if c.Flags().Changed("lot-size-min") {
+				params.Set("lotSize[min]", p_lotSize_minVar)
+			}
+			if c.Flags().Changed("monthly-payment-down-payment-amount") {
+				params.Set("monthlyPayment[downPaymentAmount]", strconv.FormatFloat(p_monthlyPayment_downPaymentAmountVar, 'f', -1, 64))
+			}
+			if c.Flags().Changed("monthly-payment-down-payment-percent") {
+				params.Set("monthlyPayment[downPaymentPercent]", strconv.FormatFloat(p_monthlyPayment_downPaymentPercentVar, 'f', -1, 64))
+			}
+			if c.Flags().Changed("monthly-payment-insurance-rate") {
+				params.Set("monthlyPayment[insuranceRate]", strconv.FormatFloat(p_monthlyPayment_insuranceRateVar, 'f', -1, 64))
+			}
+			if c.Flags().Changed("monthly-payment-interest-rate") {
+				params.Set("monthlyPayment[interestRate]", strconv.FormatFloat(p_monthlyPayment_interestRateVar, 'f', -1, 64))
+			}
+			if c.Flags().Changed("monthly-payment-max") {
+				params.Set("monthlyPayment[max]", strconv.FormatFloat(p_monthlyPayment_maxVar, 'f', -1, 64))
+			}
+			if c.Flags().Changed("monthly-payment-min") {
+				params.Set("monthlyPayment[min]", strconv.FormatFloat(p_monthlyPayment_minVar, 'f', -1, 64))
+			}
+			if c.Flags().Changed("monthly-payment-mortgage-term") {
+				params.Set("monthlyPayment[mortgageTerm]", p_monthlyPayment_mortgageTermVar)
+			}
+			if c.Flags().Changed("move-in-date") {
+				params.Set("moveInDate", p_moveInDateVar)
+			}
+			if c.Flags().Changed("only-with-deal-or-promotion") {
+				params.Set("onlyWithDealOrPromotion", strconv.FormatBool(p_onlyWithDealOrPromotionVar))
+			}
+			if c.Flags().Changed("open-house-and-tour-open-house") {
+				params.Set("openHouseAndTour[openHouse]", p_openHouseAndTour_openHouseVar)
+			}
+			if c.Flags().Changed("open-house-and-tour-video-tour") {
+				params.Set("openHouseAndTour[videoTour]", strconv.FormatBool(p_openHouseAndTour_videoTourVar))
+			}
 			if c.Flags().Changed("page") {
 				params.Set("page", strconv.FormatFloat(p_pageVar, 'f', -1, 64))
 			}
+			if c.Flags().Changed("pets") {
+				for _, v := range p_petsVar {
+					params.Add("pets"+"[]", v)
+				}
+			}
+			if c.Flags().Changed("price-max") {
+				params.Set("price[max]", strconv.FormatFloat(p_price_maxVar, 'f', -1, 64))
+			}
+			if c.Flags().Changed("price-min") {
+				params.Set("price[min]", strconv.FormatFloat(p_price_minVar, 'f', -1, 64))
+			}
+			if c.Flags().Changed("rental-amenities") {
+				for _, v := range p_rentalAmenitiesVar {
+					params.Add("rentalAmenities"+"[]", v)
+				}
+			}
+			if c.Flags().Changed("rental-other-terms") {
+				for _, v := range p_rentalOtherTermsVar {
+					params.Add("rentalOtherTerms"+"[]", v)
+				}
+			}
+			if c.Flags().Changed("schools-great-school-rating") {
+				params.Set("schools[greatSchoolRating]", strconv.FormatFloat(p_schools_greatSchoolRatingVar, 'f', -1, 64))
+			}
+			if c.Flags().Changed("schools-include-unrated-schools") {
+				params.Set("schools[includeUnratedSchools]", strconv.FormatBool(p_schools_includeUnratedSchoolsVar))
+			}
+			if c.Flags().Changed("schools-school-type") {
+				for _, v := range p_schools_schoolTypeVar {
+					params.Add("schools[schoolType]"+"[]", v)
+				}
+			}
+			if c.Flags().Changed("sold-within-option") {
+				params.Set("soldWithinOption", p_soldWithinOptionVar)
+			}
+			if c.Flags().Changed("sort") {
+				params.Set("sort", p_sortVar)
+			}
+			if c.Flags().Changed("status-options") {
+				for _, v := range p_statusOptionsVar {
+					params.Add("statusOptions"+"[]", v)
+				}
+			}
+			if c.Flags().Changed("stories-max") {
+				params.Set("stories[max]", p_stories_maxVar)
+			}
+			if c.Flags().Changed("stories-min") {
+				params.Set("stories[min]", p_stories_minVar)
+			}
+			if c.Flags().Changed("time-on-redfin") {
+				params.Set("timeOnRedfin", p_timeOnRedfinVar)
+			}
+			if c.Flags().Changed("transport-scores-bike-score") {
+				params.Set("transportScores[bikeScore]", strconv.FormatFloat(p_transportScores_bikeScoreVar, 'f', -1, 64))
+			}
+			if c.Flags().Changed("transport-scores-transit-score") {
+				params.Set("transportScores[transitScore]", strconv.FormatFloat(p_transportScores_transitScoreVar, 'f', -1, 64))
+			}
+			if c.Flags().Changed("transport-scores-walk-score") {
+				params.Set("transportScores[walkScore]", strconv.FormatFloat(p_transportScores_walkScoreVar, 'f', -1, 64))
+			}
 			params.Set("type", p_typeVar)
+			if c.Flags().Changed("year-built-max") {
+				params.Set("yearBuilt[max]", p_yearBuilt_maxVar)
+			}
+			if c.Flags().Changed("year-built-min") {
+				params.Set("yearBuilt[min]", p_yearBuilt_minVar)
+			}
 			resp, err := cli.Do(ctx, "GET", "https://api.hasdata.com/scrape/redfin/listing", params, nil)
 			if err != nil {
 				return err
@@ -55,13 +440,156 @@ func newRedfinListingCmd() *cobra.Command {
 			return WriteResponse(c, resp)
 		},
 	}
+	cmd.Flags().StringVar(&p_bathsVar, "baths", "", "baths Baths: The minimum number of bathrooms. [allowed: one|oneAndHalf|two|twoAndHalf|three|four]")
+	_ = cmd.RegisterFlagCompletionFunc("baths", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
+		return []string{"one", "oneAndHalf", "two", "twoAndHalf", "three", "four"}, cobra.ShellCompDirectiveNoFileComp
+	})
+	cmd.Flags().Float64Var(&p_beds_maxVar, "beds-max", 0, "beds[max] Beds Max: The maximum number of bedrooms.")
+	cmd.Flags().Float64Var(&p_beds_minVar, "beds-min", 0, "beds[min] Beds Min: The minimum number of bedrooms.")
+	cmd.Flags().StringVar(&p_cost_acceptedFinancingVar, "cost-accepted-financing", "", "cost[acceptedFinancing] Accepted Financing: The accepted financing type. [allowed: FHA|VA]")
+	_ = cmd.RegisterFlagCompletionFunc("cost-accepted-financing", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
+		return []string{"FHA", "VA"}, cobra.ShellCompDirectiveNoFileComp
+	})
+	cmd.Flags().BoolVar(&p_cost_excludeLandLeasesVar, "cost-exclude-land-leases", false, "cost[excludeLandLeases] Exclude Land Leases: If set to true, listings with land leases will be excluded.")
+	cmd.Flags().Float64Var(&p_cost_hoaVar, "cost-hoa", 0, "cost[hoa] HOA: The maximum monthly Homeowners Association (HOA) fee.")
+	cmd.Flags().Float64Var(&p_cost_maxPropertyTaxPerYearVar, "cost-max-property-tax-per-year", 0, "cost[maxPropertyTaxPerYear] Max Property Tax per Year: The maximum property tax per year.")
+	cmd.Flags().StringVar(&p_cost_pricePerSqft_maxVar, "cost-price-per-sqft-max", "", "cost[pricePerSqft][max] Price per Sqft Max: The maximum price per square foot. [allowed: 50|100|150|200|250|300|400|500|600|800|1000|1400|1800|2200|2600|3000]")
+	_ = cmd.RegisterFlagCompletionFunc("cost-price-per-sqft-max", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
+		return []string{"50", "100", "150", "200", "250", "300", "400", "500", "600", "800", "1000", "1400", "1800", "2200", "2600", "3000"}, cobra.ShellCompDirectiveNoFileComp
+	})
+	cmd.Flags().StringVar(&p_cost_pricePerSqft_minVar, "cost-price-per-sqft-min", "", "cost[pricePerSqft][min] Price per Sqft Min: The minimum price per square foot. [allowed: 50|100|150|200|250|300|400|500|600|800|1000|1400|1800|2200|2600|3000]")
+	_ = cmd.RegisterFlagCompletionFunc("cost-price-per-sqft-min", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
+		return []string{"50", "100", "150", "200", "250", "300", "400", "500", "600", "800", "1000", "1400", "1800", "2200", "2600", "3000"}, cobra.ShellCompDirectiveNoFileComp
+	})
+	cmd.Flags().StringVar(&p_cost_priceReducedVar, "cost-price-reduced", "", "cost[priceReduced] Price Reduced: Filter listings by when the price was reduced. [allowed: inTheLastDay|inTheLast3Days|inTheLast7Days|inTheLast14Days|inTheLast30Days|moreThan30Days|moreThan60Days|moreThan120Days]")
+	_ = cmd.RegisterFlagCompletionFunc("cost-price-reduced", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
+		return []string{"inTheLastDay", "inTheLast3Days", "inTheLast7Days", "inTheLast14Days", "inTheLast30Days", "moreThan30Days", "moreThan60Days", "moreThan120Days"}, cobra.ShellCompDirectiveNoFileComp
+	})
+	cmd.Flags().BoolVar(&p_exclude55PlusCommunitiesVar, "exclude55-plus-communities", false, "exclude55PlusCommunities Exclude 55+ Communities: If set to true, 55+ communities will be excluded.")
+	cmd.Flags().Float64Var(&p_forRentSquareFootage_maxVar, "for-rent-square-footage-max", 0, "forRentSquareFootage[max] For Rent Square Footage Max: The maximum square footage for for-rent listings.")
+	cmd.Flags().Float64Var(&p_forRentSquareFootage_minVar, "for-rent-square-footage-min", 0, "forRentSquareFootage[min] For Rent Square Footage Min: The minimum square footage for for-rent listings.")
+	cmd.Flags().StringVar(&p_forSaleSquareFeet_maxVar, "for-sale-square-feet-max", "", "forSaleSquareFeet[max] For Sale Square Feet Max: The maximum square footage for for-sale listings. [allowed: 750|1000|1100|1200|1300|1400|1500|1600|1700|1800|1900|2000|2250|2500|2750|3000|4000|5000|7500|10000]")
+	_ = cmd.RegisterFlagCompletionFunc("for-sale-square-feet-max", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
+		return []string{"750", "1000", "1100", "1200", "1300", "1400", "1500", "1600", "1700", "1800", "1900", "2000", "2250", "2500", "2750", "3000", "4000", "5000", "7500", "10000"}, cobra.ShellCompDirectiveNoFileComp
+	})
+	cmd.Flags().StringVar(&p_forSaleSquareFeet_minVar, "for-sale-square-feet-min", "", "forSaleSquareFeet[min] For Sale Square Feet Min: The minimum square footage for for-sale listings. [allowed: 750|1000|1100|1200|1300|1400|1500|1600|1700|1800|1900|2000|2250|2500|2750|3000|4000|5000|7500|10000]")
+	_ = cmd.RegisterFlagCompletionFunc("for-sale-square-feet-min", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
+		return []string{"750", "1000", "1100", "1200", "1300", "1400", "1500", "1600", "1700", "1800", "1900", "2000", "2250", "2500", "2750", "3000", "4000", "5000", "7500", "10000"}, cobra.ShellCompDirectiveNoFileComp
+	})
+	cmd.Flags().StringVar(&p_homeFeatures_basementVar, "home-features-basement", "", "homeFeatures[basement] Basement: The basement type. [allowed: finished|unfinished]")
+	_ = cmd.RegisterFlagCompletionFunc("home-features-basement", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
+		return []string{"finished", "unfinished"}, cobra.ShellCompDirectiveNoFileComp
+	})
+	cmd.Flags().StringVar(&p_homeFeatures_garageSpotsMinVar, "home-features-garage-spots-min", "", "homeFeatures[garageSpotsMin] Garage Spots Min: The minimum number of garage spots. [allowed: 1|2|3|4|5]")
+	_ = cmd.RegisterFlagCompletionFunc("home-features-garage-spots-min", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
+		return []string{"1", "2", "3", "4", "5"}, cobra.ShellCompDirectiveNoFileComp
+	})
+	cmd.Flags().StringVar(&p_homeFeatures_keywordSearchVar, "home-features-keyword-search", "", "homeFeatures[keywordSearch] Keyword Search: A free-text keyword search applied to listing descriptions.")
+	cmd.Flags().StringSliceVar(&p_homeFeatures_optionsVar, "home-features-options", nil, "homeFeatures[options][] Home Features: An array of home feature flags to filter the listings.")
+	_ = cmd.RegisterFlagCompletionFunc("home-features-options", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
+		return []string{"airConditioning", "waterfront", "hasAView", "fireplace", "fixerUpper", "guestHouse", "elevator", "washerDryerHookup", "petsAllowed", "primaryBedroomOnMainFloor", "rvparking", "greenHome", "accessibleHome", "includeOutdoorParking"}, cobra.ShellCompDirectiveNoFileComp
+	})
+	cmd.Flags().StringVar(&p_homeFeatures_poolTypeVar, "home-features-pool-type", "", "homeFeatures[poolType] Pool Type: The type of pool. [allowed: privatePool|communityPool|privateOrCommunityPool|noPrivatePool]")
+	_ = cmd.RegisterFlagCompletionFunc("home-features-pool-type", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
+		return []string{"privatePool", "communityPool", "privateOrCommunityPool", "noPrivatePool"}, cobra.ShellCompDirectiveNoFileComp
+	})
+	cmd.Flags().StringSliceVar(&p_homeTypesVar, "home-types", nil, "homeTypes[] Home Types: An array of home types to filter the listings. Allowed values depend on the listing `type`.")
+	_ = cmd.RegisterFlagCompletionFunc("home-types", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
+		return []string{"house", "townhouse", "townhome", "condo", "land", "multiFamily", "mobile", "coOp", "other", "apartment"}, cobra.ShellCompDirectiveNoFileComp
+	})
 	cmd.Flags().StringVar(&p_keywordVar, "keyword", "33321", "keyword Location: The zipcode used to search for listings. (required)")
 	_ = cmd.MarkFlagRequired("keyword")
+	cmd.Flags().StringSliceVar(&p_listingType_categoryVar, "listing-type-category", nil, "listingType[category][] Listing Category: An array of listing categories.")
+	_ = cmd.RegisterFlagCompletionFunc("listing-type-category", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
+		return []string{"byAgent", "byOwnerFsbo", "newConstruction", "foreclosures"}, cobra.ShellCompDirectiveNoFileComp
+	})
+	cmd.Flags().BoolVar(&p_listingType_excludeShortSalesVar, "listing-type-exclude-short-sales", false, "listingType[excludeShortSales] Exclude Short Sales: If set to true, short sales will be excluded.")
+	cmd.Flags().BoolVar(&p_listingType_redfinListingsOnlyVar, "listing-type-redfin-listings-only", false, "listingType[redfinListingsOnly] Redfin Listings Only: If set to true, only Redfin-listed properties will be included.")
+	cmd.Flags().StringVar(&p_lotSize_maxVar, "lot-size-max", "", "lotSize[max] Lot Size Max: The maximum lot size. [allowed: 2000 sqft|4500 sqft|6500 sqft|8000 sqft|9500 sqft|0.25 acres|0.5 acres|1 acres|2 acres|3 acres|4 acres|5 acres|10 acres|20 acres|40 acres|100 acres]")
+	_ = cmd.RegisterFlagCompletionFunc("lot-size-max", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
+		return []string{"2000 sqft", "4500 sqft", "6500 sqft", "8000 sqft", "9500 sqft", "0.25 acres", "0.5 acres", "1 acres", "2 acres", "3 acres", "4 acres", "5 acres", "10 acres", "20 acres", "40 acres", "100 acres"}, cobra.ShellCompDirectiveNoFileComp
+	})
+	cmd.Flags().StringVar(&p_lotSize_minVar, "lot-size-min", "", "lotSize[min] Lot Size Min: The minimum lot size. [allowed: 2000 sqft|4500 sqft|6500 sqft|8000 sqft|9500 sqft|0.25 acres|0.5 acres|1 acres|2 acres|3 acres|4 acres|5 acres|10 acres|20 acres|40 acres|100 acres]")
+	_ = cmd.RegisterFlagCompletionFunc("lot-size-min", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
+		return []string{"2000 sqft", "4500 sqft", "6500 sqft", "8000 sqft", "9500 sqft", "0.25 acres", "0.5 acres", "1 acres", "2 acres", "3 acres", "4 acres", "5 acres", "10 acres", "20 acres", "40 acres", "100 acres"}, cobra.ShellCompDirectiveNoFileComp
+	})
+	cmd.Flags().Float64Var(&p_monthlyPayment_downPaymentAmountVar, "monthly-payment-down-payment-amount", 0, "monthlyPayment[downPaymentAmount] Down Payment Amount: The down payment as an absolute amount.")
+	cmd.Flags().Float64Var(&p_monthlyPayment_downPaymentPercentVar, "monthly-payment-down-payment-percent", 0, "monthlyPayment[downPaymentPercent] Down Payment Percent: The down payment as a percentage of the home price.")
+	cmd.Flags().Float64Var(&p_monthlyPayment_insuranceRateVar, "monthly-payment-insurance-rate", 0, "monthlyPayment[insuranceRate] Insurance Rate: The home insurance rate (percent) used to calculate the monthly payment.")
+	cmd.Flags().Float64Var(&p_monthlyPayment_interestRateVar, "monthly-payment-interest-rate", 0, "monthlyPayment[interestRate] Interest Rate: The mortgage interest rate (percent) used to calculate the monthly payment.")
+	cmd.Flags().Float64Var(&p_monthlyPayment_maxVar, "monthly-payment-max", 0, "monthlyPayment[max] Monthly Payment Max: The maximum monthly payment.")
+	cmd.Flags().Float64Var(&p_monthlyPayment_minVar, "monthly-payment-min", 0, "monthlyPayment[min] Monthly Payment Min: The minimum monthly payment.")
+	cmd.Flags().StringVar(&p_monthlyPayment_mortgageTermVar, "monthly-payment-mortgage-term", "", "monthlyPayment[mortgageTerm] Mortgage Term: The mortgage term used to calculate the monthly payment. [allowed: fixed15Years|fixed20Years|fixed30Years|fixed30YearsFha|fixed30YearsVa|fixed30YearsJumbo]")
+	_ = cmd.RegisterFlagCompletionFunc("monthly-payment-mortgage-term", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
+		return []string{"fixed15Years", "fixed20Years", "fixed30Years", "fixed30YearsFha", "fixed30YearsVa", "fixed30YearsJumbo"}, cobra.ShellCompDirectiveNoFileComp
+	})
+	cmd.Flags().StringVar(&p_moveInDateVar, "move-in-date", "", "moveInDate Move In Date: The desired move-in date in MM/DD/YYYY format.")
+	cmd.Flags().BoolVar(&p_onlyWithDealOrPromotionVar, "only-with-deal-or-promotion", false, "onlyWithDealOrPromotion Only With Deal or Promotion: If set to true, only listings with a deal or promotion will be included.")
+	cmd.Flags().StringVar(&p_openHouseAndTour_openHouseVar, "open-house-and-tour-open-house", "", "openHouseAndTour[openHouse] Open House: Filter listings with an open house. [allowed: thisWeekend|anytime]")
+	_ = cmd.RegisterFlagCompletionFunc("open-house-and-tour-open-house", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
+		return []string{"thisWeekend", "anytime"}, cobra.ShellCompDirectiveNoFileComp
+	})
+	cmd.Flags().BoolVar(&p_openHouseAndTour_videoTourVar, "open-house-and-tour-video-tour", false, "openHouseAndTour[videoTour] Video Tour: If set to true, only listings with a video tour will be included.")
 	cmd.Flags().Float64Var(&p_pageVar, "page", 0, "page Page: The page number of the results to retrieve.")
+	cmd.Flags().StringSliceVar(&p_petsVar, "pets", nil, "pets[] Pets: An array of pet types allowed.")
+	_ = cmd.RegisterFlagCompletionFunc("pets", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
+		return []string{"dogsAllowed", "catsAllowed"}, cobra.ShellCompDirectiveNoFileComp
+	})
+	cmd.Flags().Float64Var(&p_price_maxVar, "price-max", 0, "price[max] Price Max: The maximum price of the listing.")
+	cmd.Flags().Float64Var(&p_price_minVar, "price-min", 0, "price[min] Price Min: The minimum price of the listing.")
+	cmd.Flags().StringSliceVar(&p_rentalAmenitiesVar, "rental-amenities", nil, "rentalAmenities[] Rental Amenities: An array of rental amenities to filter the listings.")
+	_ = cmd.RegisterFlagCompletionFunc("rental-amenities", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
+		return []string{"airConditioning", "dishwasher", "inUnitWasherDryer", "parkingAllowed", "utilitiesIncluded", "attFiber", "furnished", "laundryFacility", "pool", "washerDryerHookup"}, cobra.ShellCompDirectiveNoFileComp
+	})
+	cmd.Flags().StringSliceVar(&p_rentalOtherTermsVar, "rental-other-terms", nil, "rentalOtherTerms[] Rental Other Terms: An array of additional rental terms.")
+	_ = cmd.RegisterFlagCompletionFunc("rental-other-terms", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
+		return []string{"incomeRestricted", "student", "shortTerm", "seniorLiving", "military"}, cobra.ShellCompDirectiveNoFileComp
+	})
+	cmd.Flags().Float64Var(&p_schools_greatSchoolRatingVar, "schools-great-school-rating", 0, "schools[greatSchoolRating] GreatSchools Rating: The minimum GreatSchools rating (1-10).")
+	cmd.Flags().BoolVar(&p_schools_includeUnratedSchoolsVar, "schools-include-unrated-schools", false, "schools[includeUnratedSchools] Include Unrated Schools: If set to true, unrated schools will be included.")
+	cmd.Flags().StringSliceVar(&p_schools_schoolTypeVar, "schools-school-type", nil, "schools[schoolType][] School Type: An array of school types.")
+	_ = cmd.RegisterFlagCompletionFunc("schools-school-type", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
+		return []string{"elementary", "middle", "high"}, cobra.ShellCompDirectiveNoFileComp
+	})
+	cmd.Flags().StringVar(&p_soldWithinOptionVar, "sold-within-option", "", "soldWithinOption Sold Within: Filter sold listings by how recently they were sold. [allowed: lastOneWeek|lastOneMonth|lastThreeMonth|lastSixMonth|lastYear|lastTwoYear|lastThreeYear|lastFiveYear]")
+	_ = cmd.RegisterFlagCompletionFunc("sold-within-option", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
+		return []string{"lastOneWeek", "lastOneMonth", "lastThreeMonth", "lastSixMonth", "lastYear", "lastTwoYear", "lastThreeYear", "lastFiveYear"}, cobra.ShellCompDirectiveNoFileComp
+	})
+	cmd.Flags().StringVar(&p_sortVar, "sort", "", "sort Sort By: The sorting option for the search results. [allowed: recommended|newest|oldest|priceLowToHigh|priceHighToLow|minSquareFeet|maxSquareFeet|bedrooms|bathrooms|lotSize|squareFeetPrice|mostRecentlySold]")
+	_ = cmd.RegisterFlagCompletionFunc("sort", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
+		return []string{"recommended", "newest", "oldest", "priceLowToHigh", "priceHighToLow", "minSquareFeet", "maxSquareFeet", "bedrooms", "bathrooms", "lotSize", "squareFeetPrice", "mostRecentlySold"}, cobra.ShellCompDirectiveNoFileComp
+	})
+	cmd.Flags().StringSliceVar(&p_statusOptionsVar, "status-options", nil, "statusOptions[] Status Options: An array of listing statuses.")
+	_ = cmd.RegisterFlagCompletionFunc("status-options", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
+		return []string{"active", "comingSoon", "contingentPending"}, cobra.ShellCompDirectiveNoFileComp
+	})
+	cmd.Flags().StringVar(&p_stories_maxVar, "stories-max", "", "stories[max] Stories Max: The maximum number of stories. [allowed: 1|2|3|4|5|10|15|20]")
+	_ = cmd.RegisterFlagCompletionFunc("stories-max", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
+		return []string{"1", "2", "3", "4", "5", "10", "15", "20"}, cobra.ShellCompDirectiveNoFileComp
+	})
+	cmd.Flags().StringVar(&p_stories_minVar, "stories-min", "", "stories[min] Stories Min: The minimum number of stories. [allowed: 1|2|3|4|5|10|15|20]")
+	_ = cmd.RegisterFlagCompletionFunc("stories-min", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
+		return []string{"1", "2", "3", "4", "5", "10", "15", "20"}, cobra.ShellCompDirectiveNoFileComp
+	})
+	cmd.Flags().StringVar(&p_timeOnRedfinVar, "time-on-redfin", "", "timeOnRedfin Time on Redfin: How long the listing has been on Redfin. [allowed: newListing|lessThan3Days|lessThan7Days|lessThan14Days|lessThan30Days|moreThan7Days|moreThan14Days|moreThan30Days|moreThan45Days|moreThan60Days|moreThan90Days|moreThan180Days]")
+	_ = cmd.RegisterFlagCompletionFunc("time-on-redfin", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
+		return []string{"newListing", "lessThan3Days", "lessThan7Days", "lessThan14Days", "lessThan30Days", "moreThan7Days", "moreThan14Days", "moreThan30Days", "moreThan45Days", "moreThan60Days", "moreThan90Days", "moreThan180Days"}, cobra.ShellCompDirectiveNoFileComp
+	})
+	cmd.Flags().Float64Var(&p_transportScores_bikeScoreVar, "transport-scores-bike-score", 0, "transportScores[bikeScore] Bike Score: The minimum bike score (1-100).")
+	cmd.Flags().Float64Var(&p_transportScores_transitScoreVar, "transport-scores-transit-score", 0, "transportScores[transitScore] Transit Score: The minimum transit score (1-100).")
+	cmd.Flags().Float64Var(&p_transportScores_walkScoreVar, "transport-scores-walk-score", 0, "transportScores[walkScore] Walk Score: The minimum walk score (1-100).")
 	cmd.Flags().StringVar(&p_typeVar, "type", "forSale", "type Listing Type: The type of listing. [allowed: forSale|forRent|sold] (required)")
 	_ = cmd.MarkFlagRequired("type")
 	_ = cmd.RegisterFlagCompletionFunc("type", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"forSale", "forRent", "sold"}, cobra.ShellCompDirectiveNoFileComp
+	})
+	cmd.Flags().StringVar(&p_yearBuilt_maxVar, "year-built-max", "", "yearBuilt[max] Year Built Max: The maximum year the property was built. [allowed: 2026|2025|2024|2023|2022|2021|2020|2019|2018|2017|2016|2015|2010|2005|2000|1990|1980|1970|1960|1950|1940|1920|1900]")
+	_ = cmd.RegisterFlagCompletionFunc("year-built-max", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
+		return []string{"2026", "2025", "2024", "2023", "2022", "2021", "2020", "2019", "2018", "2017", "2016", "2015", "2010", "2005", "2000", "1990", "1980", "1970", "1960", "1950", "1940", "1920", "1900"}, cobra.ShellCompDirectiveNoFileComp
+	})
+	cmd.Flags().StringVar(&p_yearBuilt_minVar, "year-built-min", "", "yearBuilt[min] Year Built Min: The minimum year the property was built. [allowed: 2026|2025|2024|2023|2022|2021|2020|2019|2018|2017|2016|2015|2010|2005|2000|1990|1980|1970|1960|1950|1940|1920|1900]")
+	_ = cmd.RegisterFlagCompletionFunc("year-built-min", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
+		return []string{"2026", "2025", "2024", "2023", "2022", "2021", "2020", "2019", "2018", "2017", "2016", "2015", "2010", "2005", "2000", "1990", "1980", "1970", "1960", "1950", "1940", "1920", "1900"}, cobra.ShellCompDirectiveNoFileComp
 	})
 
 	return cmd

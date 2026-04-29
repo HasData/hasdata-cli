@@ -1,3 +1,11 @@
+## Changes
+
+ GENERATION_REPORT.md       |   2 +-
+ cmd/gen_redfin_listing.go  | 528 +++++++++++++++++++++++++++++++++++++++++++++
+ internal/gen/spec-hash.txt |   2 +-
+ 3 files changed, 530 insertions(+), 2 deletions(-)
+
+## Generation Report
 # Generation Report
 
 Generated at: 2026-04-29T08:48:43Z
