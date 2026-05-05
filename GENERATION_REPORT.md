@@ -1,8 +1,8 @@
 # Generation Report
 
-Generated at: 2026-04-29T08:48:43Z
+Generated at: 2026-05-05T07:37:40Z
 
-## APIs generated (40)
+## APIs generated (43)
 - airbnb-listing
 - airbnb-property
 - amazon-product
@@ -41,6 +41,9 @@ Generated at: 2026-04-29T08:48:43Z
 - shopify-collections
 - shopify-products
 - web-scraping
+- youtube-search-api
+- youtube-transcript-api
+- youtube-video-api
 - zillow-listing
 - zillow-property
 
