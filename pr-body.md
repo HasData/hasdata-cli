@@ -1,16 +1,16 @@
 ## Changes
 
- GENERATION_REPORT.md       |  7 ++++--
+ GENERATION_REPORT.md       |  5 ++--
  internal/gen/spec-hash.txt |  2 +-
- pr-body.md                 | 54 ----------------------------------------------
- 3 files changed, 6 insertions(+), 57 deletions(-)
+ pr-body.md                 | 57 ----------------------------------------------
+ 3 files changed, 4 insertions(+), 60 deletions(-)
 
 ## Generation Report
 # Generation Report
 
-Generated at: 2026-05-05T07:37:40Z
+Generated at: 2026-05-06T07:48:11Z
 
-## APIs generated (43)
+## APIs generated (44)
 - airbnb-listing
 - airbnb-property
 - amazon-product
@@ -49,6 +49,7 @@ Generated at: 2026-05-05T07:37:40Z
 - shopify-collections
 - shopify-products
 - web-scraping
+- youtube-channel-api
 - youtube-search-api
 - youtube-transcript-api
 - youtube-video-api
