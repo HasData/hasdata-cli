@@ -1,16 +1,20 @@
 ## Changes
 
- GENERATION_REPORT.md       |  5 ++--
- internal/gen/spec-hash.txt |  2 +-
- pr-body.md                 | 57 ----------------------------------------------
- 3 files changed, 4 insertions(+), 60 deletions(-)
+ GENERATION_REPORT.md              |  6 ++--
+ cmd/gen_youtube_channel_api.go    |  4 +--
+ cmd/gen_youtube_search_api.go     | 14 +++++-----
+ cmd/gen_youtube_transcript_api.go | 14 ++++++++--
+ cmd/gen_youtube_video_api.go      |  2 +-
+ internal/gen/spec-hash.txt        |  2 +-
+ pr-body.md                        | 58 ---------------------------------------
+ 7 files changed, 26 insertions(+), 74 deletions(-)
 
 ## Generation Report
 # Generation Report
 
-Generated at: 2026-05-06T07:48:11Z
+Generated at: 2026-05-07T07:54:47Z
 
-## APIs generated (44)
+## APIs generated (46)
 - airbnb-listing
 - airbnb-property
 - amazon-product
@@ -19,6 +23,8 @@ Generated at: 2026-05-06T07:48:11Z
 - amazon-seller
 - amazon-seller-products
 - bing-serp
+- booking-place
+- booking-search
 - yellowpages-place
 - yellowpages-search
 - yelp-place

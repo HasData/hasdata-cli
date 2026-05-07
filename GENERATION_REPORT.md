@@ -1,8 +1,8 @@
 # Generation Report
 
-Generated at: 2026-05-06T07:48:11Z
+Generated at: 2026-05-07T07:54:47Z
 
-## APIs generated (44)
+## APIs generated (46)
 - airbnb-listing
 - airbnb-property
 - amazon-product
@@ -11,6 +11,8 @@ Generated at: 2026-05-06T07:48:11Z
 - amazon-seller
 - amazon-seller-products
 - bing-serp
+- booking-place
+- booking-search
 - yellowpages-place
 - yellowpages-search
 - yelp-place
