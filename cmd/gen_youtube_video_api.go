@@ -67,7 +67,7 @@ func newYoutubeVideoApiCmd() *cobra.Command {
 	})
 	cmd.Flags().StringVar(&p_glVar, "gl", "", "gl Country: The two-letter country code for the country you want to limit the search to.")
 	cmd.Flags().StringVar(&p_hlVar, "hl", "", "hl Language: The two-letter language code for the language you want to use for the search.")
-	cmd.Flags().StringVar(&p_vVar, "v-param", "dQw4w9WgXcQ", "v Video ID: YouTube video ID (e.g. `dQw4w9WgXcQ`). (required)")
+	cmd.Flags().StringVar(&p_vVar, "v-param", "dQw4w9WgXcQ", "v Video ID: 11-character YouTube video ID — the value of the `v=` query parameter in a watch URL (e.g. `dQw4w9WgXcQ` for `https://www.youtube.com/watch?v=dQw4w9WgXcQ`). (required)")
 	_ = cmd.MarkFlagRequired("v-param")
 
 	return cmd

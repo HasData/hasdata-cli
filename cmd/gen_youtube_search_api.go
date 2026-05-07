@@ -116,7 +116,7 @@ func newYoutubeSearchApiCmd() *cobra.Command {
 			return WriteResponse(c, resp)
 		},
 	}
-	cmd.Flags().StringVar(&p_dateVar, "date", "", "date Upload Date: Filter by upload date. [allowed: hour|today|week|month|year]")
+	cmd.Flags().StringVar(&p_dateVar, "date", "", "date Upload Date: Limit results to videos uploaded within this time window relative to now. [allowed: hour|today|week|month|year]")
 	_ = cmd.RegisterFlagCompletionFunc("date", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"hour", "today", "week", "month", "year"}, cobra.ShellCompDirectiveNoFileComp
 	})
@@ -124,25 +124,25 @@ func newYoutubeSearchApiCmd() *cobra.Command {
 	_ = cmd.RegisterFlagCompletionFunc("device-type", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"desktop", "mobile"}, cobra.ShellCompDirectiveNoFileComp
 	})
-	cmd.Flags().StringSliceVar(&p_filtersVar, "filters", nil, "filters[] Features: An array of feature filters to apply. Can include any combination of the supported values.")
+	cmd.Flags().StringSliceVar(&p_filtersVar, "filters", nil, "filters[] Features: Feature flags to require on results. Multiple values are combined with AND (every flag must apply).\n\n- `hd` — HD quality\n- `k4` — 4K quality\n- `hdr` — HDR\n- `subtitles` — has subtitles/closed captions\n- `cc` — Creative Commons license\n- `d3` — 3D video\n- `d360` — 360° video\n- `vr180` — VR180 video\n- `live` — currently live\n- `bought` — purchased/paid content\n- `location` — has a geographic location tag\n")
 	_ = cmd.RegisterFlagCompletionFunc("filters", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"hd", "subtitles", "cc", "d3", "live", "bought", "k4", "d360", "location", "hdr", "vr180"}, cobra.ShellCompDirectiveNoFileComp
 	})
 	cmd.Flags().StringVar(&p_glVar, "gl", "", "gl Country: The two-letter country code for the country you want to limit the search to.")
 	cmd.Flags().StringVar(&p_hlVar, "hl", "", "hl Language: The two-letter language code for the language you want to use for the search.")
-	cmd.Flags().StringVar(&p_lengthVar, "length", "", "length Duration: Filter by video duration. [allowed: under4|between420|plus20]")
+	cmd.Flags().StringVar(&p_lengthVar, "length", "", "length Duration: Filter by video duration bucket:\n- `under4` — under 4 minutes\n- `between420` — 4 to 20 minutes\n- `plus20` — over 20 minutes\n [allowed: under4|between420|plus20]")
 	_ = cmd.RegisterFlagCompletionFunc("length", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"under4", "between420", "plus20"}, cobra.ShellCompDirectiveNoFileComp
 	})
 	cmd.Flags().StringVar(&p_paginationTokenVar, "pagination-token", "", "paginationToken Pagination Token: Token returned in the previous response to fetch the next page.")
-	cmd.Flags().StringVar(&p_qVar, "q", "BMW", "q Search Query: The search query. (required)")
+	cmd.Flags().StringVar(&p_qVar, "q", "BMW", "q Search Query: Free-text search query, exactly as a user would type it into the YouTube search box. (required)")
 	_ = cmd.MarkFlagRequired("q")
-	cmd.Flags().StringVar(&p_sortByVar, "sort-by", "", "sortBy Sort By: Sort order of results. [allowed: relevance|popularity|rating|date|views]")
+	cmd.Flags().StringVar(&p_sortByVar, "sort-by", "", "sortBy Sort By: Sort order applied to the results page. `relevance` (default) — best match for the query; `date` — newest first; `views` — most viewed first; `rating` — highest rated first; `popularity` — trending/most popular. [allowed: relevance|popularity|rating|date|views]")
 	_ = cmd.RegisterFlagCompletionFunc("sort-by", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"relevance", "popularity", "rating", "date", "views"}, cobra.ShellCompDirectiveNoFileComp
 	})
-	cmd.Flags().StringVar(&p_spVar, "sp", "", "sp Search Parameters: Raw YouTube `sp` filter parameter.")
-	cmd.Flags().StringVar(&p_videoTypeVar, "video-type", "", "videoType Type: Filter by content type. [allowed: video|shorts|channel|playlist|movie]")
+	cmd.Flags().StringVar(&p_spVar, "sp", "", "sp Search Parameters: Raw YouTube `sp` filter token, copied verbatim from a YouTube search URL (e.g. `EgIQAQ%253D%253D`). When provided, it overrides `sortBy`, `date`, `videoType`, `length`, and `filters[]`. Use only if you need a YouTube-side filter that this API does not expose as a structured parameter.")
+	cmd.Flags().StringVar(&p_videoTypeVar, "video-type", "", "videoType Type: Restrict results to a single YouTube content type — regular videos, Shorts, channels, playlists, or movies. [allowed: video|shorts|channel|playlist|movie]")
 	_ = cmd.RegisterFlagCompletionFunc("video-type", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"video", "shorts", "channel", "playlist", "movie"}, cobra.ShellCompDirectiveNoFileComp
 	})

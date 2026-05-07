@@ -29,6 +29,11 @@ func newYoutubeTranscriptApiCmd() *cobra.Command {
 		Long:  "The YouTube Transcript API extracts the full transcript (subtitles) from a YouTube video.\n\nEndpoint: GET https://api.hasdata.com/scrape/youtube/transcript\nCost: 10 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
+			if c.Flags().Changed("type") {
+				if err := validateEnumString("type", p_typeVar, []string{"asr"}); err != nil {
+					return err
+				}
+			}
 			return nil
 		},
 		RunE: func(c *cobra.Command, _ []string) error {
@@ -52,9 +57,12 @@ func newYoutubeTranscriptApiCmd() *cobra.Command {
 			return WriteResponse(c, resp)
 		},
 	}
-	cmd.Flags().StringVar(&p_languageCodeVar, "language-code", "en", "languageCode Language Code: Language code for the transcript (e.g. `en`, `de`, `en-US`).")
-	cmd.Flags().StringVar(&p_typeVar, "type", "", "type Transcript Type: Transcript type (e.g. `asr` for auto-generated).")
-	cmd.Flags().StringVar(&p_vVar, "v-param", "dQw4w9WgXcQ", "v Video ID: YouTube video ID (e.g. `dQw4w9WgXcQ`). (required)")
+	cmd.Flags().StringVar(&p_languageCodeVar, "language-code", "en", "languageCode Language Code: BCP-47 / YouTube language code of the transcript track to return (e.g. `en`, `de`, `en-US`, `pt-BR`). Must match a track that the video actually has. When omitted, the video's default language track is returned.")
+	cmd.Flags().StringVar(&p_typeVar, "type", "", "type Transcript Type: Set to `asr` to fetch the YouTube auto-generated (speech-recognition) track. Omit to fetch the human-authored track for `languageCode` when one exists. [allowed: asr]")
+	_ = cmd.RegisterFlagCompletionFunc("type", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
+		return []string{"asr"}, cobra.ShellCompDirectiveNoFileComp
+	})
+	cmd.Flags().StringVar(&p_vVar, "v-param", "dQw4w9WgXcQ", "v Video ID: 11-character YouTube video ID — the value of the `v=` query parameter in a watch URL (e.g. `dQw4w9WgXcQ` for `https://www.youtube.com/watch?v=dQw4w9WgXcQ`). (required)")
 	_ = cmd.MarkFlagRequired("v-param")
 
 	return cmd
