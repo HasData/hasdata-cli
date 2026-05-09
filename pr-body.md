@@ -1,20 +1,16 @@
 ## Changes
 
- GENERATION_REPORT.md              |  6 ++--
- cmd/gen_youtube_channel_api.go    |  4 +--
- cmd/gen_youtube_search_api.go     | 14 +++++-----
- cmd/gen_youtube_transcript_api.go | 14 ++++++++--
- cmd/gen_youtube_video_api.go      |  2 +-
- internal/gen/spec-hash.txt        |  2 +-
- pr-body.md                        | 58 ---------------------------------------
- 7 files changed, 26 insertions(+), 74 deletions(-)
+ GENERATION_REPORT.md       |  5 ++--
+ internal/gen/spec-hash.txt |  2 +-
+ pr-body.md                 | 64 ----------------------------------------------
+ 3 files changed, 4 insertions(+), 67 deletions(-)
 
 ## Generation Report
 # Generation Report
 
-Generated at: 2026-05-07T07:54:47Z
+Generated at: 2026-05-09T07:33:24Z
 
-## APIs generated (46)
+## APIs generated (47)
 - airbnb-listing
 - airbnb-property
 - amazon-product
@@ -34,6 +30,7 @@ Generated at: 2026-05-07T07:54:47Z
 - google-maps-contributor-reviews
 - google-maps-photos
 - google-maps-place
+- google-maps-posts
 - google-maps-reviews
 - google-ai-mode
 - google-events

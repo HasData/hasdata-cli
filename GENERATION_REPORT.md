@@ -1,8 +1,8 @@
 # Generation Report
 
-Generated at: 2026-05-07T07:54:47Z
+Generated at: 2026-05-09T07:33:24Z
 
-## APIs generated (46)
+## APIs generated (47)
 - airbnb-listing
 - airbnb-property
 - amazon-product
@@ -22,6 +22,7 @@ Generated at: 2026-05-07T07:54:47Z
 - google-maps-contributor-reviews
 - google-maps-photos
 - google-maps-place
+- google-maps-posts
 - google-maps-reviews
 - google-ai-mode
 - google-events
