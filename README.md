@@ -129,14 +129,16 @@ llm "Answer using this context only:\n$CONTEXT\n\nQuestion: what's the fastest c
 | Category | Commands |
 |---|---|
 | **Google SERP** | `google-serp` · `google-serp-light` · `google-ai-mode` · `google-news` · `google-shopping` · `google-immersive-product` · `google-events` · `google-short-videos` |
-| **Google Maps** | `google-maps` · `google-maps-place` · `google-maps-reviews` · `google-maps-contributor-reviews` · `google-maps-photos` |
-| **Google Other** | `google-images` · `google-trends` · `google-flights` |
+| **Google Maps** | `google-maps` · `google-maps-place` · `google-maps-reviews` · `google-maps-contributor-reviews` · `google-maps-photos` · `google-maps-posts` |
+| **Google Other** | `google-images` · `google-trends` |
 | **Search Engines** | `bing-serp` |
 | **Web** | `web-scraping` (headless, AI extraction, markdown output, screenshots) |
 | **E-commerce** | `amazon-product` · `amazon-search` · `amazon-seller` · `amazon-seller-products` · `shopify-products` · `shopify-collections` |
-| **Real Estate** | `zillow-listing` · `zillow-property` · `redfin-listing` · `redfin-property` · `airbnb-listing` · `airbnb-property` |
+| **Real Estate** | `zillow-listing` · `zillow-property` · `redfin-listing` · `redfin-property` |
+| **Travel** | `booking-search` · `booking-place` · `airbnb-listing` · `airbnb-property` · `google-flights` |
 | **Business / Local** | `yelp-search` · `yelp-place` · `yellowpages-search` · `yellowpages-place` |
 | **Jobs** | `indeed-listing` · `indeed-job` · `glassdoor-listing` · `glassdoor-job` |
+| **Video** | `youtube-search-api` · `youtube-video-api` · `youtube-channel-api` · `youtube-transcript-api` |
 | **Social** | `instagram-profile` |
 
 ## Flag patterns
