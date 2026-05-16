@@ -1,14 +1,16 @@
 ## Changes
 
- GENERATION_REPORT.md       |  5 ++--
+ GENERATION_REPORT.md       |  2 +-
+ cmd/gen_yelp_place.go      |  4 +--
+ cmd/gen_yelp_search.go     |  4 +--
  internal/gen/spec-hash.txt |  2 +-
- pr-body.md                 | 64 ----------------------------------------------
- 3 files changed, 4 insertions(+), 67 deletions(-)
+ pr-body.md                 | 61 ----------------------------------------------
+ 5 files changed, 6 insertions(+), 67 deletions(-)
 
 ## Generation Report
 # Generation Report
 
-Generated at: 2026-05-09T07:33:24Z
+Generated at: 2026-05-16T07:36:45Z
 
 ## APIs generated (47)
 - airbnb-listing
