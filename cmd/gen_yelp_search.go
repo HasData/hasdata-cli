@@ -27,8 +27,8 @@ func newYelpSearchCmd() *cobra.Command {
 
 	cmd := &cobra.Command{
 		Use:   "yelp-search",
-		Short: "Yelp Search API  (5 credits/call)",
-		Long:  "The Yelp Search API allows users to get results from the Yelp search page. This API enables searching for businesses by keyword and location.\n\nEndpoint: GET https://api.hasdata.com/scrape/yelp/search\nCost: 5 credits per call.",
+		Short: "Yelp Search API  (10 credits/call)",
+		Long:  "The Yelp Search API allows users to get results from the Yelp search page. This API enables searching for businesses by keyword and location.\n\nEndpoint: GET https://api.hasdata.com/scrape/yelp/search\nCost: 10 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			if c.Flags().Changed("domain") {
