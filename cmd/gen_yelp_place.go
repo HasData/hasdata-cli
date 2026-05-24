@@ -24,8 +24,8 @@ func newYelpPlaceCmd() *cobra.Command {
 
 	cmd := &cobra.Command{
 		Use:   "yelp-place",
-		Short: "Yelp Place API  (5 credits/call)",
-		Long:  "The Yelp Place API allows users to retrieve detailed information about a specific place using its Yelp ID or Yelp Alias.\n\nEndpoint: GET https://api.hasdata.com/scrape/yelp/place\nCost: 5 credits per call.",
+		Short: "Yelp Place API  (10 credits/call)",
+		Long:  "The Yelp Place API allows users to retrieve detailed information about a specific place using its Yelp ID or Yelp Alias.\n\nEndpoint: GET https://api.hasdata.com/scrape/yelp/place\nCost: 10 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			if c.Flags().Changed("domain") {
