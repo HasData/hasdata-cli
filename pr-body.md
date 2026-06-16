@@ -1,19 +1,18 @@
 ## Changes
 
- GENERATION_REPORT.md                |  2 +-
- cmd/gen_google_immersive_product.go |  2 +-
- cmd/gen_yelp_place.go               |  4 +--
- cmd/gen_yelp_search.go              |  4 +--
- internal/gen/spec-hash.txt          |  2 +-
- pr-body.md                          | 61 -------------------------------------
- 6 files changed, 7 insertions(+), 68 deletions(-)
+ GENERATION_REPORT.md       |  5 ++--
+ cmd/gen_booking_place.go   |  8 +++---
+ cmd/gen_booking_search.go  |  8 +++---
+ internal/gen/spec-hash.txt |  2 +-
+ pr-body.md                 | 64 ----------------------------------------------
+ 5 files changed, 12 insertions(+), 75 deletions(-)
 
 ## Generation Report
 # Generation Report
 
-Generated at: 2026-05-24T07:56:06Z
+Generated at: 2026-06-16T08:55:44Z
 
-## APIs generated (47)
+## APIs generated (48)
 - airbnb-listing
 - airbnb-property
 - amazon-product
@@ -44,6 +43,7 @@ Generated at: 2026-05-24T07:56:06Z
 - google-shopping
 - google-short-videos
 - google-flights
+- google-hotels
 - google-trends
 - instagram-profile
 - glassdoor-job

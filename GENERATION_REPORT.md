@@ -1,8 +1,8 @@
 # Generation Report
 
-Generated at: 2026-05-24T07:56:06Z
+Generated at: 2026-06-16T08:55:44Z
 
-## APIs generated (47)
+## APIs generated (48)
 - airbnb-listing
 - airbnb-property
 - amazon-product
@@ -33,6 +33,7 @@ Generated at: 2026-05-24T07:56:06Z
 - google-shopping
 - google-short-videos
 - google-flights
+- google-hotels
 - google-trends
 - instagram-profile
 - glassdoor-job

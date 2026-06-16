@@ -23,7 +23,7 @@ func newBookingPlaceCmd() *cobra.Command {
 	var p_checkInDateVar string
 	var p_checkOutDateVar string
 	var p_childrenVar int
-	var p_childrenAgesJsonVar string
+	var p_childrenAgesVar string
 	var p_currencyVar string
 	var p_languageVar string
 	var p_roomsVar int
@@ -48,8 +48,8 @@ func newBookingPlaceCmd() *cobra.Command {
 			params.Set("checkInDate", p_checkInDateVar)
 			params.Set("checkOutDate", p_checkOutDateVar)
 			params.Set("children", strconv.Itoa(p_childrenVar))
-			if c.Flags().Changed("children-ages-json") {
-				params.Set("childrenAgesJson", p_childrenAgesJsonVar)
+			if c.Flags().Changed("children-ages") {
+				params.Set("childrenAges", p_childrenAgesVar)
 			}
 			if c.Flags().Changed("currency") {
 				params.Set("currency", p_currencyVar)
@@ -74,7 +74,7 @@ func newBookingPlaceCmd() *cobra.Command {
 	_ = cmd.MarkFlagRequired("check-out-date")
 	cmd.Flags().IntVar(&p_childrenVar, "children", 0, "children Children Count: Number of child guests across all rooms (0–10). Pass `0` if there are no children. (required)")
 	_ = cmd.MarkFlagRequired("children")
-	cmd.Flags().StringVar(&p_childrenAgesJsonVar, "children-ages-json", "", "childrenAgesJson Children Ages: JSON-encoded array of child ages, one entry per child (each `0`–`17`). Required when `children > 0` and the array length must equal `children`. Must not be passed when `children = 0`.\n\nExample: `[1, 3, 7]`\n")
+	cmd.Flags().StringVar(&p_childrenAgesVar, "children-ages", "", "childrenAges Children Ages: Comma-separated list of child ages, one entry per child (each `0`–`17`). Required when `children > 0` and the number of ages must equal `children`.\n\nExample: `1,3,7`\n")
 	cmd.Flags().StringVar(&p_currencyVar, "currency", "", "currency Currency: Currency of the prices returned in the response. Use `hotelCurrency` to keep each property's native currency.")
 	cmd.Flags().StringVar(&p_languageVar, "language", "", "language Language: Language of the Booking.com interface and localized fields in the response.")
 	cmd.Flags().IntVar(&p_roomsVar, "rooms", 1, "rooms Rooms: Number of rooms to book. (required)")
