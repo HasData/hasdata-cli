@@ -23,8 +23,8 @@ func newGlassdoorJobCmd() *cobra.Command {
 
 	cmd := &cobra.Command{
 		Use:   "glassdoor-job",
-		Short: "Glassdoor Job API  (5 credits/call)",
-		Long:  "The Glassdoor Job API allows you to retrieve detailed information about a specific job listing based on the provided vacancy URL.\n\nEndpoint: GET https://api.hasdata.com/scrape/glassdoor/job\nCost: 5 credits per call.",
+		Short: "Glassdoor Job Scraper API  (5 credits/call)",
+		Long:  "The Glassdoor Job Scraper API allows you to retrieve detailed information about a specific job listing based on the provided vacancy URL.\n\nEndpoint: GET https://api.hasdata.com/scrape/glassdoor/job\nCost: 5 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			return nil

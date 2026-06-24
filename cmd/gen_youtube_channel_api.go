@@ -28,8 +28,8 @@ func newYoutubeChannelApiCmd() *cobra.Command {
 
 	cmd := &cobra.Command{
 		Use:   "youtube-channel-api",
-		Short: "YouTube Channel API  (10 credits/call)",
-		Long:  "The YouTube Channel API provides structured data from YouTube channel pages including channel info, videos, shorts, playlists, posts, streams, releases, podcasts, and more.\n\nEndpoint: GET https://api.hasdata.com/scrape/youtube/channel\nCost: 10 credits per call.",
+		Short: "YouTube Channel Scraper API  (10 credits/call)",
+		Long:  "The YouTube Channel Scraper API provides structured data from YouTube channel pages including channel info, videos, shorts, playlists, posts, streams, releases, podcasts, and more.\n\nEndpoint: GET https://api.hasdata.com/scrape/youtube/channel\nCost: 10 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			if c.Flags().Changed("device-type") {

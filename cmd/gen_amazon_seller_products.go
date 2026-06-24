@@ -26,8 +26,8 @@ func newAmazonSellerProductsCmd() *cobra.Command {
 
 	cmd := &cobra.Command{
 		Use:   "amazon-seller-products",
-		Short: "Amazon Seller Products API  (5 credits/call)",
-		Long:  "The Amazon Seller Products API allows users to retrieve products listed by a specific Amazon seller using the seller ID, with optional domain, language, and page settings.\n\nEndpoint: GET https://api.hasdata.com/scrape/amazon/seller-products\nCost: 5 credits per call.",
+		Short: "Amazon Seller Products Scraper API  (5 credits/call)",
+		Long:  "The Amazon Seller Products Scraper API allows users to retrieve products listed by a specific Amazon seller using the seller ID, with optional domain, language, and page settings.\n\nEndpoint: GET https://api.hasdata.com/scrape/amazon/seller-products\nCost: 5 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			if c.Flags().Changed("domain") {

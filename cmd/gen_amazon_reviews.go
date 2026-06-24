@@ -32,8 +32,8 @@ func newAmazonReviewsCmd() *cobra.Command {
 
 	cmd := &cobra.Command{
 		Use:    "amazon-reviews",
-		Short:  "[deprecated] Amazon Reviews API  (5 credits/call)",
-		Long:   "The Amazon Reviews API allows users to get product reviews from Amazon based on the specified ASIN and other optional parameters. This API enables retrieving detailed reviews about a specific product on Amazon.\n\nThis API is deprecated — Amazon Reviews API is currently unavailable because Amazon now requires login to access reviews..\n\nEndpoint: GET https://api.hasdata.com/scrape/amazon/reviews\nCost: 5 credits per call.",
+		Short:  "[deprecated] Amazon Reviews Scraper API  (5 credits/call)",
+		Long:   "The Amazon Reviews Scraper API allows users to get product reviews from Amazon based on the specified ASIN and other optional parameters. This API enables retrieving detailed reviews about a specific product on Amazon.\n\nThis API is deprecated — Amazon Reviews API is currently unavailable because Amazon now requires login to access reviews..\n\nEndpoint: GET https://api.hasdata.com/scrape/amazon/reviews\nCost: 5 credits per call.",
 		Args:   cobra.NoArgs,
 		Hidden: true,
 		PreRunE: func(c *cobra.Command, _ []string) error {

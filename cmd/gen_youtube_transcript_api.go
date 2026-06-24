@@ -25,8 +25,8 @@ func newYoutubeTranscriptApiCmd() *cobra.Command {
 
 	cmd := &cobra.Command{
 		Use:   "youtube-transcript-api",
-		Short: "YouTube Transcript API  (10 credits/call)",
-		Long:  "The YouTube Transcript API extracts the full transcript (subtitles) from a YouTube video.\n\nEndpoint: GET https://api.hasdata.com/scrape/youtube/transcript\nCost: 10 credits per call.",
+		Short: "YouTube Transcript Scraper API  (10 credits/call)",
+		Long:  "The YouTube Transcript Scraper API extracts the full transcript (subtitles) from a YouTube video.\n\nEndpoint: GET https://api.hasdata.com/scrape/youtube/transcript\nCost: 10 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			if c.Flags().Changed("type") {

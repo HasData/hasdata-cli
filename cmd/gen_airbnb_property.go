@@ -23,8 +23,8 @@ func newAirbnbPropertyCmd() *cobra.Command {
 
 	cmd := &cobra.Command{
 		Use:   "airbnb-property",
-		Short: "Airbnb Property API  (5 credits/call)",
-		Long:  "The Airbnb Property API allows users to retrieve detailed information about a specific Airbnb listing using its URL.\n\nEndpoint: GET https://api.hasdata.com/scrape/airbnb/property\nCost: 5 credits per call.",
+		Short: "Airbnb Property Scraper API  (5 credits/call)",
+		Long:  "The Airbnb Property Scraper API allows users to retrieve detailed information about a specific Airbnb listing using its URL.\n\nEndpoint: GET https://api.hasdata.com/scrape/airbnb/property\nCost: 5 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			return nil

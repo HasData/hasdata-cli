@@ -27,8 +27,8 @@ func newYellowpagesSearchCmd() *cobra.Command {
 
 	cmd := &cobra.Command{
 		Use:   "yellowpages-search",
-		Short: "YellowPages Search API  (5 credits/call)",
-		Long:  "The YellowPages Search API allows users to get results from the YellowPages search page. This API enables searching for businesses by keyword and location.\n\nEndpoint: GET https://api.hasdata.com/scrape/yellowpages/search\nCost: 5 credits per call.",
+		Short: "YellowPages Search Scraper API  (5 credits/call)",
+		Long:  "The YellowPages Search Scraper API allows users to get results from the YellowPages search page. This API enables searching for businesses by keyword and location.\n\nEndpoint: GET https://api.hasdata.com/scrape/yellowpages/search\nCost: 5 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			if c.Flags().Changed("domain") {

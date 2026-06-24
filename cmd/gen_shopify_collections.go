@@ -25,8 +25,8 @@ func newShopifyCollectionsCmd() *cobra.Command {
 
 	cmd := &cobra.Command{
 		Use:   "shopify-collections",
-		Short: "Shopify Collections API  (5 credits/call)",
-		Long:  "The Shopify Collections API allows users to retrieve information about collections in a Shopify store, including details such as title, handle, description, and image.\n\nEndpoint: GET https://api.hasdata.com/scrape/shopify/collections\nCost: 5 credits per call.",
+		Short: "Shopify Collections Scraper API  (5 credits/call)",
+		Long:  "The Shopify Collections Scraper API allows users to retrieve information about collections in a Shopify store, including details such as title, handle, description, and image.\n\nEndpoint: GET https://api.hasdata.com/scrape/shopify/collections\nCost: 5 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			return nil

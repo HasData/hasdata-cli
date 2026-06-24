@@ -33,8 +33,8 @@ func newYoutubeSearchApiCmd() *cobra.Command {
 
 	cmd := &cobra.Command{
 		Use:   "youtube-search-api",
-		Short: "YouTube Search API  (10 credits/call)",
-		Long:  "The YouTube Search API provides real-time access to structured YouTube search results.\n\nEndpoint: GET https://api.hasdata.com/scrape/youtube/search\nCost: 10 credits per call.",
+		Short: "YouTube Search Scraper API  (10 credits/call)",
+		Long:  "The YouTube Search Scraper API provides real-time access to structured YouTube search results.\n\nEndpoint: GET https://api.hasdata.com/scrape/youtube/search\nCost: 10 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			if c.Flags().Changed("date") {

@@ -23,8 +23,8 @@ func newInstagramProfileCmd() *cobra.Command {
 
 	cmd := &cobra.Command{
 		Use:   "instagram-profile",
-		Short: "Instagram Profile API  (5 credits/call)",
-		Long:  "The Instagram Profile API lets you retrieve public profile information for a specific Instagram account using its handle. It returns data such as bio, followers, following, posts count, and other visible profile details.\n\nEndpoint: GET https://api.hasdata.com/scrape/instagram/profile\nCost: 5 credits per call.",
+		Short: "Instagram Profile Scraper API  (5 credits/call)",
+		Long:  "The Instagram Profile Scraper API lets you retrieve public profile information for a specific Instagram account using its handle. It returns data such as bio, followers, following, posts count, and other visible profile details.\n\nEndpoint: GET https://api.hasdata.com/scrape/instagram/profile\nCost: 5 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			return nil

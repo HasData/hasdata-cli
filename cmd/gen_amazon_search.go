@@ -29,8 +29,8 @@ func newAmazonSearchCmd() *cobra.Command {
 
 	cmd := &cobra.Command{
 		Use:   "amazon-search",
-		Short: "Amazon Search API  (5 credits/call)",
-		Long:  "The Amazon Search API allows users to get search results from Amazon based on the specified query and domain. This API enables searching for products on Amazon.\n\nEndpoint: GET https://api.hasdata.com/scrape/amazon/search\nCost: 5 credits per call.",
+		Short: "Amazon Search Scraper API  (5 credits/call)",
+		Long:  "The Amazon Search Scraper API allows users to get search results from Amazon based on the specified query and domain. This API enables searching for products on Amazon.\n\nEndpoint: GET https://api.hasdata.com/scrape/amazon/search\nCost: 5 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			if c.Flags().Changed("domain") {
