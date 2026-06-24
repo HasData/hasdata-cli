@@ -23,8 +23,8 @@ func newYellowpagesPlaceCmd() *cobra.Command {
 
 	cmd := &cobra.Command{
 		Use:   "yellowpages-place",
-		Short: "YellowPages Place API  (5 credits/call)",
-		Long:  "The YellowPages Place API allows users to retrieve detailed information about a specific place using its YellowPages URL.\n\nEndpoint: GET https://api.hasdata.com/scrape/yellowpages/place\nCost: 5 credits per call.",
+		Short: "YellowPages Place Scraper API  (5 credits/call)",
+		Long:  "The YellowPages Place Scraper API allows users to retrieve detailed information about a specific place using its YellowPages URL.\n\nEndpoint: GET https://api.hasdata.com/scrape/yellowpages/place\nCost: 5 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			return nil

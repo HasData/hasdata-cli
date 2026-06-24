@@ -55,8 +55,8 @@ func newZillowListingCmd() *cobra.Command {
 
 	cmd := &cobra.Command{
 		Use:   "zillow-listing",
-		Short: "Zillow Listing API  (5 credits/call)",
-		Long:  "The Zillow Listing API allows you to retrieve real estate listings from Zillow based on various search parameters.\n\nEndpoint: GET https://api.hasdata.com/scrape/zillow/listing\nCost: 5 credits per call.",
+		Short: "Zillow Listing Scraper API  (5 credits/call)",
+		Long:  "The Zillow Listing Scraper API lets you retrieve property listings from Zillow.com based on various search parameters.\n\nEndpoint: GET https://api.hasdata.com/scrape/zillow/listing\nCost: 5 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			if c.Flags().Changed("basement") {

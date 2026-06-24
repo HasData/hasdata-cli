@@ -31,8 +31,8 @@ func newBookingPlaceCmd() *cobra.Command {
 
 	cmd := &cobra.Command{
 		Use:   "booking-place",
-		Short: "Booking Place API  (10 credits/call)",
-		Long:  "The Booking Place API returns full details for a single Booking.com property along with the list of available room suites for the requested stay dates and guest composition.\n\nEndpoint: GET https://api.hasdata.com/scrape/booking/place\nCost: 10 credits per call.",
+		Short: "Booking.com Place API  (10 credits/call)",
+		Long:  "The Booking.com Place API returns full details for a single Booking.com property along with the list of available room suites for the requested stay dates and guest composition.\n\nEndpoint: GET https://api.hasdata.com/scrape/booking/place\nCost: 10 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			return nil

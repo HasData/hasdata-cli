@@ -1,6 +1,6 @@
 # Generation Report
 
-Generated at: 2026-06-16T08:55:44Z
+Generated at: 2026-06-24T08:08:48Z
 
 ## APIs generated (48)
 - airbnb-listing

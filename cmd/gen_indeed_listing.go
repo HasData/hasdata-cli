@@ -27,8 +27,8 @@ func newIndeedListingCmd() *cobra.Command {
 
 	cmd := &cobra.Command{
 		Use:   "indeed-listing",
-		Short: "Indeed Listing API  (5 credits/call)",
-		Long:  "The Indeed Listing API allows you to retrieve job listings from Indeed based on various search parameters.\n\nEndpoint: GET https://api.hasdata.com/scrape/indeed/listing\nCost: 5 credits per call.",
+		Short: "Indeed Listing Scraper API  (5 credits/call)",
+		Long:  "The Indeed Listing Scraper API allows you to retrieve job listings from Indeed based on various search parameters.\n\nEndpoint: GET https://api.hasdata.com/scrape/indeed/listing\nCost: 5 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			if c.Flags().Changed("domain") {

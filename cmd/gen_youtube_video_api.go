@@ -26,8 +26,8 @@ func newYoutubeVideoApiCmd() *cobra.Command {
 
 	cmd := &cobra.Command{
 		Use:   "youtube-video-api",
-		Short: "YouTube Video API  (10 credits/call)",
-		Long:  "The YouTube Video API provides structured data for a YouTube video page.\n\nEndpoint: GET https://api.hasdata.com/scrape/youtube/video\nCost: 10 credits per call.",
+		Short: "YouTube Video Scraper API  (10 credits/call)",
+		Long:  "The YouTube Video Scraper API provides structured data for a YouTube video page.\n\nEndpoint: GET https://api.hasdata.com/scrape/youtube/video\nCost: 10 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			if c.Flags().Changed("device-type") {
