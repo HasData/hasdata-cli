@@ -33,7 +33,7 @@ func newGoogleMapsReviewsCmd() *cobra.Command {
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			if c.Flags().Changed("sort-by") {
-				if err := validateEnumString("sort-by", p_sortByVar, []string{"qualityScore", "newestFirst", "ratingHigh", "ratingLow"}); err != nil {
+				if err := validateEnumString("sort-by", p_sortByVar, []string{"mostRelevant", "newestFirst", "ratingHigh", "ratingLow"}); err != nil {
 					return err
 				}
 			}
@@ -75,9 +75,9 @@ func newGoogleMapsReviewsCmd() *cobra.Command {
 	cmd.Flags().StringVar(&p_hlVar, "hl", "", "hl Language: The two-letter language code for the language you want to use for the search.")
 	cmd.Flags().StringVar(&p_nextPageTokenVar, "next-page-token", "", "nextPageToken Next Page Token: Defines the next page token. It is used for retrieving the next page results.")
 	cmd.Flags().StringVar(&p_placeIdVar, "place-id", "", "placeId Place ID: Unique reference to a place on a Google Map. Either dataId or placeId should be set.")
-	cmd.Flags().StringVar(&p_sortByVar, "sort-by", "", "sortBy Sort By: Parameter used for sorting and refining results. [allowed: qualityScore|newestFirst|ratingHigh|ratingLow]")
+	cmd.Flags().StringVar(&p_sortByVar, "sort-by", "", "sortBy Sort By: Parameter used for sorting and refining results. [allowed: mostRelevant|newestFirst|ratingHigh|ratingLow]")
 	_ = cmd.RegisterFlagCompletionFunc("sort-by", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
-		return []string{"qualityScore", "newestFirst", "ratingHigh", "ratingLow"}, cobra.ShellCompDirectiveNoFileComp
+		return []string{"mostRelevant", "newestFirst", "ratingHigh", "ratingLow"}, cobra.ShellCompDirectiveNoFileComp
 	})
 	cmd.Flags().StringVar(&p_topicIdVar, "topic-id", "", "topicId Topic ID: Defines the ID of the topic you want to use for filtering reviews.")
 

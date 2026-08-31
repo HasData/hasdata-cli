@@ -35,7 +35,7 @@ func newGoogleSerpLightCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "google-serp-light",
 		Short: "Google SERP Light API  (5 credits/call)",
-		Long:  "Google Light SERP API offers real-time access to essential search data, omitting extra-rich results for faster response times and lower costs.\n\nEndpoint: GET https://api.hasdata.com/scrape/google-light/serp\nCost: 5 credits per call.",
+		Long:  "Google Light SERP API offers real-time access to Google search results parsed from the lightweight layout — organic results, AI Overview, answer box, knowledge graph, related questions and searches, inline images, local pack and search filters — for faster response times and lower costs.\n\nEndpoint: GET https://api.hasdata.com/scrape/google-light/serp\nCost: 5 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			if c.Flags().Changed("domain") {

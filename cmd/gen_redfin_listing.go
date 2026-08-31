@@ -497,7 +497,7 @@ func newRedfinListingCmd() *cobra.Command {
 	_ = cmd.RegisterFlagCompletionFunc("home-types", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"house", "townhouse", "townhome", "condo", "land", "multiFamily", "mobile", "coOp", "other", "apartment"}, cobra.ShellCompDirectiveNoFileComp
 	})
-	cmd.Flags().StringVar(&p_keywordVar, "keyword", "33321", "keyword Location: The zipcode used to search for listings. (required)")
+	cmd.Flags().StringVar(&p_keywordVar, "keyword", "33321", "keyword Location: The location to search for listings. Accepts a zipcode (`33321`), a city (`Austin` or `Austin, TX`), a neighborhood (`East Austin`), a school (`BASIS Austin`), a school district (`Austin Independent School District`), an apartment building by its name (`Maizon Brickell`), or a full street address (`5805 Woodview Ave, Austin, TX 78756`), including a single unit (`221 SW 12th St Unit 1716, Miami, FL`). An address or a building returns a single property card instead of a list of listings, and the `type` parameter does not apply to it. (required)")
 	_ = cmd.MarkFlagRequired("keyword")
 	cmd.Flags().StringSliceVar(&p_listingType_categoryVar, "listing-type-category", nil, "listingType[category][] Listing Category: An array of listing categories.")
 	_ = cmd.RegisterFlagCompletionFunc("listing-type-category", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {

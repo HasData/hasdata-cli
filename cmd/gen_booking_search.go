@@ -50,7 +50,7 @@ func newBookingSearchCmd() *cobra.Command {
 
 	cmd := &cobra.Command{
 		Use:   "booking-search",
-		Short: "Booking.com Search API  (10 credits/call)",
+		Short: "Booking.com Search Scraper API  (10 credits/call)",
 		Long:  "The Booking.com Search API returns the collection of accommodations from a Booking.com search results page for a given destination and stay dates, with rich filtering by property type, rating, facilities, price and more.\n\nEndpoint: GET https://api.hasdata.com/scrape/booking/search\nCost: 10 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {

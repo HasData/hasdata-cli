@@ -34,7 +34,7 @@ func newGoogleImagesCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "google-images",
 		Short: "Google Images API  (5 credits/call)",
-		Long:  "Provides real-time access to Google image search results, tailored to specific parameters, ensuring efficient retrieval free from blocks or CAPTCHAs.\n\nEndpoint: GET https://api.hasdata.com/scrape/google/images\nCost: 5 credits per call.",
+		Long:  "Provides real-time access to Google image search results, tailored to specific parameters, ensuring efficient and reliable retrieval at scale.\n\nEndpoint: GET https://api.hasdata.com/scrape/google/images\nCost: 5 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			if c.Flags().Changed("device-type") {

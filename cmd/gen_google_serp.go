@@ -42,7 +42,7 @@ func newGoogleSerpCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "google-serp",
 		Short: "Google SERP API  (10 credits/call)",
-		Long:  "The Google SERP API provides real-time access to structured Google search results, offering no blocks or CAPTCHAs.\n\nEndpoint: GET https://api.hasdata.com/scrape/google/serp\nCost: 10 credits per call.",
+		Long:  "The Google SERP API provides real-time access to structured Google search results with a high success rate at scale.\n\nEndpoint: GET https://api.hasdata.com/scrape/google/serp\nCost: 10 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			if c.Flags().Changed("device-type") {

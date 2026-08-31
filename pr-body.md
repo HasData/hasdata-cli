@@ -1,44 +1,31 @@
 ## Changes
 
- GENERATION_REPORT.md              |  2 +-
- cmd/gen_airbnb_listing.go         |  4 +--
- cmd/gen_airbnb_property.go        |  4 +--
- cmd/gen_amazon_product.go         |  4 +--
- cmd/gen_amazon_reviews.go         |  4 +--
- cmd/gen_amazon_search.go          |  4 +--
- cmd/gen_amazon_seller.go          |  4 +--
- cmd/gen_amazon_seller_products.go |  4 +--
- cmd/gen_booking_place.go          |  4 +--
- cmd/gen_booking_search.go         |  4 +--
- cmd/gen_glassdoor_job.go          |  4 +--
- cmd/gen_glassdoor_listing.go      |  4 +--
- cmd/gen_indeed_job.go             |  4 +--
- cmd/gen_indeed_listing.go         |  4 +--
- cmd/gen_instagram_profile.go      |  4 +--
- cmd/gen_redfin_listing.go         |  4 +--
- cmd/gen_redfin_property.go        |  4 +--
- cmd/gen_shopify_collections.go    |  4 +--
- cmd/gen_shopify_products.go       |  4 +--
- cmd/gen_yellowpages_place.go      |  4 +--
- cmd/gen_yellowpages_search.go     |  4 +--
- cmd/gen_yelp_place.go             |  4 +--
- cmd/gen_yelp_search.go            |  4 +--
- cmd/gen_youtube_channel_api.go    |  4 +--
- cmd/gen_youtube_search_api.go     |  4 +--
- cmd/gen_youtube_transcript_api.go |  4 +--
- cmd/gen_youtube_video_api.go      |  4 +--
- cmd/gen_zillow_listing.go         |  4 +--
- cmd/gen_zillow_property.go        |  4 +--
- internal/gen/spec-hash.txt        |  2 +-
- pr-body.md                        | 64 ---------------------------------------
- 31 files changed, 58 insertions(+), 122 deletions(-)
+ GENERATION_REPORT.md                | 13 ++++--
+ cmd/gen_airbnb_listing.go           | 27 +++++++++--
+ cmd/gen_bing_serp.go                | 28 ++++++------
+ cmd/gen_booking_place.go            |  2 +-
+ cmd/gen_booking_search.go           |  2 +-
+ cmd/gen_google_images.go            |  2 +-
+ cmd/gen_google_immersive_product.go |  2 +-
+ cmd/gen_google_maps.go              |  4 +-
+ cmd/gen_google_maps_reviews.go      |  6 +--
+ cmd/gen_google_news.go              |  2 +-
+ cmd/gen_google_serp.go              |  2 +-
+ cmd/gen_google_serp_light.go        |  2 +-
+ cmd/gen_google_shopping.go          |  2 +-
+ cmd/gen_instagram_profile.go        |  2 +-
+ cmd/gen_redfin_listing.go           |  2 +-
+ cmd/gen_web_scraping.go             |  2 +-
+ internal/gen/spec-hash.txt          |  2 +-
+ pr-body.md                          | 90 -------------------------------------
+ 18 files changed, 65 insertions(+), 127 deletions(-)
 
 ## Generation Report
 # Generation Report
 
-Generated at: 2026-06-24T08:08:48Z
+Generated at: 2026-08-31T07:13:05Z
 
-## APIs generated (48)
+## APIs generated (55)
 - airbnb-listing
 - airbnb-property
 - amazon-product
@@ -52,7 +39,9 @@ Generated at: 2026-06-24T08:08:48Z
 - yellowpages-place
 - yellowpages-search
 - yelp-place
+- yelp-reviews
 - yelp-search
+- duckduckgo
 - google-images
 - google-maps
 - google-maps-contributor-reviews
@@ -71,7 +60,6 @@ Generated at: 2026-06-24T08:08:48Z
 - google-flights
 - google-hotels
 - google-trends
-- instagram-profile
 - glassdoor-job
 - glassdoor-listing
 - indeed-job
@@ -80,6 +68,12 @@ Generated at: 2026-06-24T08:08:48Z
 - redfin-property
 - shopify-collections
 - shopify-products
+- instagram-posts
+- instagram-profile
+- tiktok-comments
+- tiktok-posts
+- tiktok-profile
+- tiktok-search
 - web-scraping
 - youtube-channel-api
 - youtube-search-api
