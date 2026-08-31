@@ -20,7 +20,6 @@ var (
 
 func newBingSerpCmd() *cobra.Command {
 	var p_ccVar string
-	var p_countVar int
 	var p_deviceTypeVar string
 	var p_filtersVar string
 	var p_firstVar int
@@ -29,12 +28,13 @@ func newBingSerpCmd() *cobra.Command {
 	var p_lonVar string
 	var p_mktVar string
 	var p_qVar string
-	var p_safeVar string
+	var p_safeSearchVar string
+	var p_setLangVar string
 
 	cmd := &cobra.Command{
 		Use:   "bing-serp",
 		Short: "Bing SERP API  (10 credits/call)",
-		Long:  "The Bing SERP API provides real-time access to structured Bing search results, offering no blocks or CAPTCHAs.\n\nEndpoint: GET https://api.hasdata.com/scrape/bing/serp\nCost: 10 credits per call.",
+		Long:  "The Bing SERP API provides real-time access to structured Bing search results with a high success rate at scale.\n\nEndpoint: GET https://api.hasdata.com/scrape/bing/serp\nCost: 10 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			if c.Flags().Changed("device-type") {
@@ -42,8 +42,8 @@ func newBingSerpCmd() *cobra.Command {
 					return err
 				}
 			}
-			if c.Flags().Changed("safe") {
-				if err := validateEnumString("safe", p_safeVar, []string{"off", "moderate", "strict"}); err != nil {
+			if c.Flags().Changed("safe-search") {
+				if err := validateEnumString("safe-search", p_safeSearchVar, []string{"off", "moderate", "strict"}); err != nil {
 					return err
 				}
 			}
@@ -58,9 +58,6 @@ func newBingSerpCmd() *cobra.Command {
 			params := url.Values{}
 			if c.Flags().Changed("cc") {
 				params.Set("cc", p_ccVar)
-			}
-			if c.Flags().Changed("count") {
-				params.Set("count", strconv.Itoa(p_countVar))
 			}
 			if c.Flags().Changed("device-type") {
 				params.Set("deviceType", p_deviceTypeVar)
@@ -84,8 +81,11 @@ func newBingSerpCmd() *cobra.Command {
 				params.Set("mkt", p_mktVar)
 			}
 			params.Set("q", p_qVar)
-			if c.Flags().Changed("safe") {
-				params.Set("safe", p_safeVar)
+			if c.Flags().Changed("safe-search") {
+				params.Set("safeSearch", p_safeSearchVar)
+			}
+			if c.Flags().Changed("set-lang") {
+				params.Set("setLang", p_setLangVar)
 			}
 			resp, err := cli.Do(ctx, "GET", "https://api.hasdata.com/scrape/bing/serp", params, nil)
 			if err != nil {
@@ -95,7 +95,6 @@ func newBingSerpCmd() *cobra.Command {
 		},
 	}
 	cmd.Flags().StringVar(&p_ccVar, "cc", "", "cc Country: The two-letter country code for the country to search from.")
-	cmd.Flags().IntVar(&p_countVar, "count", 0, "count Number of Results: Number of results per page, ranging from 1 to 50.")
 	cmd.Flags().StringVar(&p_deviceTypeVar, "device-type", "desktop", "deviceType Device: Specify the device type for the search. [allowed: desktop|mobile|tablet]")
 	_ = cmd.RegisterFlagCompletionFunc("device-type", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"desktop", "mobile", "tablet"}, cobra.ShellCompDirectiveNoFileComp
@@ -103,15 +102,16 @@ func newBingSerpCmd() *cobra.Command {
 	cmd.Flags().StringVar(&p_filtersVar, "filters", "", "filters Additional Filtering: Allows applying various filters to narrow search results, including date-based options:\n\n  - `ex1:\"ez1\"` – past 24 hours\n  - `ex1:\"ez2\"` – past week\n  - `ex1:\"ez3\"` – past month\n\nFor complex filters, run a Bing search and copy the filters parameter from the URL.\n")
 	cmd.Flags().IntVar(&p_firstVar, "first", 0, "first Result Offset: This parameter specifies the number of search results to skip and is used for implementing pagination. For example, a value of 1 (default) indicates the first page of results, 11 refers to the second page, and 21 to the third page.\n")
 	cmd.Flags().StringVar(&p_latVar, "lat", "", "lat Latitude: GPS latitude for the search origin.")
-	cmd.Flags().StringVar(&p_locationVar, "location", "Austin,Texas,United States", "location Location: Defines the search’s origin location. For realistic results, set location at the city level. If omitted, the proxy’s location may be used.")
+	cmd.Flags().StringVar(&p_locationVar, "location", "Austin, Texas, United States", "location Location: Defines the search’s origin location as free text (e.g. `Austin, Texas`). It is resolved to coordinates to localize the results. For realistic results, set location at the city level. If both `lat` and `lon` are provided, they take precedence and `location` is ignored. If omitted, the proxy’s location may be used.")
 	cmd.Flags().StringVar(&p_lonVar, "lon", "", "lon Longitude: GPS longitude for the search origin.")
 	cmd.Flags().StringVar(&p_mktVar, "mkt", "", "mkt Market Code: The two-letter country code for the country to search from.")
 	cmd.Flags().StringVar(&p_qVar, "q", "Coffee", "q Search Query: Specify the search term for which you want to scrape the SERP. (required)")
 	_ = cmd.MarkFlagRequired("q")
-	cmd.Flags().StringVar(&p_safeVar, "safe", "", "safe Adult Content Filtering: Adult Content Filtering option. [allowed: off|moderate|strict]")
-	_ = cmd.RegisterFlagCompletionFunc("safe", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
+	cmd.Flags().StringVar(&p_safeSearchVar, "safe-search", "", "safeSearch Adult Content Filtering: Adult Content Filtering option. [allowed: off|moderate|strict]")
+	_ = cmd.RegisterFlagCompletionFunc("safe-search", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"off", "moderate", "strict"}, cobra.ShellCompDirectiveNoFileComp
 	})
+	cmd.Flags().StringVar(&p_setLangVar, "set-lang", "", "setLang Interface Language: The language of the user interface and preferred result language. Accepts a two-letter language code (e.g. `en`, `de`) or a locale/script variant (e.g. `en-gb`, `zh-hans`, `pt-br`).")
 
 	return cmd
 }

@@ -1,8 +1,8 @@
 # Generation Report
 
-Generated at: 2026-06-24T08:08:48Z
+Generated at: 2026-08-31T07:13:05Z
 
-## APIs generated (48)
+## APIs generated (55)
 - airbnb-listing
 - airbnb-property
 - amazon-product
@@ -16,7 +16,9 @@ Generated at: 2026-06-24T08:08:48Z
 - yellowpages-place
 - yellowpages-search
 - yelp-place
+- yelp-reviews
 - yelp-search
+- duckduckgo
 - google-images
 - google-maps
 - google-maps-contributor-reviews
@@ -35,7 +37,6 @@ Generated at: 2026-06-24T08:08:48Z
 - google-flights
 - google-hotels
 - google-trends
-- instagram-profile
 - glassdoor-job
 - glassdoor-listing
 - indeed-job
@@ -44,6 +45,12 @@ Generated at: 2026-06-24T08:08:48Z
 - redfin-property
 - shopify-collections
 - shopify-products
+- instagram-posts
+- instagram-profile
+- tiktok-comments
+- tiktok-posts
+- tiktok-profile
+- tiktok-search
 - web-scraping
 - youtube-channel-api
 - youtube-search-api

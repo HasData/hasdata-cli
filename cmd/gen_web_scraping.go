@@ -50,7 +50,7 @@ func newWebScrapingCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "web-scraping",
 		Short: "Web Scraping API  (10 credits/call)",
-		Long:  "If you're tired of fiddling with proxies, headless browsers and captchas, it's time to use Scrape-it.cloud. Send the desired URL and we'll return an HTML response. Work without headaches and worries about blocking.\n\nEndpoint: POST https://api.hasdata.com/scrape/web\nCost: 10 credits per call.",
+		Long:  "Web Scraping API allows you to scrape web pages without the hassle of managing proxies and headless browsers. Simply send the URL and get the HTML response in return.\n\n\nEndpoint: POST https://api.hasdata.com/scrape/web\nCost: 10 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			if c.Flags().Changed("block-ads") && c.Flags().Changed("no-"+"block-ads") {

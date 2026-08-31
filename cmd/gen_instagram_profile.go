@@ -51,5 +51,5 @@ func newInstagramProfileCmd() *cobra.Command {
 }
 
 func init() {
-	RegisterAPICommand("instagram", "Instagram", newInstagramProfileCmd())
+	RegisterAPICommand("social", "Social", newInstagramProfileCmd())
 }

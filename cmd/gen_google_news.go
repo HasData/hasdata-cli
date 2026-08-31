@@ -31,7 +31,7 @@ func newGoogleNewsCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "google-news",
 		Short: "Google News API  (10 credits/call)",
-		Long:  "The Google News API offers real-time access to comprehensive news articles from Google, enabling users to fetch news based on specific queries, locations, publishers, and various filter options for tailored news feeds.\n\nEndpoint: GET https://api.hasdata.com/scrape/google/news\nCost: 10 credits per call.",
+		Long:  "Real-time access to structured Google News results with a high success rate at scale.\n\nEndpoint: GET https://api.hasdata.com/scrape/google/news\nCost: 10 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			return nil

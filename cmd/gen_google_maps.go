@@ -28,8 +28,8 @@ func newGoogleMapsCmd() *cobra.Command {
 
 	cmd := &cobra.Command{
 		Use:   "google-maps",
-		Short: "Google Maps API  (5 credits/call)",
-		Long:  "The Google Maps API allows users to retreive business data including business type, phone, address, website, ratings, number of reviews, and more.\n\nEndpoint: GET https://api.hasdata.com/scrape/google-maps/search\nCost: 5 credits per call.",
+		Short: "Google Maps Search API  (5 credits/call)",
+		Long:  "The Google Maps Search API allows users to search for locations using keyword, coordinates, and various filters. The API returns relevant location details and map data.\n\nEndpoint: GET https://api.hasdata.com/scrape/google-maps/search\nCost: 5 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			if c.Flags().Changed("domain") {

@@ -25,8 +25,12 @@ func newAirbnbListingCmd() *cobra.Command {
 	var p_childrenVar int
 	var p_infantsVar int
 	var p_locationVar string
+	var p_neLatVar float64
+	var p_neLngVar float64
 	var p_nextPageTokenVar string
 	var p_petsVar int
+	var p_swLatVar float64
+	var p_swLngVar float64
 
 	cmd := &cobra.Command{
 		Use:   "airbnb-listing",
@@ -56,12 +60,26 @@ func newAirbnbListingCmd() *cobra.Command {
 			if c.Flags().Changed("infants") {
 				params.Set("infants", strconv.Itoa(p_infantsVar))
 			}
-			params.Set("location", p_locationVar)
+			if c.Flags().Changed("location") {
+				params.Set("location", p_locationVar)
+			}
+			if c.Flags().Changed("ne-lat") {
+				params.Set("neLat", strconv.FormatFloat(p_neLatVar, 'f', -1, 64))
+			}
+			if c.Flags().Changed("ne-lng") {
+				params.Set("neLng", strconv.FormatFloat(p_neLngVar, 'f', -1, 64))
+			}
 			if c.Flags().Changed("next-page-token") {
 				params.Set("nextPageToken", p_nextPageTokenVar)
 			}
 			if c.Flags().Changed("pets") {
 				params.Set("pets", strconv.Itoa(p_petsVar))
+			}
+			if c.Flags().Changed("sw-lat") {
+				params.Set("swLat", strconv.FormatFloat(p_swLatVar, 'f', -1, 64))
+			}
+			if c.Flags().Changed("sw-lng") {
+				params.Set("swLng", strconv.FormatFloat(p_swLngVar, 'f', -1, 64))
 			}
 			resp, err := cli.Do(ctx, "GET", "https://api.hasdata.com/scrape/airbnb/listing", params, nil)
 			if err != nil {
@@ -76,10 +94,13 @@ func newAirbnbListingCmd() *cobra.Command {
 	cmd.Flags().StringVar(&p_checkOutVar, "check-out", "2026-01-05", "checkOut Check-out Date: The check-out date for the listings.")
 	cmd.Flags().IntVar(&p_childrenVar, "children", 0, "children Number of Children: Number of children.\n")
 	cmd.Flags().IntVar(&p_infantsVar, "infants", 0, "infants Number of Infants: Number of infants.\n")
-	cmd.Flags().StringVar(&p_locationVar, "location", "New York", "location Location: The location to search for listings. (required)")
-	_ = cmd.MarkFlagRequired("location")
+	cmd.Flags().StringVar(&p_locationVar, "location", "", "location Location: The location to search for listings. Required unless a full map bounding box (neLat, neLng, swLat, swLng) is provided.")
+	cmd.Flags().Float64Var(&p_neLatVar, "ne-lat", 40.8, "neLat North-East Latitude: North-east corner latitude of the map bounding box. When all four bounding-box coordinates are provided, listings are searched within the box instead of by location.\n")
+	cmd.Flags().Float64Var(&p_neLngVar, "ne-lng", -73.9, "neLng North-East Longitude: North-east corner longitude of the map bounding box.\n")
 	cmd.Flags().StringVar(&p_nextPageTokenVar, "next-page-token", "", "nextPageToken Next Page Token: The token used to retrieve the next page of results.")
 	cmd.Flags().IntVar(&p_petsVar, "pets", 0, "pets Number of Pets: Number of pets.\n")
+	cmd.Flags().Float64Var(&p_swLatVar, "sw-lat", 40.6, "swLat South-West Latitude: South-west corner latitude of the map bounding box.\n")
+	cmd.Flags().Float64Var(&p_swLngVar, "sw-lng", -74.1, "swLng South-West Longitude: South-west corner longitude of the map bounding box.\n")
 
 	return cmd
 }

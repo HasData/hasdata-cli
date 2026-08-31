@@ -33,7 +33,7 @@ func newGoogleShoppingCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "google-shopping",
 		Short: "Google Shopping API  (10 credits/call)",
-		Long:  "The Google Shopping API gives real-time access to structured product listings from Google Shopping, with no blocks or CAPTCHAs.\n\nEndpoint: GET https://api.hasdata.com/scrape/google/shopping\nCost: 10 credits per call.",
+		Long:  "The Google Shopping API gives real-time access to structured product listings from Google Shopping with a high success rate at scale.\n\nEndpoint: GET https://api.hasdata.com/scrape/google/shopping\nCost: 10 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			if c.Flags().Changed("device-type") {
