@@ -277,7 +277,7 @@ func newZillowListingCmd() *cobra.Command {
 	})
 	cmd.Flags().Float64Var(&p_lotSize_maxVar, "lot-size-max", 0, "lotSize[max] Lot Size Max: The maximum lot size.")
 	cmd.Flags().Float64Var(&p_lotSize_minVar, "lot-size-min", 0, "lotSize[min] Lot Size Min: The minimum lot size.")
-	cmd.Flags().StringVar(&p_moveInDateVar, "move-in-date", "", "moveInDate Move In Date: The desired move-in date.")
+	cmd.Flags().StringVar(&p_moveInDateVar, "move-in-date", "", "moveInDate Move In Date: The desired move-in date in `YYYY-MM-DD` format.")
 	cmd.Flags().BoolVar(&p_mustHaveGarageVar, "must-have-garage", false, "mustHaveGarage Must Have Garage: If set to true, only listings with a garage will be included.")
 	cmd.Flags().StringSliceVar(&p_otherAmenitiesVar, "other-amenities", nil, "otherAmenities[] Other Amenities: An array of other amenities.")
 	_ = cmd.RegisterFlagCompletionFunc("other-amenities", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
@@ -322,5 +322,5 @@ func newZillowListingCmd() *cobra.Command {
 }
 
 func init() {
-	RegisterAPICommand("zillow", "Zillow", newZillowListingCmd())
+	RegisterAPICommand("real_estate", "Real Estate", newZillowListingCmd())
 }

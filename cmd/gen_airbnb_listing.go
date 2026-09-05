@@ -89,9 +89,9 @@ func newAirbnbListingCmd() *cobra.Command {
 		},
 	}
 	cmd.Flags().IntVar(&p_adultsVar, "adults", 0, "adults Number of Adults: Number of adults.\n")
-	cmd.Flags().StringVar(&p_checkInVar, "check-in", "2026-01-01", "checkIn Check-in Date: The check-in date for the listings. (required)")
+	cmd.Flags().StringVar(&p_checkInVar, "check-in", "2026-09-20", "checkIn Check-in Date: The check-in date for the listings. (required)")
 	_ = cmd.MarkFlagRequired("check-in")
-	cmd.Flags().StringVar(&p_checkOutVar, "check-out", "2026-01-05", "checkOut Check-out Date: The check-out date for the listings.")
+	cmd.Flags().StringVar(&p_checkOutVar, "check-out", "2026-09-24", "checkOut Check-out Date: The check-out date for the listings.")
 	cmd.Flags().IntVar(&p_childrenVar, "children", 0, "children Number of Children: Number of children.\n")
 	cmd.Flags().IntVar(&p_infantsVar, "infants", 0, "infants Number of Infants: Number of infants.\n")
 	cmd.Flags().StringVar(&p_locationVar, "location", "", "location Location: The location to search for listings. Required unless a full map bounding box (neLat, neLng, swLat, swLng) is provided.")
