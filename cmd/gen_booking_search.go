@@ -246,9 +246,9 @@ func newBookingSearchCmd() *cobra.Command {
 		return []string{"twinBeds", "doubleBed"}, cobra.ShellCompDirectiveNoFileComp
 	})
 	cmd.Flags().IntVar(&p_bedroomsVar, "bedrooms", 0, "bedrooms Bedrooms: Minimum number of bedrooms in the property.")
-	cmd.Flags().StringVar(&p_checkInDateVar, "check-in-date", "2026-06-01", "checkInDate Check-in Date: Check-in date in `YYYY-MM-DD` format. Must be in the future and earlier than `checkOutDate`. (required)")
+	cmd.Flags().StringVar(&p_checkInDateVar, "check-in-date", "2026-09-20", "checkInDate Check-in Date: Check-in date in `YYYY-MM-DD` format. Must be in the future and earlier than `checkOutDate`. (required)")
 	_ = cmd.MarkFlagRequired("check-in-date")
-	cmd.Flags().StringVar(&p_checkOutDateVar, "check-out-date", "2026-06-05", "checkOutDate Check-out Date: Check-out date in `YYYY-MM-DD` format. Must be later than `checkInDate`. (required)")
+	cmd.Flags().StringVar(&p_checkOutDateVar, "check-out-date", "2026-09-24", "checkOutDate Check-out Date: Check-out date in `YYYY-MM-DD` format. Must be later than `checkInDate`. (required)")
 	_ = cmd.MarkFlagRequired("check-out-date")
 	cmd.Flags().IntVar(&p_childrenVar, "children", 0, "children Children Count: Number of child guests across all rooms (0–10). Pass `0` if there are no children. (required)")
 	_ = cmd.MarkFlagRequired("children")

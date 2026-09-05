@@ -1,15 +1,10 @@
 # Generation Report
 
-Generated at: 2026-08-31T07:13:05Z
+Generated at: 2026-09-05T07:05:33Z
 
-## APIs generated (55)
+## APIs generated (60)
 - airbnb-listing
 - airbnb-property
-- amazon-product
-- amazon-reviews
-- amazon-search
-- amazon-seller
-- amazon-seller-products
 - bing-serp
 - booking-place
 - booking-search
@@ -19,6 +14,16 @@ Generated at: 2026-08-31T07:13:05Z
 - yelp-reviews
 - yelp-search
 - duckduckgo
+- amazon-product
+- amazon-reviews
+- amazon-search
+- amazon-seller
+- amazon-seller-products
+- shopify-collections
+- shopify-products
+- walmart-product
+- walmart-reviews
+- walmart-search
 - google-images
 - google-maps
 - google-maps-contributor-reviews
@@ -34,6 +39,8 @@ Generated at: 2026-08-31T07:13:05Z
 - google-serp-light
 - google-shopping
 - google-short-videos
+- google-scholar
+- google-scholar-cite
 - google-flights
 - google-hotels
 - google-trends
@@ -43,8 +50,8 @@ Generated at: 2026-08-31T07:13:05Z
 - indeed-listing
 - redfin-listing
 - redfin-property
-- shopify-collections
-- shopify-products
+- zillow-listing
+- zillow-property
 - instagram-posts
 - instagram-profile
 - tiktok-comments
@@ -56,8 +63,6 @@ Generated at: 2026-08-31T07:13:05Z
 - youtube-search-api
 - youtube-transcript-api
 - youtube-video-api
-- zillow-listing
-- zillow-property
 
 ## Deprecated APIs (hidden in help)
 - amazon-reviews

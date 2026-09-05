@@ -51,5 +51,5 @@ func newRedfinPropertyCmd() *cobra.Command {
 }
 
 func init() {
-	RegisterAPICommand("redfin", "Redfin", newRedfinPropertyCmd())
+	RegisterAPICommand("real_estate", "Real Estate", newRedfinPropertyCmd())
 }
