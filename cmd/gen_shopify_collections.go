@@ -61,5 +61,5 @@ func newShopifyCollectionsCmd() *cobra.Command {
 }
 
 func init() {
-	RegisterAPICommand("shopify", "Shopify", newShopifyCollectionsCmd())
+	RegisterAPICommand("ecommerce", "E-commerce", newShopifyCollectionsCmd())
 }
