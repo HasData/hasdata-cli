@@ -56,5 +56,5 @@ func newZillowPropertyCmd() *cobra.Command {
 }
 
 func init() {
-	RegisterAPICommand("zillow", "Zillow", newZillowPropertyCmd())
+	RegisterAPICommand("real_estate", "Real Estate", newZillowPropertyCmd())
 }
