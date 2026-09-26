@@ -89,7 +89,7 @@ func newAmazonProductCmd() *cobra.Command {
 		return []string{"www.amazon.com", "www.amazon.de", "www.amazon.co.uk", "www.amazon.ae", "www.amazon.com.au", "www.amazon.com.be", "www.amazon.com.br", "www.amazon.ca", "www.amazon.eg", "www.amazon.es", "www.amazon.fr", "www.amazon.ie", "www.amazon.in", "www.amazon.it", "www.amazon.co.jp", "www.amazon.com.mx", "www.amazon.nl", "www.amazon.pl", "www.amazon.sa", "www.amazon.se", "www.amazon.sg", "www.amazon.com.tr", "www.amazon.co.za"}, cobra.ShellCompDirectiveNoFileComp
 	})
 	cmd.Flags().StringVar(&p_languageVar, "language", "", "language Language: Optional Amazon language code. Supported values depend on the selected domain.")
-	cmd.Flags().BoolVar(&p_otherSellersVar, "other-sellers", true, "otherSellers Other Sellers: If set to true, extracts the other sellers block from the product page.")
+	cmd.Flags().BoolVar(&p_otherSellersVar, "other-sellers", true, "otherSellers Other Sellers: Also collect the offers of other sellers competing for this item. This takes an extra request to Amazon and costs 5 credits on top of the base. Default is false.")
 	cmd.Flags().BoolVar(&p_otherSellersVarNeg, "no-"+"other-sellers", false, "disable --other-sellers")
 	cmd.Flags().StringVar(&p_shippingLocationVar, "shipping-location", "", "shippingLocation Shipping Location: The two-letter country code to define the country of the delivery address.")
 
@@ -97,5 +97,5 @@ func newAmazonProductCmd() *cobra.Command {
 }
 
 func init() {
-	RegisterAPICommand("amazon", "Amazon", newAmazonProductCmd())
+	RegisterAPICommand("ecommerce", "E-commerce", newAmazonProductCmd())
 }
