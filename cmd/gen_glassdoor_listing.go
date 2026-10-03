@@ -19,20 +19,42 @@ var (
 )
 
 func newGlassdoorListingCmd() *cobra.Command {
+	var p_datePostedVar int
 	var p_domainVar string
+	var p_easyApplyOnlyVar bool
 	var p_keywordVar string
 	var p_locationVar string
+	var p_maxSalaryVar int
+	var p_minRatingVar int
+	var p_minSalaryVar int
 	var p_nextPageTokenVar string
+	var p_radiusVar int
+	var p_remoteOnlyVar bool
 	var p_sortVar string
 
 	cmd := &cobra.Command{
 		Use:   "glassdoor-listing",
-		Short: "Glassdoor Listing Scraper API  (5 credits/call)",
-		Long:  "The Glassdoor Listing Scraper API allows you to retrieve job listings from Glassdoor based on various search parameters.\n\nEndpoint: GET https://api.hasdata.com/scrape/glassdoor/listing\nCost: 5 credits per call.",
+		Short: "Glassdoor Listing Scraper API  (10 credits/call)",
+		Long:  "The Glassdoor Listing Scraper API allows you to retrieve job listings from Glassdoor based on various search parameters.\n\nEndpoint: GET https://api.hasdata.com/scrape/glassdoor/listing\nCost: 10 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
+			if c.Flags().Changed("date-posted") {
+				if err := validateEnumInt("date-posted", p_datePostedVar, []int{1, 3, 7, 14, 30}); err != nil {
+					return err
+				}
+			}
 			if c.Flags().Changed("domain") {
 				if err := validateEnumString("domain", p_domainVar, []string{"www.glassdoor.com.ar", "www.glassdoor.com.au", "www.glassdoor.at", "nl.glassdoor.be", "fr.glassdoor.be", "www.glassdoor.com.br", "www.glassdoor.ca", "fr.glassdoor.ca", "www.glassdoor.fr", "www.glassdoor.de", "www.glassdoor.com.hk", "www.glassdoor.co.in", "www.glassdoor.ie", "www.glassdoor.it", "www.glassdoor.com.mx", "www.glassdoor.nl", "www.glassdoor.co.nz", "www.glassdoor.sg", "www.glassdoor.es", "de.glassdoor.ch", "fr.glassdoor.ch", "www.glassdoor.co.uk"}); err != nil {
+					return err
+				}
+			}
+			if c.Flags().Changed("min-rating") {
+				if err := validateEnumInt("min-rating", p_minRatingVar, []int{1, 2, 3, 4}); err != nil {
+					return err
+				}
+			}
+			if c.Flags().Changed("radius") {
+				if err := validateEnumInt("radius", p_radiusVar, []int{0, 5, 10, 15, 25, 50, 100}); err != nil {
 					return err
 				}
 			}
@@ -50,13 +72,34 @@ func newGlassdoorListingCmd() *cobra.Command {
 				return err
 			}
 			params := url.Values{}
+			if c.Flags().Changed("date-posted") {
+				params.Set("datePosted", strconv.Itoa(p_datePostedVar))
+			}
 			if c.Flags().Changed("domain") {
 				params.Set("domain", p_domainVar)
 			}
+			if c.Flags().Changed("easy-apply-only") {
+				params.Set("easyApplyOnly", strconv.FormatBool(p_easyApplyOnlyVar))
+			}
 			params.Set("keyword", p_keywordVar)
 			params.Set("location", p_locationVar)
+			if c.Flags().Changed("max-salary") {
+				params.Set("maxSalary", strconv.Itoa(p_maxSalaryVar))
+			}
+			if c.Flags().Changed("min-rating") {
+				params.Set("minRating", strconv.Itoa(p_minRatingVar))
+			}
+			if c.Flags().Changed("min-salary") {
+				params.Set("minSalary", strconv.Itoa(p_minSalaryVar))
+			}
 			if c.Flags().Changed("next-page-token") {
 				params.Set("nextPageToken", p_nextPageTokenVar)
+			}
+			if c.Flags().Changed("radius") {
+				params.Set("radius", strconv.Itoa(p_radiusVar))
+			}
+			if c.Flags().Changed("remote-only") {
+				params.Set("remoteOnly", strconv.FormatBool(p_remoteOnlyVar))
 			}
 			if c.Flags().Changed("sort") {
 				params.Set("sort", p_sortVar)
@@ -68,15 +111,22 @@ func newGlassdoorListingCmd() *cobra.Command {
 			return WriteResponse(c, resp)
 		},
 	}
+	cmd.Flags().IntVar(&p_datePostedVar, "date-posted", 7, "datePosted Date Posted: Returns only jobs posted within the given number of days. [allowed: 1, 3, 7, 14, 30]")
 	cmd.Flags().StringVar(&p_domainVar, "domain", "www.glassdoor.com", "domain: The domain of the Glassdoor site (optional). [allowed: www.glassdoor.com.ar|www.glassdoor.com.au|www.glassdoor.at|nl.glassdoor.be|fr.glassdoor.be|www.glassdoor.com.br|www.glassdoor.ca|fr.glassdoor.ca|www.glassdoor.fr|www.glassdoor.de|www.glassdoor.com.hk|www.glassdoor.co.in|www.glassdoor.ie|www.glassdoor.it|www.glassdoor.com.mx|www.glassdoor.nl|www.glassdoor.co.nz|www.glassdoor.sg|www.glassdoor.es|de.glassdoor.ch|fr.glassdoor.ch|www.glassdoor.co.uk]")
 	_ = cmd.RegisterFlagCompletionFunc("domain", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"www.glassdoor.com.ar", "www.glassdoor.com.au", "www.glassdoor.at", "nl.glassdoor.be", "fr.glassdoor.be", "www.glassdoor.com.br", "www.glassdoor.ca", "fr.glassdoor.ca", "www.glassdoor.fr", "www.glassdoor.de", "www.glassdoor.com.hk", "www.glassdoor.co.in", "www.glassdoor.ie", "www.glassdoor.it", "www.glassdoor.com.mx", "www.glassdoor.nl", "www.glassdoor.co.nz", "www.glassdoor.sg", "www.glassdoor.es", "de.glassdoor.ch", "fr.glassdoor.ch", "www.glassdoor.co.uk"}, cobra.ShellCompDirectiveNoFileComp
 	})
+	cmd.Flags().BoolVar(&p_easyApplyOnlyVar, "easy-apply-only", false, "easyApplyOnly Easy Apply Only: Returns only jobs that can be applied to directly on Glassdoor. Defaults to false.")
 	cmd.Flags().StringVar(&p_keywordVar, "keyword", "software engineer", "keyword Search Query: The keyword used to search for job listings. (required)")
 	_ = cmd.MarkFlagRequired("keyword")
 	cmd.Flags().StringVar(&p_locationVar, "location", "New York, NY", "location Location: The location to search for job listings. (required)")
 	_ = cmd.MarkFlagRequired("location")
-	cmd.Flags().StringVar(&p_nextPageTokenVar, "next-page-token", "", "nextPageToken Next Page Token: Token for fetching the next page of jobs.")
+	cmd.Flags().IntVar(&p_maxSalaryVar, "max-salary", 150000, "maxSalary Maximum Salary: Upper bound of the yearly pay range, must be greater than `minSalary`. Can be used on its own.")
+	cmd.Flags().IntVar(&p_minRatingVar, "min-rating", 4, "minRating Company Rating: Returns jobs from companies rated at least this high. Glassdoor applies the filter approximately, so a few companies rated slightly below the value can appear. [allowed: 1, 2, 3, 4]")
+	cmd.Flags().IntVar(&p_minSalaryVar, "min-salary", 90000, "minSalary Minimum Salary: Lower bound of the yearly pay range. A job is kept when its estimated pay range overlaps the requested one; hourly and monthly pay are converted to yearly. Jobs without a pay estimate are excluded when a salary filter is set.")
+	cmd.Flags().StringVar(&p_nextPageTokenVar, "next-page-token", "", "nextPageToken Next Page Token: Token for fetching the next page of jobs, taken from the pagination of a previous response. The token keeps the filters of the search it came from, so they do not need to be sent again.")
+	cmd.Flags().IntVar(&p_radiusVar, "radius", 25, "radius Distance: Search radius around the location, in miles. `0` keeps only jobs in the location itself. Glassdoor uses 25 miles when this is not set. [allowed: 0, 5, 10, 15, 25, 50, 100]")
+	cmd.Flags().BoolVar(&p_remoteOnlyVar, "remote-only", false, "remoteOnly Remote Only: Returns only remote jobs. Defaults to false.")
 	cmd.Flags().StringVar(&p_sortVar, "sort", "recent", "sort Sort By: The sorting option for the search results. [allowed: recent|relevant]")
 	_ = cmd.RegisterFlagCompletionFunc("sort", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"recent", "relevant"}, cobra.ShellCompDirectiveNoFileComp

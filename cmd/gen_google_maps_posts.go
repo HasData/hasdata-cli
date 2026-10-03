@@ -21,7 +21,6 @@ var (
 func newGoogleMapsPostsCmd() *cobra.Command {
 	var p_dataIdVar string
 	var p_hlVar string
-	var p_nextPageTokenVar string
 	var p_placeIdVar string
 
 	cmd := &cobra.Command{
@@ -45,9 +44,6 @@ func newGoogleMapsPostsCmd() *cobra.Command {
 			if c.Flags().Changed("hl") {
 				params.Set("hl", p_hlVar)
 			}
-			if c.Flags().Changed("next-page-token") {
-				params.Set("nextPageToken", p_nextPageTokenVar)
-			}
 			if c.Flags().Changed("place-id") {
 				params.Set("placeId", p_placeIdVar)
 			}
@@ -60,7 +56,6 @@ func newGoogleMapsPostsCmd() *cobra.Command {
 	}
 	cmd.Flags().StringVar(&p_dataIdVar, "data-id", "0x873312ae759b4d15:0x1f38a9bec9912029", "dataId Data ID: Google Maps data ID.")
 	cmd.Flags().StringVar(&p_hlVar, "hl", "", "hl Language: The two-letter language code for the language you want to use for the search.")
-	cmd.Flags().StringVar(&p_nextPageTokenVar, "next-page-token", "", "nextPageToken Next Page Token: Defines the next page token. It is used for retrieving the next page results.")
 	cmd.Flags().StringVar(&p_placeIdVar, "place-id", "", "placeId Place ID: Unique reference to a place on a Google Map. Either dataId or placeId should be set.")
 
 	return cmd

@@ -25,8 +25,8 @@ func newGoogleImmersiveProductCmd() *cobra.Command {
 
 	cmd := &cobra.Command{
 		Use:   "google-immersive-product",
-		Short: "Google Immersive Product API  (5 credits/call)",
-		Long:  "With the Google Immersive Product API, you can fetch extended product information from the \"Immersive Product\" block, which displays a pop-up with complete details when clicked.\n\nEndpoint: GET https://api.hasdata.com/scrape/google/immersive-product\nCost: 5 credits per call.",
+		Short: "Google Immersive Product API  (10 credits/call)",
+		Long:  "With the Google Immersive Product API, you can fetch extended product information from the \"Immersive Product\" block, which displays a pop-up with complete details when clicked.\n\nEndpoint: GET https://api.hasdata.com/scrape/google/immersive-product\nCost: 10 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			return nil
