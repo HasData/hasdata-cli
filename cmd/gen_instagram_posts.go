@@ -25,8 +25,8 @@ func newInstagramPostsCmd() *cobra.Command {
 
 	cmd := &cobra.Command{
 		Use:   "instagram-posts",
-		Short: "Instagram Posts Scraper API  (5 credits/call)",
-		Long:  "The Instagram Posts Scraper API lets you retrieve the latest posts of a public Instagram account using its handle. It returns posts with captions, hashtags, mentions, likes, comments, and plays counts, image and video URLs, and timestamps, with token-based pagination for retrieving older posts.\n\nEndpoint: GET https://api.hasdata.com/scrape/instagram/posts\nCost: 5 credits per call.",
+		Short: "Instagram Posts Scraper API  (10 credits/call)",
+		Long:  "The Instagram Posts Scraper API lets you retrieve the latest posts of a public Instagram account using its handle. It returns posts with captions, hashtags, mentions, likes, comments, and plays counts, image and video URLs, and timestamps, with token-based pagination for retrieving older posts.\n\nEndpoint: GET https://api.hasdata.com/scrape/instagram/posts\nCost: 10 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			return nil
