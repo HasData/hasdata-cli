@@ -23,8 +23,8 @@ func newRedfinPropertyCmd() *cobra.Command {
 
 	cmd := &cobra.Command{
 		Use:   "redfin-property",
-		Short: "Redfin Property Scraper API  (5 credits/call)",
-		Long:  "The Redfin Property Scraper API allows users to retrieve detailed information about a specific property using its URL. It provides details such as property features, price, and agent contacts.\n\nEndpoint: GET https://api.hasdata.com/scrape/redfin/property\nCost: 5 credits per call.",
+		Short: "Redfin Property Scraper API  (10 credits/call)",
+		Long:  "The Redfin Property Scraper API allows users to retrieve detailed information about a specific property using its URL. It provides details such as property features, price, and agent contacts.\n\nEndpoint: GET https://api.hasdata.com/scrape/redfin/property\nCost: 10 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			return nil
@@ -51,5 +51,5 @@ func newRedfinPropertyCmd() *cobra.Command {
 }
 
 func init() {
-	RegisterAPICommand("redfin", "Redfin", newRedfinPropertyCmd())
+	RegisterAPICommand("real_estate", "Real Estate", newRedfinPropertyCmd())
 }

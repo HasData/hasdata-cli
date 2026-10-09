@@ -20,6 +20,7 @@ var (
 
 func newWebScrapingCmd() *cobra.Command {
 	var p_aiExtractRulesVar jsonOrFile
+	var p_autoModeVar bool
 	var p_blockAdsVar bool
 	var p_blockAdsVarNeg bool
 	var p_blockResourcesVar bool
@@ -98,6 +99,9 @@ func newWebScrapingCmd() *cobra.Command {
 					return fmt.Errorf("--ai-extract-rules-json: %w", err)
 				}
 				body["aiExtractRules"] = v
+			}
+			if c.Flags().Changed("auto-mode") {
+				body["autoMode"] = p_autoModeVar
 			}
 			{
 				val := p_blockAdsVar
@@ -214,6 +218,7 @@ func newWebScrapingCmd() *cobra.Command {
 		},
 	}
 	cmd.Flags().Var(&p_aiExtractRulesVar, "ai-extract-rules-json", "aiExtractRules AI Extraction Rules: Defines custom rules for AI-based data extraction using LLMs. This enables the system to extract structured data directly from the HTML of the page. Each key in the object represents a desired output field name, and the value specifies its type and optional description to guide the AI.\n\nSupported types:\n- `string`: plain text value\n- `number`: numeric value\n- `boolean`: true/false\n- `list`: an array of values\n- `item`: a nested object with its own structure defined under `output`\n — accepts raw JSON, @file, or - (stdin)")
+	cmd.Flags().BoolVar(&p_autoModeVar, "auto-mode", false, "autoMode Auto Mode: Use the cheapest proxy type and JS rendering that load the page, overriding `jsRendering` and `proxyType`. The chosen values are returned in `requestMetadata` and billed.")
 	cmd.Flags().BoolVar(&p_blockAdsVar, "block-ads", true, "blockAds Block ADS: Whether to block ads.")
 	cmd.Flags().BoolVar(&p_blockAdsVarNeg, "no-"+"block-ads", false, "disable --block-ads")
 	cmd.Flags().BoolVar(&p_blockResourcesVar, "block-resources", true, "blockResources Block Images And CSS: Whether to block loading of resources like images and stylesheets.")
