@@ -30,8 +30,8 @@ func newGoogleTrendsCmd() *cobra.Command {
 
 	cmd := &cobra.Command{
 		Use:   "google-trends",
-		Short: "Google Trends API  (5 credits/call)",
-		Long:  "The Google Trends API provides real-time access to Google Trends data, offering insights into the popularity of search terms over time and across regions.\n\nEndpoint: GET https://api.hasdata.com/scrape/google-trends/search\nCost: 5 credits per call.",
+		Short: "Google Trends API  (10 credits/call)",
+		Long:  "The Google Trends API provides real-time access to Google Trends data, offering insights into the popularity of search terms over time and across regions.\n\nEndpoint: GET https://api.hasdata.com/scrape/google-trends/search\nCost: 10 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			return nil

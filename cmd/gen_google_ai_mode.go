@@ -29,8 +29,8 @@ func newGoogleAiModeCmd() *cobra.Command {
 
 	cmd := &cobra.Command{
 		Use:   "google-ai-mode",
-		Short: "Google AI Mode SERP API  (5 credits/call)",
-		Long:  "The Google AI Mode SERP API captures Gemini-powered AI responses from Google Search. Get structured, conversational answers with links, summaries, and subtopic breakdowns—ideal for next-gen search and content tools.\n\nEndpoint: GET https://api.hasdata.com/scrape/google/ai-mode\nCost: 5 credits per call.",
+		Short: "Google AI Mode SERP API  (10 credits/call)",
+		Long:  "The Google AI Mode SERP API captures Gemini-powered AI responses from Google Search. Get structured, conversational answers with links, summaries, and subtopic breakdowns—ideal for next-gen search and content tools.\n\nEndpoint: GET https://api.hasdata.com/scrape/google/ai-mode\nCost: 10 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			return nil

@@ -27,8 +27,8 @@ func newGoogleMapsPhotosCmd() *cobra.Command {
 
 	cmd := &cobra.Command{
 		Use:   "google-maps-photos",
-		Short: "Google Maps Photos API  (5 credits/call)",
-		Long:  "The Google Maps Photos API returns photos for a place on Google Maps. Use either dataId or placeId with optional language, category, and pagination.\n\nEndpoint: GET https://api.hasdata.com/scrape/google-maps/photos\nCost: 5 credits per call.",
+		Short: "Google Maps Photos API  (10 credits/call)",
+		Long:  "The Google Maps Photos API returns photos for a place on Google Maps. Use either dataId or placeId with optional language, category, and pagination.\n\nEndpoint: GET https://api.hasdata.com/scrape/google-maps/photos\nCost: 10 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			return nil

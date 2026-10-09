@@ -19,20 +19,33 @@ var (
 )
 
 func newIndeedListingCmd() *cobra.Command {
+	var p_datePostedVar int
 	var p_domainVar string
 	var p_keywordVar string
 	var p_locationVar string
+	var p_remoteTypeVar string
 	var p_sortVar string
+	var p_sponsoredOnlyVar bool
 	var p_startVar float64
 
 	cmd := &cobra.Command{
 		Use:   "indeed-listing",
-		Short: "Indeed Listing Scraper API  (5 credits/call)",
-		Long:  "The Indeed Listing Scraper API allows you to retrieve job listings from Indeed based on various search parameters.\n\nEndpoint: GET https://api.hasdata.com/scrape/indeed/listing\nCost: 5 credits per call.",
+		Short: "Indeed Listing Scraper API  (10 credits/call)",
+		Long:  "The Indeed Listing Scraper API allows you to retrieve job listings from Indeed based on various search parameters.\n\nEndpoint: GET https://api.hasdata.com/scrape/indeed/listing\nCost: 10 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
+			if c.Flags().Changed("date-posted") {
+				if err := validateEnumInt("date-posted", p_datePostedVar, []int{1, 3, 7, 14}); err != nil {
+					return err
+				}
+			}
 			if c.Flags().Changed("domain") {
 				if err := validateEnumString("domain", p_domainVar, []string{"ar.indeed.com", "au.indeed.com", "at.indeed.com", "bh.indeed.com", "be.indeed.com", "br.indeed.com", "ca.indeed.com", "cl.indeed.com", "cn.indeed.com", "co.indeed.com", "cr.indeed.com", "cz.indeed.com", "dk.indeed.com", "ec.indeed.com", "eg.indeed.com", "fi.indeed.com", "fr.indeed.com", "de.indeed.com", "gr.indeed.com", "hk.indeed.com", "hu.indeed.com", "in.indeed.com", "id.indeed.com", "ie.indeed.com", "il.indeed.com", "it.indeed.com", "jp.indeed.com", "kw.indeed.com", "lu.indeed.com", "malaysia.indeed.com", "mx.indeed.com", "ma.indeed.com", "nl.indeed.com", "nz.indeed.com", "ng.indeed.com", "no.indeed.com", "om.indeed.com", "pk.indeed.com", "pa.indeed.com", "pe.indeed.com", "ph.indeed.com", "pl.indeed.com", "pt.indeed.com", "qa.indeed.com", "ro.indeed.com", "sa.indeed.com", "sg.indeed.com", "za.indeed.com", "kr.indeed.com", "es.indeed.com", "se.indeed.com", "ch.indeed.com", "tw.indeed.com", "th.indeed.com", "tr.indeed.com", "ua.indeed.com", "ae.indeed.com", "uk.indeed.com", "www.indeed.com", "uy.indeed.com", "ve.indeed.com", "vn.indeed.com"}); err != nil {
+					return err
+				}
+			}
+			if c.Flags().Changed("remote-type") {
+				if err := validateEnumString("remote-type", p_remoteTypeVar, []string{"remote", "hybrid"}); err != nil {
 					return err
 				}
 			}
@@ -50,13 +63,22 @@ func newIndeedListingCmd() *cobra.Command {
 				return err
 			}
 			params := url.Values{}
+			if c.Flags().Changed("date-posted") {
+				params.Set("datePosted", strconv.Itoa(p_datePostedVar))
+			}
 			if c.Flags().Changed("domain") {
 				params.Set("domain", p_domainVar)
 			}
 			params.Set("keyword", p_keywordVar)
 			params.Set("location", p_locationVar)
+			if c.Flags().Changed("remote-type") {
+				params.Set("remoteType", p_remoteTypeVar)
+			}
 			if c.Flags().Changed("sort") {
 				params.Set("sort", p_sortVar)
+			}
+			if c.Flags().Changed("sponsored-only") {
+				params.Set("sponsoredOnly", strconv.FormatBool(p_sponsoredOnlyVar))
 			}
 			if c.Flags().Changed("start") {
 				params.Set("start", strconv.FormatFloat(p_startVar, 'f', -1, 64))
@@ -68,6 +90,7 @@ func newIndeedListingCmd() *cobra.Command {
 			return WriteResponse(c, resp)
 		},
 	}
+	cmd.Flags().IntVar(&p_datePostedVar, "date-posted", 0, "datePosted Date Posted: Returns only jobs posted within the given number of days. [allowed: 1, 3, 7, 14]")
 	cmd.Flags().StringVar(&p_domainVar, "domain", "www.indeed.com", "domain: The domain of the Indeed site (optional). [allowed: ar.indeed.com|au.indeed.com|at.indeed.com|bh.indeed.com|be.indeed.com|br.indeed.com|ca.indeed.com|cl.indeed.com|cn.indeed.com|co.indeed.com|cr.indeed.com|cz.indeed.com|dk.indeed.com|ec.indeed.com|eg.indeed.com|fi.indeed.com|fr.indeed.com|de.indeed.com|gr.indeed.com|hk.indeed.com|hu.indeed.com|in.indeed.com|id.indeed.com|ie.indeed.com|il.indeed.com|it.indeed.com|jp.indeed.com|kw.indeed.com|lu.indeed.com|malaysia.indeed.com|mx.indeed.com|ma.indeed.com|nl.indeed.com|nz.indeed.com|ng.indeed.com|no.indeed.com|om.indeed.com|pk.indeed.com|pa.indeed.com|pe.indeed.com|ph.indeed.com|pl.indeed.com|pt.indeed.com|qa.indeed.com|ro.indeed.com|sa.indeed.com|sg.indeed.com|za.indeed.com|kr.indeed.com|es.indeed.com|se.indeed.com|ch.indeed.com|tw.indeed.com|th.indeed.com|tr.indeed.com|ua.indeed.com|ae.indeed.com|uk.indeed.com|www.indeed.com|uy.indeed.com|ve.indeed.com|vn.indeed.com]")
 	_ = cmd.RegisterFlagCompletionFunc("domain", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"ar.indeed.com", "au.indeed.com", "at.indeed.com", "bh.indeed.com", "be.indeed.com", "br.indeed.com", "ca.indeed.com", "cl.indeed.com", "cn.indeed.com", "co.indeed.com", "cr.indeed.com", "cz.indeed.com", "dk.indeed.com", "ec.indeed.com", "eg.indeed.com", "fi.indeed.com", "fr.indeed.com", "de.indeed.com", "gr.indeed.com", "hk.indeed.com", "hu.indeed.com", "in.indeed.com", "id.indeed.com", "ie.indeed.com", "il.indeed.com", "it.indeed.com", "jp.indeed.com", "kw.indeed.com", "lu.indeed.com", "malaysia.indeed.com", "mx.indeed.com", "ma.indeed.com", "nl.indeed.com", "nz.indeed.com", "ng.indeed.com", "no.indeed.com", "om.indeed.com", "pk.indeed.com", "pa.indeed.com", "pe.indeed.com", "ph.indeed.com", "pl.indeed.com", "pt.indeed.com", "qa.indeed.com", "ro.indeed.com", "sa.indeed.com", "sg.indeed.com", "za.indeed.com", "kr.indeed.com", "es.indeed.com", "se.indeed.com", "ch.indeed.com", "tw.indeed.com", "th.indeed.com", "tr.indeed.com", "ua.indeed.com", "ae.indeed.com", "uk.indeed.com", "www.indeed.com", "uy.indeed.com", "ve.indeed.com", "vn.indeed.com"}, cobra.ShellCompDirectiveNoFileComp
@@ -76,10 +99,15 @@ func newIndeedListingCmd() *cobra.Command {
 	_ = cmd.MarkFlagRequired("keyword")
 	cmd.Flags().StringVar(&p_locationVar, "location", "New York, NY", "location Location: The location to search for job listings. (required)")
 	_ = cmd.MarkFlagRequired("location")
+	cmd.Flags().StringVar(&p_remoteTypeVar, "remote-type", "", "remoteType Remote: Returns only remote (`remote`) or hybrid (`hybrid`) jobs. In the US, Indeed ties fully remote jobs to the country rather than a city, so use a country-wide location such as `United States`: with a city, Indeed returns few or no remote jobs. [allowed: remote|hybrid]")
+	_ = cmd.RegisterFlagCompletionFunc("remote-type", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
+		return []string{"remote", "hybrid"}, cobra.ShellCompDirectiveNoFileComp
+	})
 	cmd.Flags().StringVar(&p_sortVar, "sort", "date", "sort Sort By: The sorting option for the search results. [allowed: relevance|date]")
 	_ = cmd.RegisterFlagCompletionFunc("sort", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"relevance", "date"}, cobra.ShellCompDirectiveNoFileComp
 	})
+	cmd.Flags().BoolVar(&p_sponsoredOnlyVar, "sponsored-only", false, "sponsoredOnly Sponsored Only: When enabled, the request is made in a way that returns more sponsored listings. Defaults to false.")
 	cmd.Flags().Float64Var(&p_startVar, "start", 0, "start Result Offset: The starting index of the results to retrieve (optional).")
 
 	return cmd
