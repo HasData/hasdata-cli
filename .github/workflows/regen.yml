@@ -22,7 +22,7 @@ jobs:
           cache: true
 
       - name: regenerate
-        run: go generate ./...
+        run: go generate .
 
       - name: check for diff
         id: diff

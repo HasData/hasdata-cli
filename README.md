@@ -185,7 +185,7 @@ Every command here is generated from the live schema at `https://api.hasdata.com
 Contributing locally:
 
 ```sh
-go generate ./...     # regenerate cmd/gen_*.go from api.hasdata.com
+go generate .     # regenerate cmd/gen_*.go from api.hasdata.com
 go build ./...
 go test ./...
 ```

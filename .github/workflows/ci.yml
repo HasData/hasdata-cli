@@ -57,9 +57,9 @@ jobs:
           cache: true
       - name: ensure generated files are up to date
         run: |
-          go generate ./...
+          go generate .
           if ! git diff --quiet; then
-            echo "Generated files are out of date. Run 'go generate ./...' and commit."
+            echo "Generated files are out of date. Run 'go generate .' and commit."
             git diff --stat
             exit 1
           fi
