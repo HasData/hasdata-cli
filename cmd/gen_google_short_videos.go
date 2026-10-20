@@ -27,12 +27,13 @@ func newGoogleShortVideosCmd() *cobra.Command {
 	var p_lrVar []string
 	var p_pageVar int
 	var p_qVar string
+	var p_tbsVar string
 	var p_uuleVar string
 
 	cmd := &cobra.Command{
 		Use:   "google-short-videos",
-		Short: "Google Short Videos API  (5 credits/call)",
-		Long:  "The Google Short Videos API provides real-time access to short-form video content indexed by Google, allowing users to retrieve videos based on specific queries, topics, platforms, and customizable filters for highly relevant video results.\n\nEndpoint: GET https://api.hasdata.com/scrape/google/short-videos\nCost: 5 credits per call.",
+		Short: "Google Short Videos API  (10 credits/call)",
+		Long:  "The Google Short Videos API provides real-time access to short-form video content indexed by Google, allowing users to retrieve videos based on specific queries, topics, platforms, and customizable filters for highly relevant video results.\n\nEndpoint: GET https://api.hasdata.com/scrape/google/short-videos\nCost: 10 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			if c.Flags().Changed("device-type") {
@@ -78,6 +79,9 @@ func newGoogleShortVideosCmd() *cobra.Command {
 				params.Set("page", strconv.Itoa(p_pageVar))
 			}
 			params.Set("q", p_qVar)
+			if c.Flags().Changed("tbs") {
+				params.Set("tbs", p_tbsVar)
+			}
 			if c.Flags().Changed("uule") {
 				params.Set("uule", p_uuleVar)
 			}
@@ -103,6 +107,7 @@ func newGoogleShortVideosCmd() *cobra.Command {
 	cmd.Flags().IntVar(&p_pageVar, "page", 0, "page Page Number: Page number for paginated results, where 0 is the first page.")
 	cmd.Flags().StringVar(&p_qVar, "q", "Coffee", "q Search Query: Search query term for retrieving short videos results. (required)")
 	_ = cmd.MarkFlagRequired("q")
+	cmd.Flags().StringVar(&p_tbsVar, "tbs", "", "tbs Advanced Search Parameters: Google advanced search filters, combined with commas. For example:\n\n  - `qdr:h`, `qdr:d`, `qdr:w`, `qdr:m`, `qdr:y` - Show videos from the past hour, day, week, month, or year.\n")
 	cmd.Flags().StringVar(&p_uuleVar, "uule", "", "uule Encoded Location: The encoded location parameter.")
 
 	return cmd

@@ -26,7 +26,7 @@ func newTiktokCommentsCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "tiktok-comments",
 		Short: "TikTok Comments Scraper API  (10 credits/call)",
-		Long:  "The TikTok Comments Scraper API returns the comments on a public TikTok video, or the replies to a specific comment. Each comment includes its text, like count, timestamp, reply count, and author (with links to the author's profile and posts). Results are paginated with a token.\n\nEndpoint: GET https://api.hasdata.com/scrape/tiktok/comments\nCost: 10 credits per call.",
+		Long:  "The TikTok Comments Scraper API returns the comments on a public TikTok video, or the replies to a specific comment. Each comment includes its text, like count, timestamp, reply count, and author (with links to the author's profile and posts). The first page of a video's comments also includes the video itself as `post`. Results are paginated with a token.\n\nEndpoint: GET https://api.hasdata.com/scrape/tiktok/comments\nCost: 10 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			return nil

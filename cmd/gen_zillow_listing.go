@@ -31,7 +31,6 @@ func newZillowListingCmd() *cobra.Command {
 	var p_keywordVar string
 	var p_keywordsVar string
 	var p_listingPublishOptionsVar []string
-	var p_listingTypeVar string
 	var p_lotSize_maxVar float64
 	var p_lotSize_minVar float64
 	var p_moveInDateVar string
@@ -55,8 +54,8 @@ func newZillowListingCmd() *cobra.Command {
 
 	cmd := &cobra.Command{
 		Use:   "zillow-listing",
-		Short: "Zillow Listing Scraper API  (5 credits/call)",
-		Long:  "The Zillow Listing Scraper API lets you retrieve property listings from Zillow.com based on various search parameters.\n\nEndpoint: GET https://api.hasdata.com/scrape/zillow/listing\nCost: 5 credits per call.",
+		Short: "Zillow Listing Scraper API  (10 credits/call)",
+		Long:  "The Zillow Listing Scraper API lets you retrieve property listings from Zillow.com based on various search parameters.\n\nEndpoint: GET https://api.hasdata.com/scrape/zillow/listing\nCost: 10 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			if c.Flags().Changed("basement") {
@@ -76,11 +75,6 @@ func newZillowListingCmd() *cobra.Command {
 			}
 			if c.Flags().Changed("listing-publish-options") {
 				if err := validateEnumStringSlice("listing-publish-options", p_listingPublishOptionsVar, []string{"ownerPosted", "agentListed", "newConstruction", "foreclosures", "auctions", "foreclosed", "preForeclosures"}); err != nil {
-					return err
-				}
-			}
-			if c.Flags().Changed("listing-type") {
-				if err := validateEnumString("listing-type", p_listingTypeVar, []string{"byAgent", "byOwner"}); err != nil {
 					return err
 				}
 			}
@@ -167,9 +161,6 @@ func newZillowListingCmd() *cobra.Command {
 				for _, v := range p_listingPublishOptionsVar {
 					params.Add("listingPublishOptions"+"[]", v)
 				}
-			}
-			if c.Flags().Changed("listing-type") {
-				params.Set("listingType", p_listingTypeVar)
 			}
 			if c.Flags().Changed("lot-size-max") {
 				params.Set("lotSize[max]", strconv.FormatFloat(p_lotSize_maxVar, 'f', -1, 64))
@@ -267,17 +258,13 @@ func newZillowListingCmd() *cobra.Command {
 	cmd.Flags().StringVar(&p_keywordVar, "keyword", "New York, NY", "keyword Location: The keyword used to search for listings. (required)")
 	_ = cmd.MarkFlagRequired("keyword")
 	cmd.Flags().StringVar(&p_keywordsVar, "keywords", "", "keywords Additional Keywords: Additional keywords to refine the search.")
-	cmd.Flags().StringSliceVar(&p_listingPublishOptionsVar, "listing-publish-options", nil, "listingPublishOptions[] Listing Publish Options: An array of listing publish options.")
+	cmd.Flags().StringSliceVar(&p_listingPublishOptionsVar, "listing-publish-options", nil, "listingPublishOptions[] Listing Publish Options: An array of listing publish options. Use `ownerPosted` for listings by owner and `agentListed` for listings by agent.")
 	_ = cmd.RegisterFlagCompletionFunc("listing-publish-options", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"ownerPosted", "agentListed", "newConstruction", "foreclosures", "auctions", "foreclosed", "preForeclosures"}, cobra.ShellCompDirectiveNoFileComp
 	})
-	cmd.Flags().StringVar(&p_listingTypeVar, "listing-type", "", "listingType Listing Category: The category of the listing. [allowed: byAgent|byOwner]")
-	_ = cmd.RegisterFlagCompletionFunc("listing-type", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
-		return []string{"byAgent", "byOwner"}, cobra.ShellCompDirectiveNoFileComp
-	})
 	cmd.Flags().Float64Var(&p_lotSize_maxVar, "lot-size-max", 0, "lotSize[max] Lot Size Max: The maximum lot size.")
 	cmd.Flags().Float64Var(&p_lotSize_minVar, "lot-size-min", 0, "lotSize[min] Lot Size Min: The minimum lot size.")
-	cmd.Flags().StringVar(&p_moveInDateVar, "move-in-date", "", "moveInDate Move In Date: The desired move-in date.")
+	cmd.Flags().StringVar(&p_moveInDateVar, "move-in-date", "", "moveInDate Move In Date: The desired move-in date in `YYYY-MM-DD` format.")
 	cmd.Flags().BoolVar(&p_mustHaveGarageVar, "must-have-garage", false, "mustHaveGarage Must Have Garage: If set to true, only listings with a garage will be included.")
 	cmd.Flags().StringSliceVar(&p_otherAmenitiesVar, "other-amenities", nil, "otherAmenities[] Other Amenities: An array of other amenities.")
 	_ = cmd.RegisterFlagCompletionFunc("other-amenities", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
@@ -322,5 +309,5 @@ func newZillowListingCmd() *cobra.Command {
 }
 
 func init() {
-	RegisterAPICommand("zillow", "Zillow", newZillowListingCmd())
+	RegisterAPICommand("real_estate", "Real Estate", newZillowListingCmd())
 }

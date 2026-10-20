@@ -20,13 +20,14 @@ var (
 
 func newGoogleMapsPlaceCmd() *cobra.Command {
 	var p_domainVar string
+	var p_fetchWebResultsVar bool
 	var p_hlVar string
 	var p_placeIdVar string
 
 	cmd := &cobra.Command{
 		Use:   "google-maps-place",
-		Short: "Google Maps Place API  (5 credits/call)",
-		Long:  "The Google Maps Place API retrieves detailed information about a specific place using a `placeId`.\n\nEndpoint: GET https://api.hasdata.com/scrape/google-maps/place\nCost: 5 credits per call.",
+		Short: "Google Maps Place API  (10 credits/call)",
+		Long:  "The Google Maps Place API retrieves detailed information about a specific place using a `placeId`.\n\nEndpoint: GET https://api.hasdata.com/scrape/google-maps/place\nCost: 10 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			if c.Flags().Changed("domain") {
@@ -46,6 +47,9 @@ func newGoogleMapsPlaceCmd() *cobra.Command {
 			if c.Flags().Changed("domain") {
 				params.Set("domain", p_domainVar)
 			}
+			if c.Flags().Changed("fetch-web-results") {
+				params.Set("fetchWebResults", strconv.FormatBool(p_fetchWebResultsVar))
+			}
 			if c.Flags().Changed("hl") {
 				params.Set("hl", p_hlVar)
 			}
@@ -61,6 +65,7 @@ func newGoogleMapsPlaceCmd() *cobra.Command {
 	_ = cmd.RegisterFlagCompletionFunc("domain", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"google.ac", "google.ad", "google.ae", "google.al", "google.am", "google.as", "google.at", "google.az", "google.ba", "google.be", "google.bf", "google.bg", "google.bi", "google.bj", "google.bs", "google.bt", "google.by", "google.ca", "google.cd", "google.cf", "google.cg", "google.ch", "google.ci", "google.cl", "google.cm", "google.co.ao", "google.co.bw", "google.co.ck", "google.co.cr", "google.co.id", "google.co.il", "google.co.in", "google.co.jp", "google.co.ke", "google.co.kr", "google.co.ls", "google.co.ma", "google.co.mz", "google.co.nz", "google.co.th", "google.co.tz", "google.co.ug", "google.co.uk", "google.co.uz", "google.co.ve", "google.co.vi", "google.co.za", "google.co.zm", "google.co.zw", "google.com", "google.com.af", "google.com.ag", "google.com.ai", "google.com.ar", "google.com.au", "google.com.bd", "google.com.bh", "google.com.bn", "google.com.bo", "google.com.br", "google.com.bz", "google.com.co", "google.com.cu", "google.com.cy", "google.com.do", "google.com.ec", "google.com.eg", "google.com.et", "google.com.fj", "google.com.gh", "google.com.gi", "google.com.gt", "google.com.hk", "google.com.jm", "google.com.kh", "google.com.kw", "google.com.lb", "google.com.ly", "google.com.mm", "google.com.mt", "google.com.mx", "google.com.my", "google.com.na", "google.com.ng", "google.ng", "google.com.nf", "google.com.ni", "google.com.np", "google.com.om", "google.com.pa", "google.com.pe", "google.com.pg", "google.com.ph", "google.com.pk", "google.com.pr", "google.com.py", "google.com.qa", "google.com.sa", "google.com.sb", "google.com.sg", "google.com.sl", "google.com.sv", "google.com.tj", "google.com.tr", "google.com.tw", "google.com.ua", "google.com.uy", "google.com.vc", "google.com.vn", "google.cat", "google.cn", "google.cv", "google.cz", "google.de", "google.dj", "google.dk", "google.dm", "google.dz", "google.ee", "google.es", "google.fi", "google.fm", "google.fr", "google.ga", "google.ge", "google.gg", "google.gl", "google.gm", "google.gp", "google.gr", "google.gy", "google.hn", "google.hr", "google.ht", "google.hu", "google.ie", "google.im", "google.iq", "google.is", "google.it", "google.je", "google.jo", "google.kg", "google.ki", "google.kz", "google.la", "google.li", "google.lk", "google.lt", "google.lu", "google.lv", "google.md", "google.me", "google.mg", "google.mk", "google.ml", "google.mn", "google.ms", "google.mu", "google.mv", "google.mw", "google.ne", "google.nl", "google.no", "google.nr", "google.nu", "google.pl", "google.pn", "google.ps", "google.pt", "google.ro", "google.rs", "google.ru", "google.rw", "google.sc", "google.se", "google.sh", "google.si", "google.sk", "google.sm", "google.sn", "google.so", "google.sr", "google.st", "google.td", "google.tg", "google.tk", "google.tl", "google.tm", "google.tn", "google.to", "google.tt", "google.vg", "google.vu", "google.ws"}, cobra.ShellCompDirectiveNoFileComp
 	})
+	cmd.Flags().BoolVar(&p_fetchWebResultsVar, "fetch-web-results", false, "fetchWebResults Fetch Web Results: Also collect the place panel's \"Web results\" section (the business's website and its pages on Instagram, Facebook, delivery services, etc.) and return it as `webResults`. This takes an extra request to Google and costs 5 credits on top of the base. Default is false.")
 	cmd.Flags().StringVar(&p_hlVar, "hl", "", "hl Language: The two-letter language code for the language you want to use for the search.")
 	cmd.Flags().StringVar(&p_placeIdVar, "place-id", "ChIJFU2bda4SM4cRKSCRyb6pOB8", "placeId Google Place ID: A unique identifier for the place. This ID can be obtained from Google Maps search results. (required)")
 	_ = cmd.MarkFlagRequired("place-id")
