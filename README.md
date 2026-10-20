@@ -190,6 +190,8 @@ go build ./...
 go test ./...
 ```
 
+Releasing: bump `VERSION` in a PR. Merging it tags `v<VERSION>` and publishes the release; add `.github/release-notes/v<VERSION>.md` to write the release body yourself. Pushing a `v*` tag by hand still works.
+
 ## Resources
 
 - **HasData docs** — <https://docs.hasdata.com>
