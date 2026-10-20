@@ -103,8 +103,8 @@ func newIndeedListingCmd() *cobra.Command {
 	_ = cmd.MarkFlagRequired("keyword")
 	cmd.Flags().StringVar(&p_locationVar, "location", "New York, NY", "location Location: The location to search for job listings. (required)")
 	_ = cmd.MarkFlagRequired("location")
-	cmd.Flags().StringVar(&p_nextPageVar, "next-page", "", "nextPage Next Page: The recommended way to paginate. To fetch the next page, pass the `pagination.nextPage` value from the previous response to preserve the ranking order of the search results. When `nextPage` is passed, the `start` parameter is ignored.")
-	cmd.Flags().StringVar(&p_remoteTypeVar, "remote-type", "", "remoteType Remote: Returns only remote (`remote`) or hybrid (`hybrid`) jobs. In the US, Indeed ties fully remote jobs to the country rather than a city, so use a country-wide location such as `United States`: with a city, Indeed returns few or no remote jobs. [allowed: remote|hybrid]")
+	cmd.Flags().StringVar(&p_nextPageVar, "next-page", "", "nextPage Next Page: The recommended way to paginate. To fetch the next page, pass the 'pagination.nextPage' value from the previous response to preserve the ranking order of the search results. When 'nextPage' is passed, the 'start' parameter is ignored.")
+	cmd.Flags().StringVar(&p_remoteTypeVar, "remote-type", "", "remoteType Remote: Returns only remote ('remote') or hybrid ('hybrid') jobs. In the US, Indeed ties fully remote jobs to the country rather than a city, so use a country-wide location such as 'United States': with a city, Indeed returns few or no remote jobs. [allowed: remote|hybrid]")
 	_ = cmd.RegisterFlagCompletionFunc("remote-type", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"remote", "hybrid"}, cobra.ShellCompDirectiveNoFileComp
 	})
@@ -113,7 +113,7 @@ func newIndeedListingCmd() *cobra.Command {
 		return []string{"relevance", "date"}, cobra.ShellCompDirectiveNoFileComp
 	})
 	cmd.Flags().BoolVar(&p_sponsoredOnlyVar, "sponsored-only", false, "sponsoredOnly Sponsored Only: When enabled, the request is made in a way that returns more sponsored listings. Defaults to false.")
-	cmd.Flags().Float64Var(&p_startVar, "start", 0, "start Result Offset: The starting index of the results to retrieve from a single page. For ranked data spanning multiple pages, we recommend using only `nextPage`.")
+	cmd.Flags().Float64Var(&p_startVar, "start", 0, "start Result Offset: The starting index of the results to retrieve from a single page. For ranked data spanning multiple pages, we recommend using only 'nextPage'.")
 
 	return cmd
 }

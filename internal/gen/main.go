@@ -574,7 +574,10 @@ func buildHelp(p spec.Property, required bool) string {
 	if required {
 		help += " (required)"
 	}
-	return help
+	// pflag treats the first `quoted` word in a usage string as the flag's
+	// value name, so backticked words in descriptions would show up as the
+	// flag's type in --help. Plain quotes keep the text readable.
+	return strings.ReplaceAll(help, "`", "'")
 }
 
 // buildJSONHelp returns the usage string for a pure-JSON flag, making the

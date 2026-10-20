@@ -161,40 +161,40 @@ func newGoogleHotelsCmd() *cobra.Command {
 		},
 	}
 	cmd.Flags().IntVar(&p_adultsVar, "adults", 0, "adults Adults: Number of adult guests (1-6).\n")
-	cmd.Flags().StringSliceVar(&p_amenityVar, "amenity", nil, "amenity[] Amenity: List of amenities to filter by (e.g., `hotelFreeWifi,hotelPool`).\n\nValues prefixed `hotel*` apply when searching hotels (the default mode). Values prefixed `rental*` apply when `vacationRentals=true`.\n\nThe two sets are disjoint because Google Hotels exposes different amenity catalogs for each mode — pass values matching the mode you're querying.\n")
+	cmd.Flags().StringSliceVar(&p_amenityVar, "amenity", nil, "amenity[] Amenity: List of amenities to filter by (e.g., 'hotelFreeWifi,hotelPool').\n\nValues prefixed 'hotel*' apply when searching hotels (the default mode). Values prefixed 'rental*' apply when 'vacationRentals=true'.\n\nThe two sets are disjoint because Google Hotels exposes different amenity catalogs for each mode — pass values matching the mode you're querying.\n")
 	_ = cmd.RegisterFlagCompletionFunc("amenity", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"hotelFreeParking", "hotelParking", "hotelIndoorPool", "hotelOutdoorPool", "hotelPool", "hotelFitnessCenter", "hotelRestaurant", "hotelFreeBreakfast", "hotelSpa", "hotelBeachAccess", "hotelChildFriendly", "hotelBar", "hotelPetFriendly", "hotelRoomService", "hotelFreeWifi", "hotelAirConditioned", "hotelAllInclusive", "hotelWheelchairAccessible", "hotelEvCharger", "rentalHotTub", "rentalAirConditioned", "rentalOutdoorGrill", "rentalFireplace", "rentalPatioOrDeck", "rentalKitchen", "rentalFitnessCenter", "rentalCrib", "rentalBeachAccess", "rentalKidFriendly", "rentalPetFriendly", "rentalFreeWifi", "rentalPool"}, cobra.ShellCompDirectiveNoFileComp
 	})
 	cmd.Flags().IntVar(&p_bathroomsVar, "bathrooms", 0, "bathrooms Bathrooms: Minimum number of bathrooms (vacation rentals only).\n")
 	cmd.Flags().IntVar(&p_bedroomsVar, "bedrooms", 0, "bedrooms Bedrooms: Minimum number of bedrooms (vacation rentals only).\n")
-	cmd.Flags().StringVar(&p_brandsVar, "brands", "", "brands Brands: Comma-separated list of brand IDs to filter by. Brand IDs are returned in the response under `brands` for the same query.\n")
+	cmd.Flags().StringVar(&p_brandsVar, "brands", "", "brands Brands: Comma-separated list of brand IDs to filter by. Brand IDs are returned in the response under 'brands' for the same query.\n")
 	cmd.Flags().StringVar(&p_checkInDateVar, "check-in-date", "2026-11-17", "checkInDate Check-in Date: The check-in date in 'yyyy-MM-dd' format.\n (required)")
 	_ = cmd.MarkFlagRequired("check-in-date")
 	cmd.Flags().StringVar(&p_checkOutDateVar, "check-out-date", "2026-11-21", "checkOutDate Check-out Date: The check-out date in 'yyyy-MM-dd' format.\n (required)")
 	_ = cmd.MarkFlagRequired("check-out-date")
 	cmd.Flags().IntVar(&p_childrenVar, "children", 0, "children Children: Number of child guests (1-5). Total guests (adults + children) cannot exceed 6.\n")
-	cmd.Flags().StringVar(&p_childrenAgesVar, "children-ages", "", "childrenAges Children Ages: Comma-separated list of children ages (e.g., `5,8,12`). Must match the number of children.\n")
+	cmd.Flags().StringVar(&p_childrenAgesVar, "children-ages", "", "childrenAges Children Ages: Comma-separated list of children ages (e.g., '5,8,12'). Must match the number of children.\n")
 	cmd.Flags().StringVar(&p_currencyVar, "currency", "", "currency Currency: Parameter defines the currency of the returned prices")
 	cmd.Flags().BoolVar(&p_ecoCertifiedVar, "eco-certified", false, "ecoCertified Eco-certified: Show only eco-certified properties.\n")
 	cmd.Flags().BoolVar(&p_freeCancellationVar, "free-cancellation", false, "freeCancellation Free Cancellation: Show only properties offering free cancellation.\n")
 	cmd.Flags().StringVar(&p_glVar, "gl", "", "gl Country: The two-letter country code for the country you want to limit the search to.")
 	cmd.Flags().StringVar(&p_hlVar, "hl", "", "hl Language: The two-letter language code for the language you want to use for the search.")
-	cmd.Flags().StringVar(&p_hotelClassVar, "hotel-class", "", "hotelClass Hotel Class: Comma-separated list of hotel star classes to include (e.g., `2,3,4,5`).\n")
+	cmd.Flags().StringVar(&p_hotelClassVar, "hotel-class", "", "hotelClass Hotel Class: Comma-separated list of hotel star classes to include (e.g., '2,3,4,5').\n")
 	cmd.Flags().Float64Var(&p_maxPriceVar, "max-price", 0, "maxPrice Maximum Price: Maximum price per night, in the selected currency.\n")
 	cmd.Flags().Float64Var(&p_minPriceVar, "min-price", 0, "minPrice Minimum Price: Minimum price per night, in the selected currency.\n")
-	cmd.Flags().StringVar(&p_nextPageTokenVar, "next-page-token", "", "nextPageToken Next Page Token: Token to fetch the next page of hotel results. Returned in the `pagination` field of a previous response.\n")
+	cmd.Flags().StringVar(&p_nextPageTokenVar, "next-page-token", "", "nextPageToken Next Page Token: Token to fetch the next page of hotel results. Returned in the 'pagination' field of a previous response.\n")
 	cmd.Flags().StringVar(&p_propertyTokenVar, "property-token", "", "propertyToken Property Token: Token used to retrieve details for a specific property. Returned in each property in the results.\n")
-	cmd.Flags().StringSliceVar(&p_propertyTypeVar, "property-type", nil, "propertyType[] Property Type: List of property types to filter by (e.g., `hotelResort,hotelMotel`).\n\nValues prefixed `hotel*` apply when searching hotels (the default mode). Values prefixed `rental*` apply when `vacationRentals=true`.\n\nThe two sets are disjoint because Google Hotels exposes different property-type catalogs for each mode — pass values matching the mode you're querying.\n")
+	cmd.Flags().StringSliceVar(&p_propertyTypeVar, "property-type", nil, "propertyType[] Property Type: List of property types to filter by (e.g., 'hotelResort,hotelMotel').\n\nValues prefixed 'hotel*' apply when searching hotels (the default mode). Values prefixed 'rental*' apply when 'vacationRentals=true'.\n\nThe two sets are disjoint because Google Hotels exposes different property-type catalogs for each mode — pass values matching the mode you're querying.\n")
 	_ = cmd.RegisterFlagCompletionFunc("property-type", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"hotelBeach", "hotelBoutique", "hotelHostel", "hotelInn", "hotelMotel", "hotelResort", "hotelSpa", "hotelBedAndBreakfast", "hotelOther", "hotelAparthotel", "hotelMinshuku", "hotelJapaneseBusiness", "hotelRyokan", "rentalApartment", "rentalBungalow", "rentalCabin", "rentalChalet", "rentalCottage", "rentalGite", "rentalHolidayVillage", "rentalHouse", "rentalHouseboat", "rentalVilla", "rentalOther", "rentalAparthotel"}, cobra.ShellCompDirectiveNoFileComp
 	})
 	cmd.Flags().StringVar(&p_qVar, "q", "Hotels in New York", "q Search Query: The search query for Google Hotels (e.g., a city, neighborhood, or hotel name).\n (required)")
 	_ = cmd.MarkFlagRequired("q")
-	cmd.Flags().StringVar(&p_ratingVar, "rating", "", "rating Minimum Rating: Filter by minimum overall guest rating. Options:\n\n  - `threePointFivePlus` — 3.5 stars or higher\n  - `fourPlus` — 4.0 stars or higher\n  - `fourPointFivePlus` — 4.5 stars or higher\n [allowed: threePointFivePlus|fourPlus|fourPointFivePlus]")
+	cmd.Flags().StringVar(&p_ratingVar, "rating", "", "rating Minimum Rating: Filter by minimum overall guest rating. Options:\n\n  - 'threePointFivePlus' — 3.5 stars or higher\n  - 'fourPlus' — 4.0 stars or higher\n  - 'fourPointFivePlus' — 4.5 stars or higher\n [allowed: threePointFivePlus|fourPlus|fourPointFivePlus]")
 	_ = cmd.RegisterFlagCompletionFunc("rating", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"threePointFivePlus", "fourPlus", "fourPointFivePlus"}, cobra.ShellCompDirectiveNoFileComp
 	})
-	cmd.Flags().StringVar(&p_sortByVar, "sort-by", "", "sortBy Sort By: Sort hotel results. Options:\n\n  - `lowestPrice` — lowest price\n  - `highestRating` — highest rating\n  - `mostReviewed` — most reviewed\n [allowed: lowestPrice|highestRating|mostReviewed]")
+	cmd.Flags().StringVar(&p_sortByVar, "sort-by", "", "sortBy Sort By: Sort hotel results. Options:\n\n  - 'lowestPrice' — lowest price\n  - 'highestRating' — highest rating\n  - 'mostReviewed' — most reviewed\n [allowed: lowestPrice|highestRating|mostReviewed]")
 	_ = cmd.RegisterFlagCompletionFunc("sort-by", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"lowestPrice", "highestRating", "mostReviewed"}, cobra.ShellCompDirectiveNoFileComp
 	})

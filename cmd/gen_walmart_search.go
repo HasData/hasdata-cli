@@ -106,29 +106,29 @@ func newWalmartSearchCmd() *cobra.Command {
 			return WriteResponse(c, resp)
 		},
 	}
-	cmd.Flags().StringVar(&p_catIdVar, "cat-id", "", "catId Category ID: Walmart category id, taken from a category URL (for example `976759_1086446_1229651`). Combine it with `q` to search inside a category, or send it alone to browse the whole category. Required unless `q` is provided.")
-	cmd.Flags().StringVar(&p_deliveryTypeVar, "delivery-type", "shipping", "deliveryType Delivery Type: Keep only the products available with the selected fulfillment method. Default is `shipping`. Note that `pickup` is answered against one Walmart store, so an item in stock nationally can still be unavailable for `pickup` nearby - the response then reports that nothing matched the filters rather than that the query had no results. [allowed: shipping|pickup]")
+	cmd.Flags().StringVar(&p_catIdVar, "cat-id", "", "catId Category ID: Walmart category id, taken from a category URL (for example '976759_1086446_1229651'). Combine it with 'q' to search inside a category, or send it alone to browse the whole category. Required unless 'q' is provided.")
+	cmd.Flags().StringVar(&p_deliveryTypeVar, "delivery-type", "shipping", "deliveryType Delivery Type: Keep only the products available with the selected fulfillment method. Default is 'shipping'. Note that 'pickup' is answered against one Walmart store, so an item in stock nationally can still be unavailable for 'pickup' nearby - the response then reports that nothing matched the filters rather than that the query had no results. [allowed: shipping|pickup]")
 	_ = cmd.RegisterFlagCompletionFunc("delivery-type", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"shipping", "pickup"}, cobra.ShellCompDirectiveNoFileComp
 	})
-	cmd.Flags().StringVar(&p_domainVar, "domain", "", "domain Domain: Walmart storefront to search. Each storefront has its own catalog, prices and currency. Default is `walmart.com`. [allowed: walmart.com|walmart.ca]")
+	cmd.Flags().StringVar(&p_domainVar, "domain", "", "domain Domain: Walmart storefront to search. Each storefront has its own catalog, prices and currency. Default is 'walmart.com'. [allowed: walmart.com|walmart.ca]")
 	_ = cmd.RegisterFlagCompletionFunc("domain", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"walmart.com", "walmart.ca"}, cobra.ShellCompDirectiveNoFileComp
 	})
-	cmd.Flags().StringVar(&p_facetVar, "facet", "brand:Great Value\nretailer_type:Walmart", "facet Facet Filter: Walmart filter in the `name:value` form, for example `brand:Great Value`. Every value available for a query is listed in the facets block of the response, each one carrying the exact string to send back here, so a first unfiltered request tells you what can be filtered on. To combine filters, put each one on its own line. The double-pipe form Walmart's own urls use `brand:Great Value||retailer_type:Walmart` is also accepted.")
-	cmd.Flags().StringVar(&p_languageVar, "language", "en", "language Language: Language of the results. Availability depends on the storefront - `walmart.com` serves `en` and `es`, `walmart.ca` serves `en` and `fr`. A language the storefront does not support falls back to its default. [allowed: en|es|fr]")
+	cmd.Flags().StringVar(&p_facetVar, "facet", "brand:Great Value\nretailer_type:Walmart", "facet Facet Filter: Walmart filter in the 'name:value' form, for example 'brand:Great Value'. Every value available for a query is listed in the facets block of the response, each one carrying the exact string to send back here, so a first unfiltered request tells you what can be filtered on. To combine filters, put each one on its own line. The double-pipe form Walmart's own urls use 'brand:Great Value||retailer_type:Walmart' is also accepted.")
+	cmd.Flags().StringVar(&p_languageVar, "language", "en", "language Language: Language of the results. Availability depends on the storefront - 'walmart.com' serves 'en' and 'es', 'walmart.ca' serves 'en' and 'fr'. A language the storefront does not support falls back to its default. [allowed: en|es|fr]")
 	_ = cmd.RegisterFlagCompletionFunc("language", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"en", "es", "fr"}, cobra.ShellCompDirectiveNoFileComp
 	})
 	cmd.Flags().Float64Var(&p_maxPriceVar, "max-price", 0, "maxPrice Maximum Price: Upper bound of the price range, in the storefront currency.")
 	cmd.Flags().Float64Var(&p_minPriceVar, "min-price", 0, "minPrice Minimum Price: Lower bound of the price range, in the storefront currency.")
-	cmd.Flags().IntVar(&p_pageVar, "page", 0, "page Page Number: Page number for pagination (e.g., `1` for the first page, `2` for the second page, etc.). Walmart stops serving results after roughly page 10, returning an empty page beyond that.")
-	cmd.Flags().StringVar(&p_qVar, "q", "coffee", "q Search Query: The search term for which to get the search results. It can be omitted only when `catId` is provided, to browse a whole category instead of searching.")
+	cmd.Flags().IntVar(&p_pageVar, "page", 0, "page Page Number: Page number for pagination (e.g., '1' for the first page, '2' for the second page, etc.). Walmart stops serving results after roughly page 10, returning an empty page beyond that.")
+	cmd.Flags().StringVar(&p_qVar, "q", "coffee", "q Search Query: The search term for which to get the search results. It can be omitted only when 'catId' is provided, to browse a whole category instead of searching.")
 	cmd.Flags().StringVar(&p_sortVar, "sort", "bestMatch", "sort Sort By: The sorting option for the search results. [allowed: bestMatch|priceLowToHigh|priceHighToLow|bestseller|highlyRated|newArrivals]")
 	_ = cmd.RegisterFlagCompletionFunc("sort", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"bestMatch", "priceLowToHigh", "priceHighToLow", "bestseller", "highlyRated", "newArrivals"}, cobra.ShellCompDirectiveNoFileComp
 	})
-	cmd.Flags().StringVar(&p_urlVar, "url", "", "url Search URL: A full Walmart search or category URL to scrape as is. When provided, it overrides `q`, `catId` and the other search parameters, and the storefront is taken from the URL itself.")
+	cmd.Flags().StringVar(&p_urlVar, "url", "", "url Search URL: A full Walmart search or category URL to scrape as is. When provided, it overrides 'q', 'catId' and the other search parameters, and the storefront is taken from the URL itself.")
 
 	return cmd
 }

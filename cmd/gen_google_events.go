@@ -44,7 +44,7 @@ func newGoogleEventsCmd() *cobra.Command {
 			return WriteResponse(c, resp)
 		},
 	}
-	cmd.Flags().StringVar(&p_pageTokenVar, "page-token", "", "pageToken Page Token: Token identifying a single event, taken from the `pageToken` field of an `eventsResults` entry in a `google/serp` response. Expires a few minutes after it is minted. (required)")
+	cmd.Flags().StringVar(&p_pageTokenVar, "page-token", "", "pageToken Page Token: Token identifying a single event, taken from the 'pageToken' field of an 'eventsResults' entry in a 'google/serp' response. Expires a few minutes after it is minted. (required)")
 	_ = cmd.MarkFlagRequired("page-token")
 
 	return cmd

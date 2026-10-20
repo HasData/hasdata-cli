@@ -44,7 +44,7 @@ func newInstagramProfileCmd() *cobra.Command {
 			return WriteResponse(c, resp)
 		},
 	}
-	cmd.Flags().StringVar(&p_handleVar, "handle", "hasdatadotcom", "handle Instagram Handle: The Instagram username of the profile you want to scrape, without the `@` symbol. (required)")
+	cmd.Flags().StringVar(&p_handleVar, "handle", "hasdatadotcom", "handle Instagram Handle: The Instagram username of the profile you want to scrape, without the '@' symbol. (required)")
 	_ = cmd.MarkFlagRequired("handle")
 
 	return cmd

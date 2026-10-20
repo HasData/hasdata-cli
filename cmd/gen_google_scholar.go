@@ -113,12 +113,12 @@ func newGoogleScholarCmd() *cobra.Command {
 		},
 	}
 	cmd.Flags().Float64Var(&p_asRrVar, "as-rr", 0, "asRr Review Articles Only: Set to 1 to return review articles only, or 0 (default) to return all articles.")
-	cmd.Flags().StringVar(&p_asSdtVar, "as-sdt", "0,5", "asSdt Search Type / Filter: Search type/filter. Pick a value below to search case law from a specific court, or use `0,5` for Articles (default) / `7` to include patents. Any comma-separated court-code combination Google Scholar accepts also works here as free text beyond this list.")
+	cmd.Flags().StringVar(&p_asSdtVar, "as-sdt", "0,5", "asSdt Search Type / Filter: Search type/filter. Pick a value below to search case law from a specific court, or use '0,5' for Articles (default) / '7' to include patents. Any comma-separated court-code combination Google Scholar accepts also works here as free text beyond this list.")
 	cmd.Flags().Float64Var(&p_asVisVar, "as-vis", 0, "asVis Exclude Citations: Set to 1 to exclude citations from the results, or 0 (default) to include them.")
 	cmd.Flags().IntVar(&p_asYhiVar, "as-yhi", 2024, "asYhi Year To: Return results published up to and including this year.")
 	cmd.Flags().IntVar(&p_asYloVar, "as-ylo", 2020, "asYlo Year From: Return results published from this year onward.")
-	cmd.Flags().StringVar(&p_citesVar, "cites", "", "cites Cited By Search: Unique article ID to look up articles that cite it, as returned in a result's `citedBy.citesId`.")
-	cmd.Flags().StringVar(&p_clusterVar, "cluster", "", "cluster All Versions Search: Unique article ID to look up all indexed versions of that article, as returned in a result's `versions.clusterId`.")
+	cmd.Flags().StringVar(&p_citesVar, "cites", "", "cites Cited By Search: Unique article ID to look up articles that cite it, as returned in a result's 'citedBy.citesId'.")
+	cmd.Flags().StringVar(&p_clusterVar, "cluster", "", "cluster All Versions Search: Unique article ID to look up all indexed versions of that article, as returned in a result's 'versions.clusterId'.")
 	cmd.Flags().Float64Var(&p_filterVar, "filter", 0, "filter Results Filtering: Defines whether to enable or disable the filters for 'Similar Results' and 'Omitted Results'. Set to 1 (default) to enable these filters, or 0 to disable them.\n")
 	cmd.Flags().StringVar(&p_hlVar, "hl", "", "hl Language: The two-letter language code for the language you want to use for the search.")
 	cmd.Flags().StringSliceVar(&p_lrVar, "lr", nil, "lr Set Multiple Languages: The 'lr' parameter specifies the language of the websites to return results from. This parameter filters results based on the language of the web content.")
@@ -126,7 +126,7 @@ func newGoogleScholarCmd() *cobra.Command {
 		return []string{"lang_ar", "lang_hy", "lang_bg", "lang_ca", "lang_cs", "lang_da", "lang_de", "lang_el", "lang_en", "lang_es", "lang_et", "lang_tl", "lang_fi", "lang_fr", "lang_hr", "lang_hi", "lang_hu", "lang_id", "lang_is", "lang_it", "lang_iw", "lang_he", "lang_ja", "lang_ko", "lang_lt", "lang_lv", "lang_nl", "lang_no", "lang_fa", "lang_pl", "lang_pt", "lang_ro", "lang_ru", "lang_sk", "lang_sl", "lang_sr", "lang_sv", "lang_th", "lang_tr", "lang_uk", "lang_vi", "lang_zh-CN", "lang_zh-TW"}, cobra.ShellCompDirectiveNoFileComp
 	})
 	cmd.Flags().IntVar(&p_numVar, "num", 0, "num Number of Results: Maximum number of results to return per page.")
-	cmd.Flags().StringVar(&p_qVar, "q", "machine learning", "q Search Query: Search query. Supports Google Scholar search helpers such as `author:` and `source:`. (required)")
+	cmd.Flags().StringVar(&p_qVar, "q", "machine learning", "q Search Query: Search query. Supports Google Scholar search helpers such as 'author:' and 'source:'. (required)")
 	_ = cmd.MarkFlagRequired("q")
 	cmd.Flags().StringVar(&p_safeVar, "safe", "", "safe Adult Content Filtering: Adult content filtering option. [allowed: active|off]")
 	_ = cmd.RegisterFlagCompletionFunc("safe", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {

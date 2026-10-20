@@ -58,9 +58,9 @@ func newGoogleFinanceCmd() *cobra.Command {
 		},
 	}
 	cmd.Flags().StringVar(&p_hlVar, "hl", "", "hl Language: The two-letter language code for the language you want to use for the search.")
-	cmd.Flags().StringVar(&p_qVar, "q", "GOOGL:NASDAQ", "q Ticker: Ticker as Google Finance writes it, e.g. `GOOGL:NASDAQ`, `.INX:INDEXSP`, `EUR-USD` or `BTC-USD`. An unknown ticker returns `suggestions`. (required)")
+	cmd.Flags().StringVar(&p_qVar, "q", "GOOGL:NASDAQ", "q Ticker: Ticker as Google Finance writes it, e.g. 'GOOGL:NASDAQ', '.INX:INDEXSP', 'EUR-USD' or 'BTC-USD'. An unknown ticker returns 'suggestions'. (required)")
 	_ = cmd.MarkFlagRequired("q")
-	cmd.Flags().StringVar(&p_windowVar, "window", "", "window Time Range: Time range of the price chart in `graph`. [allowed: 1D|5D|1M|6M|YTD|1Y|5Y|MAX]")
+	cmd.Flags().StringVar(&p_windowVar, "window", "", "window Time Range: Time range of the price chart in 'graph'. [allowed: 1D|5D|1M|6M|YTD|1Y|5Y|MAX]")
 	_ = cmd.RegisterFlagCompletionFunc("window", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"1D", "5D", "1M", "6M", "YTD", "1Y", "5Y", "MAX"}, cobra.ShellCompDirectiveNoFileComp
 	})

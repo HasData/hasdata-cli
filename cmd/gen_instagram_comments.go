@@ -52,9 +52,9 @@ func newInstagramCommentsCmd() *cobra.Command {
 			return WriteResponse(c, resp)
 		},
 	}
-	cmd.Flags().BoolVar(&p_includeMusicVar, "include-music", false, "includeMusic Include Music: Also return the reel's sound (audio ID, artist and song title) in `post.music`, for both licensed tracks and original audio. This takes an extra request to Instagram on the first page and is ignored when `nextPageToken` is set. Default is false.")
-	cmd.Flags().StringVar(&p_nextPageTokenVar, "next-page-token", "", "nextPageToken Next Page Token: Defines the next page token. Use the `nextPageToken` value returned by the previous response. Omit it to fetch the first page.")
-	cmd.Flags().StringVar(&p_urlVar, "url", "https://www.instagram.com/instagram/p/Ddjis3vETcP/", "url Post URL: The URL of the Instagram post or reel, for example `https://www.instagram.com/p/Ddjis3vETcP/` or `https://www.instagram.com/instagram/reel/DcymgItMFao/`. (required)")
+	cmd.Flags().BoolVar(&p_includeMusicVar, "include-music", false, "includeMusic Include Music: Also return the reel's sound (audio ID, artist and song title) in 'post.music', for both licensed tracks and original audio. This takes an extra request to Instagram on the first page and is ignored when 'nextPageToken' is set. Default is false.")
+	cmd.Flags().StringVar(&p_nextPageTokenVar, "next-page-token", "", "nextPageToken Next Page Token: Defines the next page token. Use the 'nextPageToken' value returned by the previous response. Omit it to fetch the first page.")
+	cmd.Flags().StringVar(&p_urlVar, "url", "https://www.instagram.com/instagram/p/Ddjis3vETcP/", "url Post URL: The URL of the Instagram post or reel, for example 'https://www.instagram.com/p/Ddjis3vETcP/' or 'https://www.instagram.com/instagram/reel/DcymgItMFao/'. (required)")
 	_ = cmd.MarkFlagRequired("url")
 
 	return cmd

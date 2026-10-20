@@ -63,13 +63,13 @@ func newYelpSearchCmd() *cobra.Command {
 			return WriteResponse(c, resp)
 		},
 	}
-	cmd.Flags().StringVar(&p_domainVar, "domain", "", "domain Domain: Yelp domain to use. Default is `www.yelp.com`. [allowed: www.yelp.com|www.yelp.co.uk|www.yelp.ca|www.yelp.com.au|ms.yelp.my|www.yelp.cz|www.yelp.dk|www.yelp.de|www.yelp.at|de.yelp.ch|en.yelp.be|en.yelp.com.hk|en.yelp.my|www.yelp.co.nz|en.yelp.com.ph|www.yelp.ie|www.yelp.com.sg|en.yelp.ch|www.yelp.com.ar|www.yelp.cl|www.yelp.es|www.yelp.com.mx|fil.yelp.com.ph|fr.yelp.be|www.yelp.fr|fr.yelp.ch|www.yelp.it|it.yelp.ch|nl.yelp.be|www.yelp.nl|www.yelp.no|www.yelp.pl|www.yelp.com.br|www.yelp.pt|fi.yelp.fi|sv.yelp.fi|www.yelp.com.tr|www.yelp.co.jp|zh.yelp.com.hk|www.yelp.com.tw]")
+	cmd.Flags().StringVar(&p_domainVar, "domain", "", "domain Domain: Yelp domain to use. Default is 'www.yelp.com'. [allowed: www.yelp.com|www.yelp.co.uk|www.yelp.ca|www.yelp.com.au|ms.yelp.my|www.yelp.cz|www.yelp.dk|www.yelp.de|www.yelp.at|de.yelp.ch|en.yelp.be|en.yelp.com.hk|en.yelp.my|www.yelp.co.nz|en.yelp.com.ph|www.yelp.ie|www.yelp.com.sg|en.yelp.ch|www.yelp.com.ar|www.yelp.cl|www.yelp.es|www.yelp.com.mx|fil.yelp.com.ph|fr.yelp.be|www.yelp.fr|fr.yelp.ch|www.yelp.it|it.yelp.ch|nl.yelp.be|www.yelp.nl|www.yelp.no|www.yelp.pl|www.yelp.com.br|www.yelp.pt|fi.yelp.fi|sv.yelp.fi|www.yelp.com.tr|www.yelp.co.jp|zh.yelp.com.hk|www.yelp.com.tw]")
 	_ = cmd.RegisterFlagCompletionFunc("domain", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"www.yelp.com", "www.yelp.co.uk", "www.yelp.ca", "www.yelp.com.au", "ms.yelp.my", "www.yelp.cz", "www.yelp.dk", "www.yelp.de", "www.yelp.at", "de.yelp.ch", "en.yelp.be", "en.yelp.com.hk", "en.yelp.my", "www.yelp.co.nz", "en.yelp.com.ph", "www.yelp.ie", "www.yelp.com.sg", "en.yelp.ch", "www.yelp.com.ar", "www.yelp.cl", "www.yelp.es", "www.yelp.com.mx", "fil.yelp.com.ph", "fr.yelp.be", "www.yelp.fr", "fr.yelp.ch", "www.yelp.it", "it.yelp.ch", "nl.yelp.be", "www.yelp.nl", "www.yelp.no", "www.yelp.pl", "www.yelp.com.br", "www.yelp.pt", "fi.yelp.fi", "sv.yelp.fi", "www.yelp.com.tr", "www.yelp.co.jp", "zh.yelp.com.hk", "www.yelp.com.tw"}, cobra.ShellCompDirectiveNoFileComp
 	})
 	cmd.Flags().StringVar(&p_keywordVar, "keyword", "McDonald's", "keyword Search Query: The search term for which to get the search results. (required)")
 	_ = cmd.MarkFlagRequired("keyword")
-	cmd.Flags().StringVar(&p_lVar, "l", "", "l Area: Parameter defines the distance or map radius for the search results. For example: `g:-95.2486,29.8496,-95.4277,29.6324`.\n")
+	cmd.Flags().StringVar(&p_lVar, "l", "", "l Area: Parameter defines the distance or map radius for the search results. For example: 'g:-95.2486,29.8496,-95.4277,29.6324'.\n")
 	cmd.Flags().StringVar(&p_locationVar, "location", "New York, NY", "location Location: The location where to search for businesses with the given keyword. (required)")
 	_ = cmd.MarkFlagRequired("location")
 	cmd.Flags().IntVar(&p_startVar, "start", 0, "start Result Offset: Result offset for pagination (e.g., 0 for the first page, 10 for the 2nd page, etc.).")

@@ -74,7 +74,7 @@ func newYoutubeChannelApiCmd() *cobra.Command {
 			return WriteResponse(c, resp)
 		},
 	}
-	cmd.Flags().StringVar(&p_channelIdVar, "channel-id", "@PewDiePie", "channelId Channel ID: YouTube channel identifier — either the canonical channel ID (`UC…`, 24 chars) or the public handle starting with `@` (e.g. `@PewDiePie`). Legacy `/c/<custom>` and `/user/<name>` URL slugs are also accepted. (required)")
+	cmd.Flags().StringVar(&p_channelIdVar, "channel-id", "@PewDiePie", "channelId Channel ID: YouTube channel identifier — either the canonical channel ID ('UC…', 24 chars) or the public handle starting with '@' (e.g. '@PewDiePie'). Legacy '/c/<custom>' and '/user/<name>' URL slugs are also accepted. (required)")
 	_ = cmd.MarkFlagRequired("channel-id")
 	cmd.Flags().StringVar(&p_deviceTypeVar, "device-type", "", "deviceType Device: Device type for the request. [allowed: desktop|mobile]")
 	_ = cmd.RegisterFlagCompletionFunc("device-type", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
@@ -83,7 +83,7 @@ func newYoutubeChannelApiCmd() *cobra.Command {
 	cmd.Flags().StringVar(&p_glVar, "gl", "", "gl Country: The two-letter country code for the country you want to limit the search to.")
 	cmd.Flags().StringVar(&p_hlVar, "hl", "", "hl Language: The two-letter language code for the language you want to use for the search.")
 	cmd.Flags().StringVar(&p_paginationTokenVar, "pagination-token", "", "paginationToken Pagination Token: Token returned in the previous response to fetch the next page of results.")
-	cmd.Flags().StringVar(&p_tabVar, "tab", "", "tab Tab: Channel tab to scrape. Each tab returns a different content shape:\n- `featured` (default) — channel Home page (channel trailer + curated rows)\n- `videos` — uploaded long-form videos\n- `shorts` — Shorts feed\n- `streams` — past and upcoming live streams\n- `playlists` — created and saved playlists\n- `posts` / `community` — community posts\n- `podcasts` — podcast episodes\n- `releases` — music releases\n- `about` — channel description, links, stats\n- `store` — channel merch\n [allowed: featured|videos|shorts|streams|playlists|posts|community|podcasts|releases|about|store]")
+	cmd.Flags().StringVar(&p_tabVar, "tab", "", "tab Tab: Channel tab to scrape. Each tab returns a different content shape:\n- 'featured' (default) — channel Home page (channel trailer + curated rows)\n- 'videos' — uploaded long-form videos\n- 'shorts' — Shorts feed\n- 'streams' — past and upcoming live streams\n- 'playlists' — created and saved playlists\n- 'posts' / 'community' — community posts\n- 'podcasts' — podcast episodes\n- 'releases' — music releases\n- 'about' — channel description, links, stats\n- 'store' — channel merch\n [allowed: featured|videos|shorts|streams|playlists|posts|community|podcasts|releases|about|store]")
 	_ = cmd.RegisterFlagCompletionFunc("tab", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"featured", "videos", "shorts", "streams", "playlists", "posts", "community", "podcasts", "releases", "about", "store"}, cobra.ShellCompDirectiveNoFileComp
 	})

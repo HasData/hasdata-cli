@@ -48,9 +48,9 @@ func newTiktokPostsCmd() *cobra.Command {
 			return WriteResponse(c, resp)
 		},
 	}
-	cmd.Flags().StringVar(&p_handleVar, "handle", "tiktok", "handle TikTok Handle: The TikTok username of the account whose videos you want to scrape, with or without the `@` symbol. (required)")
+	cmd.Flags().StringVar(&p_handleVar, "handle", "tiktok", "handle TikTok Handle: The TikTok username of the account whose videos you want to scrape, with or without the '@' symbol. (required)")
 	_ = cmd.MarkFlagRequired("handle")
-	cmd.Flags().StringVar(&p_nextPageTokenVar, "next-page-token", "", "nextPageToken Next Page Token: Defines the next page token. It is used for retrieving the next page of results. Use the `nextPageToken` value returned by the previous response. Omit it to fetch the first page.")
+	cmd.Flags().StringVar(&p_nextPageTokenVar, "next-page-token", "", "nextPageToken Next Page Token: Defines the next page token. It is used for retrieving the next page of results. Use the 'nextPageToken' value returned by the previous response. Omit it to fetch the first page.")
 
 	return cmd
 }

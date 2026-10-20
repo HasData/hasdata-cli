@@ -99,10 +99,10 @@ func newBingSerpCmd() *cobra.Command {
 	_ = cmd.RegisterFlagCompletionFunc("device-type", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"desktop", "mobile", "tablet"}, cobra.ShellCompDirectiveNoFileComp
 	})
-	cmd.Flags().StringVar(&p_filtersVar, "filters", "", "filters Additional Filtering: Allows applying various filters to narrow search results, including date-based options:\n\n  - `ex1:\"ez1\"` – past 24 hours\n  - `ex1:\"ez2\"` – past week\n  - `ex1:\"ez3\"` – past month\n\nFor complex filters, run a Bing search and copy the filters parameter from the URL.\n")
+	cmd.Flags().StringVar(&p_filtersVar, "filters", "", "filters Additional Filtering: Allows applying various filters to narrow search results, including date-based options:\n\n  - 'ex1:\"ez1\"' – past 24 hours\n  - 'ex1:\"ez2\"' – past week\n  - 'ex1:\"ez3\"' – past month\n\nFor complex filters, run a Bing search and copy the filters parameter from the URL.\n")
 	cmd.Flags().IntVar(&p_firstVar, "first", 0, "first Result Offset: This parameter specifies the number of search results to skip and is used for implementing pagination. For example, a value of 1 (default) indicates the first page of results, 11 refers to the second page, and 21 to the third page.\n")
 	cmd.Flags().StringVar(&p_latVar, "lat", "", "lat Latitude: GPS latitude for the search origin.")
-	cmd.Flags().StringVar(&p_locationVar, "location", "Austin, Texas, United States", "location Location: Defines the search’s origin location as free text (e.g. `Austin, Texas`). It is resolved to coordinates to localize the results. For realistic results, set location at the city level. If both `lat` and `lon` are provided, they take precedence and `location` is ignored. If omitted, the proxy’s location may be used.")
+	cmd.Flags().StringVar(&p_locationVar, "location", "Austin, Texas, United States", "location Location: Defines the search’s origin location as free text (e.g. 'Austin, Texas'). It is resolved to coordinates to localize the results. For realistic results, set location at the city level. If both 'lat' and 'lon' are provided, they take precedence and 'location' is ignored. If omitted, the proxy’s location may be used.")
 	cmd.Flags().StringVar(&p_lonVar, "lon", "", "lon Longitude: GPS longitude for the search origin.")
 	cmd.Flags().StringVar(&p_mktVar, "mkt", "", "mkt Market Code: The two-letter country code for the country to search from.")
 	cmd.Flags().StringVar(&p_qVar, "q", "Coffee", "q Search Query: Specify the search term for which you want to scrape the SERP. (required)")
@@ -111,7 +111,7 @@ func newBingSerpCmd() *cobra.Command {
 	_ = cmd.RegisterFlagCompletionFunc("safe-search", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"off", "moderate", "strict"}, cobra.ShellCompDirectiveNoFileComp
 	})
-	cmd.Flags().StringVar(&p_setLangVar, "set-lang", "", "setLang Interface Language: The language of the user interface and preferred result language. Accepts a two-letter language code (e.g. `en`, `de`) or a locale/script variant (e.g. `en-gb`, `zh-hans`, `pt-br`).")
+	cmd.Flags().StringVar(&p_setLangVar, "set-lang", "", "setLang Interface Language: The language of the user interface and preferred result language. Accepts a two-letter language code (e.g. 'en', 'de') or a locale/script variant (e.g. 'en-gb', 'zh-hans', 'pt-br').")
 
 	return cmd
 }

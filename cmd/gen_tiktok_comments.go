@@ -53,8 +53,8 @@ func newTiktokCommentsCmd() *cobra.Command {
 		},
 	}
 	cmd.Flags().StringVar(&p_commentIdVar, "comment-id", "", "commentId Comment ID: When provided, returns the replies to this comment instead of the video's top-level comments.")
-	cmd.Flags().StringVar(&p_nextPageTokenVar, "next-page-token", "", "nextPageToken Next Page Token: Defines the next page token. Use the `nextPageToken` value returned by the previous response. Omit it to fetch the first page.")
-	cmd.Flags().StringVar(&p_videoIdVar, "video-id", "7667749432279977230", "videoId Video ID: The numeric id of the video (the number after `/video/` in a TikTok URL). (required)")
+	cmd.Flags().StringVar(&p_nextPageTokenVar, "next-page-token", "", "nextPageToken Next Page Token: Defines the next page token. Use the 'nextPageToken' value returned by the previous response. Omit it to fetch the first page.")
+	cmd.Flags().StringVar(&p_videoIdVar, "video-id", "7667749432279977230", "videoId Video ID: The numeric id of the video (the number after '/video/' in a TikTok URL). (required)")
 	_ = cmd.MarkFlagRequired("video-id")
 
 	return cmd

@@ -246,14 +246,14 @@ func newBookingSearchCmd() *cobra.Command {
 		return []string{"twinBeds", "doubleBed"}, cobra.ShellCompDirectiveNoFileComp
 	})
 	cmd.Flags().IntVar(&p_bedroomsVar, "bedrooms", 0, "bedrooms Bedrooms: Minimum number of bedrooms in the property.")
-	cmd.Flags().StringVar(&p_checkInDateVar, "check-in-date", "2026-11-17", "checkInDate Check-in Date: Check-in date in `YYYY-MM-DD` format. Must be in the future and earlier than `checkOutDate`. (required)")
+	cmd.Flags().StringVar(&p_checkInDateVar, "check-in-date", "2026-11-17", "checkInDate Check-in Date: Check-in date in 'YYYY-MM-DD' format. Must be in the future and earlier than 'checkOutDate'. (required)")
 	_ = cmd.MarkFlagRequired("check-in-date")
-	cmd.Flags().StringVar(&p_checkOutDateVar, "check-out-date", "2026-11-21", "checkOutDate Check-out Date: Check-out date in `YYYY-MM-DD` format. Must be later than `checkInDate`. (required)")
+	cmd.Flags().StringVar(&p_checkOutDateVar, "check-out-date", "2026-11-21", "checkOutDate Check-out Date: Check-out date in 'YYYY-MM-DD' format. Must be later than 'checkInDate'. (required)")
 	_ = cmd.MarkFlagRequired("check-out-date")
-	cmd.Flags().IntVar(&p_childrenVar, "children", 0, "children Children Count: Number of child guests across all rooms (0–10). Pass `0` if there are no children. (required)")
+	cmd.Flags().IntVar(&p_childrenVar, "children", 0, "children Children Count: Number of child guests across all rooms (0–10). Pass '0' if there are no children. (required)")
 	_ = cmd.MarkFlagRequired("children")
-	cmd.Flags().StringVar(&p_childrenAgesVar, "children-ages", "", "childrenAges Children Ages: Comma-separated list of child ages, one entry per child (each `0`–`17`). Required when `children > 0` and the number of ages must equal `children`.\n\nExample: `1,3,7`\n")
-	cmd.Flags().StringVar(&p_currencyVar, "currency", "", "currency Currency: Currency of the prices returned in the response. Use `hotelCurrency` to keep each property's native currency.")
+	cmd.Flags().StringVar(&p_childrenAgesVar, "children-ages", "", "childrenAges Children Ages: Comma-separated list of child ages, one entry per child (each '0'–'17'). Required when 'children > 0' and the number of ages must equal 'children'.\n\nExample: '1,3,7'\n")
+	cmd.Flags().StringVar(&p_currencyVar, "currency", "", "currency Currency: Currency of the prices returned in the response. Use 'hotelCurrency' to keep each property's native currency.")
 	cmd.Flags().StringSliceVar(&p_distanceFromCenterVar, "distance-from-center", nil, "distanceFromCenter[] Distance from Center: Filter by distance from the destination center. Multiple values are combined with OR.")
 	_ = cmd.RegisterFlagCompletionFunc("distance-from-center", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"lessThan1Km", "lessThan3Km", "lessThan5Km"}, cobra.ShellCompDirectiveNoFileComp
@@ -262,7 +262,7 @@ func newBookingSearchCmd() *cobra.Command {
 	_ = cmd.RegisterFlagCompletionFunc("facilities", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"swimmingPool", "parking", "spa", "freeWifi", "hotTubJacuzzi", "airportShuttle", "fitnessCenter", "restaurant", "nonSmokingRooms", "frontDesk24Hour", "electricVehicleChargingStation", "wheelchairAccessible", "roomService"}, cobra.ShellCompDirectiveNoFileComp
 	})
-	cmd.Flags().StringVar(&p_keywordVar, "keyword", "Paris", "keyword Search Query: Free-text destination query. Usually a city, region or neighborhood (e.g. `Paris`, `Manhattan, New York`); a specific property name is also accepted. (required)")
+	cmd.Flags().StringVar(&p_keywordVar, "keyword", "Paris", "keyword Search Query: Free-text destination query. Usually a city, region or neighborhood (e.g. 'Paris', 'Manhattan, New York'); a specific property name is also accepted. (required)")
 	_ = cmd.MarkFlagRequired("keyword")
 	cmd.Flags().StringVar(&p_languageVar, "language", "", "language Language: Language of the Booking.com interface and localized fields in the response.")
 	cmd.Flags().StringSliceVar(&p_mealsVar, "meals", nil, "meals[] Meals: Filter by available meal plans. Multiple values are combined with OR.")
@@ -273,9 +273,9 @@ func newBookingSearchCmd() *cobra.Command {
 	_ = cmd.RegisterFlagCompletionFunc("online-payment", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"acceptsOnlinePayments"}, cobra.ShellCompDirectiveNoFileComp
 	})
-	cmd.Flags().IntVar(&p_pageVar, "page", 0, "page Page Number: Page number of the search results. Booking.com returns 25 results per page; pass `2` for results 26–50, `3` for 51–75, etc.")
-	cmd.Flags().Float64Var(&p_price_maxVar, "price-max", 0, "price[max] Price Max: Maximum total price for the stay, in the requested `currency`. Must be `>= 20` and greater than `price[min]`. Required if `price[min]` is omitted.")
-	cmd.Flags().Float64Var(&p_price_minVar, "price-min", 0, "price[min] Price Min: Minimum total price for the stay, in the requested `currency`. Must be `>= 10`. Required if `price[max]` is omitted.")
+	cmd.Flags().IntVar(&p_pageVar, "page", 0, "page Page Number: Page number of the search results. Booking.com returns 25 results per page; pass '2' for results 26–50, '3' for 51–75, etc.")
+	cmd.Flags().Float64Var(&p_price_maxVar, "price-max", 0, "price[max] Price Max: Maximum total price for the stay, in the requested 'currency'. Must be '>= 20' and greater than 'price[min]'. Required if 'price[min]' is omitted.")
+	cmd.Flags().Float64Var(&p_price_minVar, "price-min", 0, "price[min] Price Min: Minimum total price for the stay, in the requested 'currency'. Must be '>= 10'. Required if 'price[max]' is omitted.")
 	cmd.Flags().StringSliceVar(&p_propertyAccessibilityVar, "property-accessibility", nil, "propertyAccessibility[] Property Accessibility: Filter by property-level accessibility features. Multiple values are combined with OR.")
 	_ = cmd.RegisterFlagCompletionFunc("property-accessibility", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"auditoryGuidance", "toiletWithGrabRails", "visualAidsTactileSigns", "visualAidsBraille", "bathroomEmergencyCord", "raisedToilet", "loweredSink"}, cobra.ShellCompDirectiveNoFileComp
