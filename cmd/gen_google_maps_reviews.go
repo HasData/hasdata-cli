@@ -28,8 +28,8 @@ func newGoogleMapsReviewsCmd() *cobra.Command {
 
 	cmd := &cobra.Command{
 		Use:   "google-maps-reviews",
-		Short: "Google Maps Reviews API  (5 credits/call)",
-		Long:  "The Google Maps Reviews API provides access to reviews from Google Maps, with options to specify the data ID, place ID, language, sorting parameters, and topic filters.\n\nEndpoint: GET https://api.hasdata.com/scrape/google-maps/reviews\nCost: 5 credits per call.",
+		Short: "Google Maps Reviews API  (10 credits/call)",
+		Long:  "The Google Maps Reviews API provides access to reviews from Google Maps, with options to specify the data ID, place ID, language, sorting parameters, and topic filters.\n\nEndpoint: GET https://api.hasdata.com/scrape/google-maps/reviews\nCost: 10 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			if c.Flags().Changed("sort-by") {

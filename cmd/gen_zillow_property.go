@@ -24,8 +24,8 @@ func newZillowPropertyCmd() *cobra.Command {
 
 	cmd := &cobra.Command{
 		Use:   "zillow-property",
-		Short: "Zillow Property Scraper API  (5 credits/call)",
-		Long:  "The Zillow Property Scraper API lets you retrieve detailed information about a specific property on Zillow.com using its URL. It provides details such as property features, price, and agent contacts.\n\nEndpoint: GET https://api.hasdata.com/scrape/zillow/property\nCost: 5 credits per call.",
+		Short: "Zillow Property Scraper API  (10 credits/call)",
+		Long:  "The Zillow Property Scraper API lets you retrieve detailed information about a specific property on Zillow.com using its URL. It provides details such as property features, price, and agent contacts.\n\nEndpoint: GET https://api.hasdata.com/scrape/zillow/property\nCost: 10 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			return nil
@@ -56,5 +56,5 @@ func newZillowPropertyCmd() *cobra.Command {
 }
 
 func init() {
-	RegisterAPICommand("zillow", "Zillow", newZillowPropertyCmd())
+	RegisterAPICommand("real_estate", "Real Estate", newZillowPropertyCmd())
 }

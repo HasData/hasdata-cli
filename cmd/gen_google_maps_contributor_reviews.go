@@ -27,8 +27,8 @@ func newGoogleMapsContributorReviewsCmd() *cobra.Command {
 
 	cmd := &cobra.Command{
 		Use:   "google-maps-contributor-reviews",
-		Short: "Google Maps Contributor Reviews API  (5 credits/call)",
-		Long:  "The Google Maps Contributor Reviews API allows to retrieve reviews submitted by specific users on Google Maps.\n\nEndpoint: GET https://api.hasdata.com/scrape/google-maps/contributor-reviews\nCost: 5 credits per call.",
+		Short: "Google Maps Contributor Reviews API  (10 credits/call)",
+		Long:  "The Google Maps Contributor Reviews API allows to retrieve reviews submitted by specific users on Google Maps.\n\nEndpoint: GET https://api.hasdata.com/scrape/google-maps/contributor-reviews\nCost: 10 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			return nil

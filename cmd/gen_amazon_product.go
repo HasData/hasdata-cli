@@ -24,22 +24,18 @@ func newAmazonProductCmd() *cobra.Command {
 	var p_domainVar string
 	var p_languageVar string
 	var p_otherSellersVar bool
-	var p_otherSellersVarNeg bool
 	var p_shippingLocationVar string
 
 	cmd := &cobra.Command{
 		Use:   "amazon-product",
-		Short: "Amazon Product Scraper API  (5 credits/call)",
-		Long:  "The Amazon Product Scraper API allows users to get product details from Amazon based on the specified ASIN and domain. This API enables retrieving detailed information about a specific product on Amazon.\n\nEndpoint: GET https://api.hasdata.com/scrape/amazon/product\nCost: 5 credits per call.",
+		Short: "Amazon Product Scraper API  (10 credits/call)",
+		Long:  "The Amazon Product Scraper API allows users to get product details from Amazon based on the specified ASIN and domain. This API enables retrieving detailed information about a specific product on Amazon.\n\nEndpoint: GET https://api.hasdata.com/scrape/amazon/product\nCost: 10 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			if c.Flags().Changed("domain") {
 				if err := validateEnumString("domain", p_domainVar, []string{"www.amazon.com", "www.amazon.de", "www.amazon.co.uk", "www.amazon.ae", "www.amazon.com.au", "www.amazon.com.be", "www.amazon.com.br", "www.amazon.ca", "www.amazon.eg", "www.amazon.es", "www.amazon.fr", "www.amazon.ie", "www.amazon.in", "www.amazon.it", "www.amazon.co.jp", "www.amazon.com.mx", "www.amazon.nl", "www.amazon.pl", "www.amazon.sa", "www.amazon.se", "www.amazon.sg", "www.amazon.com.tr", "www.amazon.co.za"}); err != nil {
 					return err
 				}
-			}
-			if c.Flags().Changed("other-sellers") && c.Flags().Changed("no-"+"other-sellers") {
-				return fmt.Errorf("cannot set both --%s and --no-%s", "other-sellers", "other-sellers")
 			}
 			return nil
 		},
@@ -60,16 +56,8 @@ func newAmazonProductCmd() *cobra.Command {
 			if c.Flags().Changed("language") {
 				params.Set("language", p_languageVar)
 			}
-			{
-				val := p_otherSellersVar
-				changed := c.Flags().Changed("other-sellers")
-				if c.Flags().Changed("no-" + "other-sellers") {
-					val = !p_otherSellersVarNeg
-					changed = true
-				}
-				if changed {
-					params.Set("otherSellers", strconv.FormatBool(val))
-				}
+			if c.Flags().Changed("other-sellers") {
+				params.Set("otherSellers", strconv.FormatBool(p_otherSellersVar))
 			}
 			if c.Flags().Changed("shipping-location") {
 				params.Set("shippingLocation", p_shippingLocationVar)
@@ -89,13 +77,12 @@ func newAmazonProductCmd() *cobra.Command {
 		return []string{"www.amazon.com", "www.amazon.de", "www.amazon.co.uk", "www.amazon.ae", "www.amazon.com.au", "www.amazon.com.be", "www.amazon.com.br", "www.amazon.ca", "www.amazon.eg", "www.amazon.es", "www.amazon.fr", "www.amazon.ie", "www.amazon.in", "www.amazon.it", "www.amazon.co.jp", "www.amazon.com.mx", "www.amazon.nl", "www.amazon.pl", "www.amazon.sa", "www.amazon.se", "www.amazon.sg", "www.amazon.com.tr", "www.amazon.co.za"}, cobra.ShellCompDirectiveNoFileComp
 	})
 	cmd.Flags().StringVar(&p_languageVar, "language", "", "language Language: Optional Amazon language code. Supported values depend on the selected domain.")
-	cmd.Flags().BoolVar(&p_otherSellersVar, "other-sellers", true, "otherSellers Other Sellers: If set to true, extracts the other sellers block from the product page.")
-	cmd.Flags().BoolVar(&p_otherSellersVarNeg, "no-"+"other-sellers", false, "disable --other-sellers")
+	cmd.Flags().BoolVar(&p_otherSellersVar, "other-sellers", false, "otherSellers Other Sellers: Also collect the offers of other sellers competing for this item. This takes an extra request to Amazon and costs 5 credits on top of the base. Default is false.")
 	cmd.Flags().StringVar(&p_shippingLocationVar, "shipping-location", "", "shippingLocation Shipping Location: The two-letter country code to define the country of the delivery address.")
 
 	return cmd
 }
 
 func init() {
-	RegisterAPICommand("amazon", "Amazon", newAmazonProductCmd())
+	RegisterAPICommand("ecommerce", "E-commerce", newAmazonProductCmd())
 }

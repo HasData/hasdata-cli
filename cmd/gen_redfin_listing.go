@@ -81,8 +81,8 @@ func newRedfinListingCmd() *cobra.Command {
 
 	cmd := &cobra.Command{
 		Use:   "redfin-listing",
-		Short: "Redfin Listing Scraper API  (5 credits/call)",
-		Long:  "The Redfin Listing Scraper API allows you to retrieve real estate listings from Redfin based on various search parameters.\n\nEndpoint: GET https://api.hasdata.com/scrape/redfin/listing\nCost: 5 credits per call.",
+		Short: "Redfin Listing Scraper API  (10 credits/call)",
+		Long:  "The Redfin Listing Scraper API allows you to retrieve real estate listings from Redfin based on various search parameters.\n\nEndpoint: GET https://api.hasdata.com/scrape/redfin/listing\nCost: 10 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			if c.Flags().Changed("baths") {
@@ -596,5 +596,5 @@ func newRedfinListingCmd() *cobra.Command {
 }
 
 func init() {
-	RegisterAPICommand("redfin", "Redfin", newRedfinListingCmd())
+	RegisterAPICommand("real_estate", "Real Estate", newRedfinListingCmd())
 }
