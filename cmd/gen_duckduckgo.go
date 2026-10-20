@@ -95,7 +95,7 @@ func newDuckduckgoCmd() *cobra.Command {
 			return WriteResponse(c, resp)
 		},
 	}
-	cmd.Flags().StringVar(&p_ccVar, "cc", "", "cc Country: The two-letter country code for the country to search from. Combined with `setLang` to form the DuckDuckGo region. Ignored if `kl` is set. [allowed: ar|au|at|be|br|ca|cl|dk|fi|fr|de|hk|in|id|it|jp|kr|my|mx|nl|nz|no|cn|pl|pt|ph|ru|sa|za|es|se|ch|tw|tr|gb|us]")
+	cmd.Flags().StringVar(&p_ccVar, "cc", "", "cc Country: The two-letter country code for the country to search from. Combined with 'setLang' to form the DuckDuckGo region. Ignored if 'kl' is set. [allowed: ar|au|at|be|br|ca|cl|dk|fi|fr|de|hk|in|id|it|jp|kr|my|mx|nl|nz|no|cn|pl|pt|ph|ru|sa|za|es|se|ch|tw|tr|gb|us]")
 	_ = cmd.RegisterFlagCompletionFunc("cc", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"ar", "au", "at", "be", "br", "ca", "cl", "dk", "fi", "fr", "de", "hk", "in", "id", "it", "jp", "kr", "my", "mx", "nl", "nz", "no", "cn", "pl", "pt", "ph", "ru", "sa", "za", "es", "se", "ch", "tw", "tr", "gb", "us"}, cobra.ShellCompDirectiveNoFileComp
 	})
@@ -103,17 +103,17 @@ func newDuckduckgoCmd() *cobra.Command {
 	_ = cmd.RegisterFlagCompletionFunc("device-type", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"desktop", "mobile", "tablet"}, cobra.ShellCompDirectiveNoFileComp
 	})
-	cmd.Flags().StringVar(&p_klVar, "kl", "", "kl Region: DuckDuckGo region code in `<country>-<language>` form (e.g. `us-en`, `de-de`). Sets country and interface language at once; takes precedence over `cc`/`setLang`. Use `wt-wt` for no region. [allowed: ar-es|au-en|at-de|be-nl|be-fr|br-pt|ca-en|ca-fr|cl-es|dk-da|fi-fi|fr-fr|de-de|hk-tzh|in-en|id-en|it-it|jp-jp|kr-kr|my-en|mx-es|nl-nl|nz-en|no-no|cn-zh|pl-pl|ph-en|ru-ru|za-en|es-es|se-sv|ch-de|tw-tzh|tr-tr|uk-en|us-en|wt-wt]")
+	cmd.Flags().StringVar(&p_klVar, "kl", "", "kl Region: DuckDuckGo region code in '<country>-<language>' form (e.g. 'us-en', 'de-de'). Sets country and interface language at once; takes precedence over 'cc'/'setLang'. Use 'wt-wt' for no region. [allowed: ar-es|au-en|at-de|be-nl|be-fr|br-pt|ca-en|ca-fr|cl-es|dk-da|fi-fi|fr-fr|de-de|hk-tzh|in-en|id-en|it-it|jp-jp|kr-kr|my-en|mx-es|nl-nl|nz-en|no-no|cn-zh|pl-pl|ph-en|ru-ru|za-en|es-es|se-sv|ch-de|tw-tzh|tr-tr|uk-en|us-en|wt-wt]")
 	_ = cmd.RegisterFlagCompletionFunc("kl", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"ar-es", "au-en", "at-de", "be-nl", "be-fr", "br-pt", "ca-en", "ca-fr", "cl-es", "dk-da", "fi-fi", "fr-fr", "de-de", "hk-tzh", "in-en", "id-en", "it-it", "jp-jp", "kr-kr", "my-en", "mx-es", "nl-nl", "nz-en", "no-no", "cn-zh", "pl-pl", "ph-en", "ru-ru", "za-en", "es-es", "se-sv", "ch-de", "tw-tzh", "tr-tr", "uk-en", "us-en", "wt-wt"}, cobra.ShellCompDirectiveNoFileComp
 	})
-	cmd.Flags().StringVar(&p_nextPageTokenVar, "next-page-token", "", "nextPageToken Next Page Token: Opaque token returned in each response as `nextPageToken`. Pass it back (in place of `q`) to fetch the next page of results. It carries a pre-signed page URL bound to the original request's session, so it must be used as-is and cannot be constructed manually. Absent when there are no further pages.\n")
-	cmd.Flags().StringVar(&p_qVar, "q", "Coffee", "q Search Query: Specify the search term for which you want to scrape the SERP. Required unless `nextPageToken` is provided (which carries the query of the page it continues).")
+	cmd.Flags().StringVar(&p_nextPageTokenVar, "next-page-token", "", "nextPageToken Next Page Token: Opaque token returned in each response as 'nextPageToken'. Pass it back (in place of 'q') to fetch the next page of results. It carries a pre-signed page URL bound to the original request's session, so it must be used as-is and cannot be constructed manually. Absent when there are no further pages.\n")
+	cmd.Flags().StringVar(&p_qVar, "q", "Coffee", "q Search Query: Specify the search term for which you want to scrape the SERP. Required unless 'nextPageToken' is provided (which carries the query of the page it continues).")
 	cmd.Flags().StringVar(&p_safeSearchVar, "safe-search", "", "safeSearch Adult Content Filtering: Adult Content Filtering option. [allowed: off|moderate|strict]")
 	_ = cmd.RegisterFlagCompletionFunc("safe-search", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"off", "moderate", "strict"}, cobra.ShellCompDirectiveNoFileComp
 	})
-	cmd.Flags().StringVar(&p_setLangVar, "set-lang", "", "setLang Interface Language: The preferred result/interface language code — usually two letters (e.g. `en`, `de`), with script-tag variants for some languages (e.g. `zh-hans`, `zh-hant`). Combined with `cc` to form the DuckDuckGo region. Ignored if `kl` is set. [allowed: ar|ca|zh-hans|zh-hant|hr|cs|da|nl|en|et|fi|fr|de|he|hu|it|ja|ko|lv|lt|nb|pl|pt|ro|ru|sk|sl|es|sv|th|tr|uk|vi]")
+	cmd.Flags().StringVar(&p_setLangVar, "set-lang", "", "setLang Interface Language: The preferred result/interface language code — usually two letters (e.g. 'en', 'de'), with script-tag variants for some languages (e.g. 'zh-hans', 'zh-hant'). Combined with 'cc' to form the DuckDuckGo region. Ignored if 'kl' is set. [allowed: ar|ca|zh-hans|zh-hant|hr|cs|da|nl|en|et|fi|fr|de|he|hu|it|ja|ko|lv|lt|nb|pl|pt|ro|ru|sk|sl|es|sv|th|tr|uk|vi]")
 	_ = cmd.RegisterFlagCompletionFunc("set-lang", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"ar", "ca", "zh-hans", "zh-hant", "hr", "cs", "da", "nl", "en", "et", "fi", "fr", "de", "he", "hu", "it", "ja", "ko", "lv", "lt", "nb", "pl", "pt", "ro", "ru", "sk", "sl", "es", "sv", "th", "tr", "uk", "vi"}, cobra.ShellCompDirectiveNoFileComp
 	})

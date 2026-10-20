@@ -121,11 +121,11 @@ func newGlassdoorListingCmd() *cobra.Command {
 	_ = cmd.MarkFlagRequired("keyword")
 	cmd.Flags().StringVar(&p_locationVar, "location", "New York, NY", "location Location: The location to search for job listings. (required)")
 	_ = cmd.MarkFlagRequired("location")
-	cmd.Flags().IntVar(&p_maxSalaryVar, "max-salary", 150000, "maxSalary Maximum Salary: Upper bound of the yearly pay range, must be greater than `minSalary`. Can be used on its own.")
+	cmd.Flags().IntVar(&p_maxSalaryVar, "max-salary", 150000, "maxSalary Maximum Salary: Upper bound of the yearly pay range, must be greater than 'minSalary'. Can be used on its own.")
 	cmd.Flags().IntVar(&p_minRatingVar, "min-rating", 0, "minRating Company Rating: Returns jobs from companies rated at least this high. Glassdoor applies the filter approximately, so a few companies rated slightly below the value can appear. [allowed: 1, 2, 3, 4]")
 	cmd.Flags().IntVar(&p_minSalaryVar, "min-salary", 90000, "minSalary Minimum Salary: Lower bound of the yearly pay range. A job is kept when its estimated pay range overlaps the requested one; hourly and monthly pay are converted to yearly. Jobs without a pay estimate are excluded when a salary filter is set.")
 	cmd.Flags().StringVar(&p_nextPageTokenVar, "next-page-token", "", "nextPageToken Next Page Token: Token for fetching the next page of jobs, taken from the pagination of a previous response. The token keeps the filters of the search it came from, so they do not need to be sent again.")
-	cmd.Flags().IntVar(&p_radiusVar, "radius", 0, "radius Distance: Search radius around the location, in miles. `0` keeps only jobs in the location itself. Glassdoor uses 25 miles when this is not set. [allowed: 0, 5, 10, 15, 25, 50, 100]")
+	cmd.Flags().IntVar(&p_radiusVar, "radius", 0, "radius Distance: Search radius around the location, in miles. '0' keeps only jobs in the location itself. Glassdoor uses 25 miles when this is not set. [allowed: 0, 5, 10, 15, 25, 50, 100]")
 	cmd.Flags().BoolVar(&p_remoteOnlyVar, "remote-only", false, "remoteOnly Remote Only: Returns only remote jobs. Defaults to false.")
 	cmd.Flags().StringVar(&p_sortVar, "sort", "recent", "sort Sort By: The sorting option for the search results. [allowed: recent|relevant]")
 	_ = cmd.RegisterFlagCompletionFunc("sort", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {

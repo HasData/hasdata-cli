@@ -76,12 +76,12 @@ func newGoogleNewsCmd() *cobra.Command {
 	}
 	cmd.Flags().StringVar(&p_glVar, "gl", "", "gl Country: The two-letter country code for the country you want to limit the search to.")
 	cmd.Flags().StringVar(&p_hlVar, "hl", "", "hl Language: The two-letter language code for the language you want to use for the search.")
-	cmd.Flags().StringVar(&p_publicationTokenVar, "publication-token", "", "publicationToken Publication Token: Token for a specific publisher such as CNN or BBC. Not allowed with `q`, `storyToken`, or `topicToken`.")
-	cmd.Flags().StringVar(&p_qVar, "q", "", "q Search Query: Free-text query as used on news.google.com. Not allowed with `topicToken`, `storyToken`, or `publicationToken`.")
-	cmd.Flags().StringVar(&p_sectionTokenVar, "section-token", "", "sectionToken Section Token: Token for a sub-section under a topic, for example Business → Economy. Use only when `topicToken` or `publicationToken` is present.")
+	cmd.Flags().StringVar(&p_publicationTokenVar, "publication-token", "", "publicationToken Publication Token: Token for a specific publisher such as CNN or BBC. Not allowed with 'q', 'storyToken', or 'topicToken'.")
+	cmd.Flags().StringVar(&p_qVar, "q", "", "q Search Query: Free-text query as used on news.google.com. Not allowed with 'topicToken', 'storyToken', or 'publicationToken'.")
+	cmd.Flags().StringVar(&p_sectionTokenVar, "section-token", "", "sectionToken Section Token: Token for a sub-section under a topic, for example Business → Economy. Use only when 'topicToken' or 'publicationToken' is present.")
 	cmd.Flags().StringVar(&p_soVar, "so", "", "so Sort Order: Sort order for articles in a story. Use only with storyToken.")
 	cmd.Flags().StringVar(&p_storyTokenVar, "story-token", "", "storyToken Story Token: Token for a single news story cluster (the “Full coverage” page).")
-	cmd.Flags().StringVar(&p_topicTokenVar, "topic-token", "", "topicToken Topic Token: Token for a Google News topic such as World, Business, or Technology. Not allowed with `q`, `storyToken`, or `publicationToken`.")
+	cmd.Flags().StringVar(&p_topicTokenVar, "topic-token", "", "topicToken Topic Token: Token for a Google News topic such as World, Business, or Technology. Not allowed with 'q', 'storyToken', or 'publicationToken'.")
 
 	return cmd
 }

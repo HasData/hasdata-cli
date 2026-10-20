@@ -50,7 +50,7 @@ func newChatGptChatCmd() *cobra.Command {
 	}
 	cmd.Flags().StringVar(&p_promptVar, "prompt", "What are the latest developments in the James Webb Space Telescope this month?", "prompt Prompt: The question or instruction to send to ChatGPT, up to 8000 characters. A prompt that asks about recent events makes ChatGPT search the web and return sources; a general-knowledge prompt is answered from the model alone. The prompt also decides the language of the answer — write it in the language you want back, or ask for one explicitly (\"Antworte auf Deutsch\"). (required)")
 	_ = cmd.MarkFlagRequired("prompt")
-	cmd.Flags().StringVar(&p_timezoneVar, "timezone", "Europe/Berlin", "timezone Timezone: IANA time zone name, for example `America/Chicago` or `Europe/Berlin`. It sets what ChatGPT treats as the current date and time, which matters for prompts that say \"today\", \"this week\" or \"latest\".")
+	cmd.Flags().StringVar(&p_timezoneVar, "timezone", "Europe/Berlin", "timezone Timezone: IANA time zone name, for example 'America/Chicago' or 'Europe/Berlin'. It sets what ChatGPT treats as the current date and time, which matters for prompts that say \"today\", \"this week\" or \"latest\".")
 
 	return cmd
 }

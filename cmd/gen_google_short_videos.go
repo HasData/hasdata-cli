@@ -107,7 +107,7 @@ func newGoogleShortVideosCmd() *cobra.Command {
 	cmd.Flags().IntVar(&p_pageVar, "page", 0, "page Page Number: Page number for paginated results, where 0 is the first page.")
 	cmd.Flags().StringVar(&p_qVar, "q", "Coffee", "q Search Query: Search query term for retrieving short videos results. (required)")
 	_ = cmd.MarkFlagRequired("q")
-	cmd.Flags().StringVar(&p_tbsVar, "tbs", "", "tbs Advanced Search Parameters: Google advanced search filters, combined with commas. For example:\n\n  - `qdr:h`, `qdr:d`, `qdr:w`, `qdr:m`, `qdr:y` - Show videos from the past hour, day, week, month, or year.\n")
+	cmd.Flags().StringVar(&p_tbsVar, "tbs", "", "tbs Advanced Search Parameters: Google advanced search filters, combined with commas. For example:\n\n  - 'qdr:h', 'qdr:d', 'qdr:w', 'qdr:m', 'qdr:y' - Show videos from the past hour, day, week, month, or year.\n")
 	cmd.Flags().StringVar(&p_uuleVar, "uule", "", "uule Encoded Location: The encoded location parameter.")
 
 	return cmd

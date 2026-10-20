@@ -258,13 +258,13 @@ func newZillowListingCmd() *cobra.Command {
 	cmd.Flags().StringVar(&p_keywordVar, "keyword", "New York, NY", "keyword Location: The keyword used to search for listings. (required)")
 	_ = cmd.MarkFlagRequired("keyword")
 	cmd.Flags().StringVar(&p_keywordsVar, "keywords", "", "keywords Additional Keywords: Additional keywords to refine the search.")
-	cmd.Flags().StringSliceVar(&p_listingPublishOptionsVar, "listing-publish-options", nil, "listingPublishOptions[] Listing Publish Options: An array of listing publish options. Use `ownerPosted` for listings by owner and `agentListed` for listings by agent.")
+	cmd.Flags().StringSliceVar(&p_listingPublishOptionsVar, "listing-publish-options", nil, "listingPublishOptions[] Listing Publish Options: An array of listing publish options. Use 'ownerPosted' for listings by owner and 'agentListed' for listings by agent.")
 	_ = cmd.RegisterFlagCompletionFunc("listing-publish-options", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"ownerPosted", "agentListed", "newConstruction", "foreclosures", "auctions", "foreclosed", "preForeclosures"}, cobra.ShellCompDirectiveNoFileComp
 	})
 	cmd.Flags().Float64Var(&p_lotSize_maxVar, "lot-size-max", 0, "lotSize[max] Lot Size Max: The maximum lot size.")
 	cmd.Flags().Float64Var(&p_lotSize_minVar, "lot-size-min", 0, "lotSize[min] Lot Size Min: The minimum lot size.")
-	cmd.Flags().StringVar(&p_moveInDateVar, "move-in-date", "", "moveInDate Move In Date: The desired move-in date in `YYYY-MM-DD` format.")
+	cmd.Flags().StringVar(&p_moveInDateVar, "move-in-date", "", "moveInDate Move In Date: The desired move-in date in 'YYYY-MM-DD' format.")
 	cmd.Flags().BoolVar(&p_mustHaveGarageVar, "must-have-garage", false, "mustHaveGarage Must Have Garage: If set to true, only listings with a garage will be included.")
 	cmd.Flags().StringSliceVar(&p_otherAmenitiesVar, "other-amenities", nil, "otherAmenities[] Other Amenities: An array of other amenities.")
 	_ = cmd.RegisterFlagCompletionFunc("other-amenities", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {

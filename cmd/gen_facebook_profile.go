@@ -57,13 +57,13 @@ func newFacebookProfileCmd() *cobra.Command {
 			return WriteResponse(c, resp)
 		},
 	}
-	cmd.Flags().StringVar(&p_handleVar, "handle", "nike", "handle Facebook Handle: The Facebook username of the page or profile you want to scrape, with or without the `@` symbol, or its numeric profile id (the `id` of a `profile.php?id=…` URL), e.g. `nike` or `61550916779928`. Groups and private personal accounts are not supported. (required)")
+	cmd.Flags().StringVar(&p_handleVar, "handle", "nike", "handle Facebook Handle: The Facebook username of the page or profile you want to scrape, with or without the '@' symbol, or its numeric profile id (the 'id' of a 'profile.php?id=…' URL), e.g. 'nike' or '61550916779928'. Groups and private personal accounts are not supported. (required)")
 	_ = cmd.MarkFlagRequired("handle")
-	cmd.Flags().StringVar(&p_languageVar, "language", "", "language Language: Language the page is rendered in. Facebook serves a page in the language of the request, so this changes the localised strings (`followersCount`, `followingCount`, `category`) while the exact figures (`likesCount`, `talkingAboutCount`) stay numeric in every language. [allowed: ar|bn|cs|da|de|el|en|es|fi|fil|fr|he|hi|hu|id|it|ja|ko|ms|nb|nl|pl|pt|ro|ru|sv|th|tr|uk|vi|zh-hans|zh-hant]")
+	cmd.Flags().StringVar(&p_languageVar, "language", "", "language Language: Language the page is rendered in. Facebook serves a page in the language of the request, so this changes the localised strings ('followersCount', 'followingCount', 'category') while the exact figures ('likesCount', 'talkingAboutCount') stay numeric in every language. [allowed: ar|bn|cs|da|de|el|en|es|fi|fil|fr|he|hi|hu|id|it|ja|ko|ms|nb|nl|pl|pt|ro|ru|sv|th|tr|uk|vi|zh-hans|zh-hant]")
 	_ = cmd.RegisterFlagCompletionFunc("language", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"ar", "bn", "cs", "da", "de", "el", "en", "es", "fi", "fil", "fr", "he", "hi", "hu", "id", "it", "ja", "ko", "ms", "nb", "nl", "pl", "pt", "ro", "ru", "sv", "th", "tr", "uk", "vi", "zh-hans", "zh-hant"}, cobra.ShellCompDirectiveNoFileComp
 	})
-	cmd.Flags().StringVar(&p_nextPageTokenVar, "next-page-token", "", "nextPageToken Next Page Token: Token from the `pagination.nextPageToken` field of a previous response; the page it leads to is reported as `pagination.nextPage`. Each paginated request returns the next three posts of the feed and a fresh token; the token is absent once the feed ends. Every request is billed separately.")
+	cmd.Flags().StringVar(&p_nextPageTokenVar, "next-page-token", "", "nextPageToken Next Page Token: Token from the 'pagination.nextPageToken' field of a previous response; the page it leads to is reported as 'pagination.nextPage'. Each paginated request returns the next three posts of the feed and a fresh token; the token is absent once the feed ends. Every request is billed separately.")
 
 	return cmd
 }

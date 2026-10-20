@@ -52,10 +52,10 @@ func newInstagramPostsCmd() *cobra.Command {
 			return WriteResponse(c, resp)
 		},
 	}
-	cmd.Flags().StringVar(&p_handleVar, "handle", "hasdatadotcom", "handle Instagram Handle: The Instagram username of the account whose posts you want to scrape, without the `@` symbol. (required)")
+	cmd.Flags().StringVar(&p_handleVar, "handle", "hasdatadotcom", "handle Instagram Handle: The Instagram username of the account whose posts you want to scrape, without the '@' symbol. (required)")
 	_ = cmd.MarkFlagRequired("handle")
 	cmd.Flags().IntVar(&p_limitVar, "limit", 12, "limit Results Limit: The maximum number of posts to retrieve per request. Defaults to 12.")
-	cmd.Flags().StringVar(&p_nextPageTokenVar, "next-page-token", "", "nextPageToken Next Page Token: Defines the next page token. It is used for retrieving the next page results. Use the `nextPageToken` value returned by the previous response.")
+	cmd.Flags().StringVar(&p_nextPageTokenVar, "next-page-token", "", "nextPageToken Next Page Token: Defines the next page token. It is used for retrieving the next page results. Use the 'nextPageToken' value returned by the previous response.")
 
 	return cmd
 }

@@ -68,7 +68,7 @@ func newYellowpagesSearchCmd() *cobra.Command {
 			return WriteResponse(c, resp)
 		},
 	}
-	cmd.Flags().StringVar(&p_domainVar, "domain", "", "domain Domain: YellowPages domain to use. Default is `www.yellowpages.com`. [allowed: www.yellowpages.com|www.yellowpages.ca]")
+	cmd.Flags().StringVar(&p_domainVar, "domain", "", "domain Domain: YellowPages domain to use. Default is 'www.yellowpages.com'. [allowed: www.yellowpages.com|www.yellowpages.ca]")
 	_ = cmd.RegisterFlagCompletionFunc("domain", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"www.yellowpages.com", "www.yellowpages.ca"}, cobra.ShellCompDirectiveNoFileComp
 	})

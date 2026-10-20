@@ -44,7 +44,7 @@ func newTiktokProfileCmd() *cobra.Command {
 			return WriteResponse(c, resp)
 		},
 	}
-	cmd.Flags().StringVar(&p_handleVar, "handle", "nasa", "handle TikTok Handle: The TikTok username of the profile you want to scrape, with or without the `@` symbol. (required)")
+	cmd.Flags().StringVar(&p_handleVar, "handle", "nasa", "handle TikTok Handle: The TikTok username of the profile you want to scrape, with or without the '@' symbol. (required)")
 	_ = cmd.MarkFlagRequired("handle")
 
 	return cmd

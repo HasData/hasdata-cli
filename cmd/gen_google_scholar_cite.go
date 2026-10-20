@@ -49,7 +49,7 @@ func newGoogleScholarCiteCmd() *cobra.Command {
 		},
 	}
 	cmd.Flags().StringVar(&p_hlVar, "hl", "", "hl Language: The two-letter language code for the language you want to use for the search.")
-	cmd.Flags().StringVar(&p_qVar, "q", "EQ8shYj8Ai8J", "q Result ID: The `resultId` of a Google Scholar organic result, as returned by the google/scholar endpoint. (required)")
+	cmd.Flags().StringVar(&p_qVar, "q", "EQ8shYj8Ai8J", "q Result ID: The 'resultId' of a Google Scholar organic result, as returned by the google/scholar endpoint. (required)")
 	_ = cmd.MarkFlagRequired("q")
 
 	return cmd

@@ -59,7 +59,7 @@ func newTiktokSearchCmd() *cobra.Command {
 	}
 	cmd.Flags().StringVar(&p_keywordVar, "keyword", "dance", "keyword Keyword: The phrase to search for on TikTok. (required)")
 	_ = cmd.MarkFlagRequired("keyword")
-	cmd.Flags().StringVar(&p_nextPageTokenVar, "next-page-token", "", "nextPageToken Next Page Token: Defines the next page token. Use the `nextPageToken` value returned by the previous response. Omit it to fetch the first page.")
+	cmd.Flags().StringVar(&p_nextPageTokenVar, "next-page-token", "", "nextPageToken Next Page Token: Defines the next page token. Use the 'nextPageToken' value returned by the previous response. Omit it to fetch the first page.")
 	cmd.Flags().StringVar(&p_typeVar, "type", "", "type Result Type: What to search for — videos or users. Defaults to video. [allowed: video|user]")
 	_ = cmd.RegisterFlagCompletionFunc("type", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"video", "user"}, cobra.ShellCompDirectiveNoFileComp
