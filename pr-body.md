@@ -1,47 +1,34 @@
 ## Changes
 
- GENERATION_REPORT.md                | 13 ++++--
- cmd/gen_airbnb_listing.go           | 27 +++++++++--
- cmd/gen_bing_serp.go                | 28 ++++++------
- cmd/gen_booking_place.go            |  2 +-
- cmd/gen_booking_search.go           |  2 +-
- cmd/gen_google_images.go            |  2 +-
- cmd/gen_google_immersive_product.go |  2 +-
- cmd/gen_google_maps.go              |  4 +-
- cmd/gen_google_maps_reviews.go      |  6 +--
- cmd/gen_google_news.go              |  2 +-
- cmd/gen_google_serp.go              |  2 +-
- cmd/gen_google_serp_light.go        |  2 +-
- cmd/gen_google_shopping.go          |  2 +-
- cmd/gen_instagram_profile.go        |  2 +-
- cmd/gen_redfin_listing.go           |  2 +-
- cmd/gen_web_scraping.go             |  2 +-
- internal/gen/spec-hash.txt          |  2 +-
- pr-body.md                          | 90 -------------------------------------
- 18 files changed, 65 insertions(+), 127 deletions(-)
+ GENERATION_REPORT.md       |  2 +-
+ cmd/gen_google_serp.go     | 15 +++++++++
+ internal/gen/spec-hash.txt |  2 +-
+ pr-body.md                 | 84 ----------------------------------------------
+ 4 files changed, 17 insertions(+), 86 deletions(-)
 
 ## Generation Report
 # Generation Report
 
-Generated at: 2026-08-31T07:13:05Z
+Generated at: 2026-10-24T07:06:42Z
 
-## APIs generated (55)
-- airbnb-listing
-- airbnb-property
-- amazon-product
-- amazon-reviews
-- amazon-search
-- amazon-seller
-- amazon-seller-products
+## APIs generated (67)
+- chat-gpt-chat
 - bing-serp
-- booking-place
-- booking-search
 - yellowpages-place
 - yellowpages-search
 - yelp-place
 - yelp-reviews
 - yelp-search
 - duckduckgo
+- amazon-product
+- amazon-search
+- amazon-seller
+- amazon-seller-products
+- shopify-collections
+- shopify-products
+- walmart-product
+- walmart-reviews
+- walmart-search
 - google-images
 - google-maps
 - google-maps-contributor-reviews
@@ -51,14 +38,15 @@ Generated at: 2026-08-31T07:13:05Z
 - google-maps-reviews
 - google-ai-mode
 - google-events
+- google-finance
 - google-immersive-product
 - google-news
 - google-serp
 - google-serp-light
 - google-shopping
 - google-short-videos
-- google-flights
-- google-hotels
+- google-scholar
+- google-scholar-cite
 - google-trends
 - glassdoor-job
 - glassdoor-listing
@@ -66,21 +54,28 @@ Generated at: 2026-08-31T07:13:05Z
 - indeed-listing
 - redfin-listing
 - redfin-property
-- shopify-collections
-- shopify-products
+- zillow-listing
+- zillow-property
+- facebook-profile
+- instagram-comments
 - instagram-posts
 - instagram-profile
 - tiktok-comments
 - tiktok-posts
 - tiktok-profile
 - tiktok-search
+- airbnb-listing
+- airbnb-property
+- booking-place
+- booking-search
+- google-flights
+- google-flights-deals
+- google-hotels
+- tripadvisor-place
+- tripadvisor-reviews
+- tripadvisor-search
 - web-scraping
 - youtube-channel-api
 - youtube-search-api
 - youtube-transcript-api
 - youtube-video-api
-- zillow-listing
-- zillow-property
-
-## Deprecated APIs (hidden in help)
-- amazon-reviews
