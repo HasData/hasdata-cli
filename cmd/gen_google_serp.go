@@ -25,13 +25,16 @@ func newGoogleSerpCmd() *cobra.Command {
 	var p_glVar string
 	var p_hlVar string
 	var p_kgmidVar string
+	var p_latVar float64
 	var p_locationVar string
+	var p_lonVar float64
 	var p_lrVar []string
 	var p_lsigVar string
 	var p_ludocidVar string
 	var p_nfprVar float64
 	var p_numVar int
 	var p_qVar string
+	var p_radiusVar float64
 	var p_safeVar string
 	var p_siVar string
 	var p_startVar int
@@ -92,8 +95,14 @@ func newGoogleSerpCmd() *cobra.Command {
 			if c.Flags().Changed("kgmid") {
 				params.Set("kgmid", p_kgmidVar)
 			}
+			if c.Flags().Changed("lat") {
+				params.Set("lat", strconv.FormatFloat(p_latVar, 'f', -1, 64))
+			}
 			if c.Flags().Changed("location") {
 				params.Set("location", p_locationVar)
+			}
+			if c.Flags().Changed("lon") {
+				params.Set("lon", strconv.FormatFloat(p_lonVar, 'f', -1, 64))
 			}
 			if c.Flags().Changed("lr") {
 				for _, v := range p_lrVar {
@@ -113,6 +122,9 @@ func newGoogleSerpCmd() *cobra.Command {
 				params.Set("num", strconv.Itoa(p_numVar))
 			}
 			params.Set("q", p_qVar)
+			if c.Flags().Changed("radius") {
+				params.Set("radius", strconv.FormatFloat(p_radiusVar, 'f', -1, 64))
+			}
 			if c.Flags().Changed("safe") {
 				params.Set("safe", p_safeVar)
 			}
@@ -150,7 +162,9 @@ func newGoogleSerpCmd() *cobra.Command {
 	cmd.Flags().StringVar(&p_glVar, "gl", "", "gl Country: The two-letter country code for the country you want to limit the search to.")
 	cmd.Flags().StringVar(&p_hlVar, "hl", "", "hl Language: The two-letter language code for the language you want to use for the search.")
 	cmd.Flags().StringVar(&p_kgmidVar, "kgmid", "", "kgmid Google Knowledge Graph ID: Google Knowledge Graph ID.")
+	cmd.Flags().Float64Var(&p_latVar, "lat", 0, "lat Latitude: GPS latitude for the search origin.")
 	cmd.Flags().StringVar(&p_locationVar, "location", "Austin,Texas,United States", "location Location: Google canonical location for the search.")
+	cmd.Flags().Float64Var(&p_lonVar, "lon", 0, "lon Longitude: GPS longitude for the search origin.")
 	cmd.Flags().StringSliceVar(&p_lrVar, "lr", nil, "lr Set Multiple Languages: The 'lr' parameter specifies the language of the websites to return results from. This parameter filters results based on the language of the web content.")
 	_ = cmd.RegisterFlagCompletionFunc("lr", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"lang_ar", "lang_hy", "lang_bg", "lang_ca", "lang_cs", "lang_da", "lang_de", "lang_el", "lang_en", "lang_es", "lang_et", "lang_tl", "lang_fi", "lang_fr", "lang_hr", "lang_hi", "lang_hu", "lang_id", "lang_is", "lang_it", "lang_iw", "lang_he", "lang_ja", "lang_ko", "lang_lt", "lang_lv", "lang_nl", "lang_no", "lang_fa", "lang_pl", "lang_pt", "lang_ro", "lang_ru", "lang_sk", "lang_sl", "lang_sr", "lang_sv", "lang_th", "lang_tr", "lang_uk", "lang_vi", "lang_zh-CN", "lang_zh-TW"}, cobra.ShellCompDirectiveNoFileComp
@@ -161,6 +175,7 @@ func newGoogleSerpCmd() *cobra.Command {
 	cmd.Flags().IntVar(&p_numVar, "num", 0, "num Number of Results: Number of results per page, ranging from 10 to 100.")
 	cmd.Flags().StringVar(&p_qVar, "q", "Coffee", "q Search Query: Specify the search term for which you want to scrape the SERP. (required)")
 	_ = cmd.MarkFlagRequired("q")
+	cmd.Flags().Float64Var(&p_radiusVar, "radius", 0, "radius Radius: Radius around the search origin in meters.")
 	cmd.Flags().StringVar(&p_safeVar, "safe", "", "safe Adult Content Filtering: Adult Content Filtering option. [allowed: active|off]")
 	_ = cmd.RegisterFlagCompletionFunc("safe", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"active", "off"}, cobra.ShellCompDirectiveNoFileComp
