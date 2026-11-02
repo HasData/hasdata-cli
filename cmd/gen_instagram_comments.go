@@ -26,7 +26,7 @@ func newInstagramCommentsCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "instagram-comments",
 		Short: "Instagram Comments Scraper API  (10 credits/call)",
-		Long:  "The Instagram Comments Scraper API returns the comments on a public Instagram post or reel by its URL. The first page also returns the post itself with caption, likes and comments counts, and every image or video in the post, including all carousel items. Each comment includes its text, like count, reply count, timestamp, and author (with a link to the author's profile). Results are paginated with a token.\n\nEndpoint: GET https://api.hasdata.com/scrape/instagram/comments\nCost: 10 credits per call.",
+		Long:  "The Instagram Comments Scraper API returns the comments on a public Instagram post or reel by its URL. The first page also returns the post itself with caption, likes and comments counts, and every image or video in the post, including all carousel items, and a link to the post owner's reels on the Instagram Reels Scraper API. Each comment includes its text, like count, reply count, timestamp, and author (with a link to the author's profile). Results are paginated with a token.\n\nEndpoint: GET https://api.hasdata.com/scrape/instagram/comments\nCost: 10 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			return nil

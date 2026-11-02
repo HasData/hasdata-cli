@@ -1,9 +1,10 @@
 # Generation Report
 
-Generated at: 2026-10-26T07:24:50Z
+Generated at: 2026-11-02T07:05:26Z
 
-## APIs generated (67)
+## APIs generated (69)
 - chat-gpt-chat
+- google-gemini
 - bing-serp
 - yellowpages-place
 - yellowpages-search
@@ -51,6 +52,7 @@ Generated at: 2026-10-26T07:24:50Z
 - instagram-comments
 - instagram-posts
 - instagram-profile
+- instagram-reels
 - tiktok-comments
 - tiktok-posts
 - tiktok-profile

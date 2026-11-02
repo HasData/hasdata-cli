@@ -26,7 +26,7 @@ func newInstagramPostsCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "instagram-posts",
 		Short: "Instagram Posts Scraper API  (10 credits/call)",
-		Long:  "The Instagram Posts Scraper API lets you retrieve the latest posts of a public Instagram account using its handle. It returns posts with captions, hashtags, mentions, likes, comments, and plays counts, image and video URLs, and timestamps, with token-based pagination for retrieving older posts.\n\nEndpoint: GET https://api.hasdata.com/scrape/instagram/posts\nCost: 10 credits per call.",
+		Long:  "The Instagram Posts Scraper API lets you retrieve the latest posts of a public Instagram account using its handle. It returns posts with captions, hashtags, mentions, like and comment counts, image and video URLs, and timestamps, with token-based pagination for retrieving older posts.\n\nEndpoint: GET https://api.hasdata.com/scrape/instagram/posts\nCost: 10 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			return nil
@@ -54,7 +54,7 @@ func newInstagramPostsCmd() *cobra.Command {
 	}
 	cmd.Flags().StringVar(&p_handleVar, "handle", "hasdatadotcom", "handle Instagram Handle: The Instagram username of the account whose posts you want to scrape, without the '@' symbol. (required)")
 	_ = cmd.MarkFlagRequired("handle")
-	cmd.Flags().IntVar(&p_limitVar, "limit", 12, "limit Results Limit: The maximum number of posts to retrieve per request. Defaults to 12.")
+	cmd.Flags().IntVar(&p_limitVar, "limit", 12, "limit Results Limit: The maximum number of posts to retrieve per request, up to 12. Defaults to 12.")
 	cmd.Flags().StringVar(&p_nextPageTokenVar, "next-page-token", "", "nextPageToken Next Page Token: Defines the next page token. It is used for retrieving the next page results. Use the 'nextPageToken' value returned by the previous response.")
 
 	return cmd
