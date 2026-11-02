@@ -1,18 +1,22 @@
 ## Changes
 
- GENERATION_REPORT.md       |  2 +-
- cmd/gen_google_serp.go     | 15 +++++++++
- internal/gen/spec-hash.txt |  2 +-
- pr-body.md                 | 84 ----------------------------------------------
- 4 files changed, 17 insertions(+), 86 deletions(-)
+ GENERATION_REPORT.md          |  6 ++--
+ cmd/gen_booking_search.go     |  7 +++-
+ cmd/gen_instagram_comments.go |  2 +-
+ cmd/gen_instagram_posts.go    |  4 +--
+ cmd/gen_instagram_profile.go  |  2 +-
+ internal/gen/spec-hash.txt    |  2 +-
+ pr-body.md                    | 79 -------------------------------------------
+ 7 files changed, 15 insertions(+), 87 deletions(-)
 
 ## Generation Report
 # Generation Report
 
-Generated at: 2026-10-26T07:24:50Z
+Generated at: 2026-11-02T07:05:26Z
 
-## APIs generated (67)
+## APIs generated (69)
 - chat-gpt-chat
+- google-gemini
 - bing-serp
 - yellowpages-place
 - yellowpages-search
@@ -60,6 +64,7 @@ Generated at: 2026-10-26T07:24:50Z
 - instagram-comments
 - instagram-posts
 - instagram-profile
+- instagram-reels
 - tiktok-comments
 - tiktok-posts
 - tiktok-profile

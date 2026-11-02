@@ -33,6 +33,7 @@ func newBookingSearchCmd() *cobra.Command {
 	var p_keywordVar string
 	var p_languageVar string
 	var p_mealsVar []string
+	var p_nextPageTokenVar string
 	var p_onlinePaymentVar []string
 	var p_pageVar int
 	var p_price_maxVar float64
@@ -173,6 +174,9 @@ func newBookingSearchCmd() *cobra.Command {
 					params.Add("meals"+"[]", v)
 				}
 			}
+			if c.Flags().Changed("next-page-token") {
+				params.Set("nextPageToken", p_nextPageTokenVar)
+			}
 			if c.Flags().Changed("online-payment") {
 				for _, v := range p_onlinePaymentVar {
 					params.Add("onlinePayment"+"[]", v)
@@ -269,11 +273,12 @@ func newBookingSearchCmd() *cobra.Command {
 	_ = cmd.RegisterFlagCompletionFunc("meals", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"breakfastIncluded", "kitchenFacilities"}, cobra.ShellCompDirectiveNoFileComp
 	})
+	cmd.Flags().StringVar(&p_nextPageTokenVar, "next-page-token", "", "nextPageToken Next Page Token: Recommended way to paginate. Omit it on the first request; the response returns 'pagination.nextPageToken', which you pass back here to fetch the next page. When a successful response omits the token, the last page has been reached. If a token has expired, the request fails with an error — start again without 'nextPageToken'.")
 	cmd.Flags().StringSliceVar(&p_onlinePaymentVar, "online-payment", nil, "onlinePayment[] Online Payment: Filter by online payment options.")
 	_ = cmd.RegisterFlagCompletionFunc("online-payment", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"acceptsOnlinePayments"}, cobra.ShellCompDirectiveNoFileComp
 	})
-	cmd.Flags().IntVar(&p_pageVar, "page", 0, "page Page Number: Page number of the search results. Booking.com returns 25 results per page; pass '2' for results 26–50, '3' for 51–75, etc.")
+	cmd.Flags().IntVar(&p_pageVar, "page", 0, "page Page Number: Legacy pagination. Booking.com returns 25 results per page; pass '2' for results 26–50, '3' for 51–75, etc. On large destinations this returns duplicate properties across pages — use 'nextPageToken' instead. Ignored when 'nextPageToken' is provided.")
 	cmd.Flags().Float64Var(&p_price_maxVar, "price-max", 0, "price[max] Price Max: Maximum total price for the stay, in the requested 'currency'. Must be '>= 20' and greater than 'price[min]'. Required if 'price[min]' is omitted.")
 	cmd.Flags().Float64Var(&p_price_minVar, "price-min", 0, "price[min] Price Min: Minimum total price for the stay, in the requested 'currency'. Must be '>= 10'. Required if 'price[max]' is omitted.")
 	cmd.Flags().StringSliceVar(&p_propertyAccessibilityVar, "property-accessibility", nil, "propertyAccessibility[] Property Accessibility: Filter by property-level accessibility features. Multiple values are combined with OR.")
