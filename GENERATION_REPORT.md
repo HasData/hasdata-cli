@@ -1,8 +1,8 @@
 # Generation Report
 
-Generated at: 2026-11-02T07:05:26Z
+Generated at: 2026-11-14T07:03:23Z
 
-## APIs generated (69)
+## APIs generated (70)
 - chat-gpt-chat
 - google-gemini
 - bing-serp
@@ -69,6 +69,7 @@ Generated at: 2026-11-02T07:05:26Z
 - tripadvisor-search
 - web-scraping
 - youtube-channel-api
+- youtube-comments-api
 - youtube-search-api
 - youtube-transcript-api
 - youtube-video-api

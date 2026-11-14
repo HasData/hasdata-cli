@@ -19,8 +19,9 @@ var (
 )
 
 func newChatGptChatCmd() *cobra.Command {
+	var p_latVar float64
+	var p_lonVar float64
 	var p_promptVar string
-	var p_timezoneVar string
 
 	cmd := &cobra.Command{
 		Use:   "chat-gpt-chat",
@@ -37,10 +38,13 @@ func newChatGptChatCmd() *cobra.Command {
 				return err
 			}
 			params := url.Values{}
-			params.Set("prompt", p_promptVar)
-			if c.Flags().Changed("timezone") {
-				params.Set("timezone", p_timezoneVar)
+			if c.Flags().Changed("lat") {
+				params.Set("lat", strconv.FormatFloat(p_latVar, 'f', -1, 64))
 			}
+			if c.Flags().Changed("lon") {
+				params.Set("lon", strconv.FormatFloat(p_lonVar, 'f', -1, 64))
+			}
+			params.Set("prompt", p_promptVar)
 			resp, err := cli.Do(ctx, "GET", "https://api.hasdata.com/scrape/chatgpt/chat", params, nil)
 			if err != nil {
 				return err
@@ -48,9 +52,10 @@ func newChatGptChatCmd() *cobra.Command {
 			return WriteResponse(c, resp)
 		},
 	}
-	cmd.Flags().StringVar(&p_promptVar, "prompt", "What are the latest developments in the James Webb Space Telescope this month?", "prompt Prompt: The question or instruction to send to ChatGPT, up to 8000 characters. A prompt that asks about recent events makes ChatGPT search the web and return sources; a general-knowledge prompt is answered from the model alone. The prompt also decides the language of the answer — write it in the language you want back, or ask for one explicitly (\"Antworte auf Deutsch\"). (required)")
+	cmd.Flags().Float64Var(&p_latVar, "lat", 40.7128, "lat Latitude: GPS latitude of the user's location. Requires 'lon'.")
+	cmd.Flags().Float64Var(&p_lonVar, "lon", -74.006, "lon Longitude: GPS longitude of the user's location. Requires 'lat'.")
+	cmd.Flags().StringVar(&p_promptVar, "prompt", "Coffee near me", "prompt Prompt: The question or instruction to send to ChatGPT, up to 8000 characters. A prompt that asks about recent events makes ChatGPT search the web and return sources; a general-knowledge prompt is answered from the model alone. The prompt also decides the language of the answer — write it in the language you want back, or ask for one explicitly (\"Antworte auf Deutsch\"). (required)")
 	_ = cmd.MarkFlagRequired("prompt")
-	cmd.Flags().StringVar(&p_timezoneVar, "timezone", "Europe/Berlin", "timezone Timezone: IANA time zone name, for example 'America/Chicago' or 'Europe/Berlin'. It sets what ChatGPT treats as the current date and time, which matters for prompts that say \"today\", \"this week\" or \"latest\".")
 
 	return cmd
 }
