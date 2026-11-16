@@ -1,20 +1,23 @@
 ## Changes
 
- GENERATION_REPORT.md          |  6 ++--
- cmd/gen_booking_search.go     |  7 +++-
- cmd/gen_instagram_comments.go |  2 +-
- cmd/gen_instagram_posts.go    |  4 +--
- cmd/gen_instagram_profile.go  |  2 +-
- internal/gen/spec-hash.txt    |  2 +-
- pr-body.md                    | 79 -------------------------------------------
- 7 files changed, 15 insertions(+), 87 deletions(-)
+ GENERATION_REPORT.md       |  5 +--
+ cmd/gen_airbnb_listing.go  |  4 +--
+ cmd/gen_booking_place.go   |  4 +--
+ cmd/gen_booking_search.go  |  4 +--
+ cmd/gen_chat_gpt_chat.go   | 17 ++++++----
+ cmd/gen_google_flights.go  |  4 +--
+ cmd/gen_google_hotels.go   |  4 +--
+ cmd/gen_web_scraping.go    |  6 ++--
+ internal/gen/spec-hash.txt |  2 +-
+ pr-body.md                 | 84 ----------------------------------------------
+ 10 files changed, 28 insertions(+), 106 deletions(-)
 
 ## Generation Report
 # Generation Report
 
-Generated at: 2026-11-02T07:05:26Z
+Generated at: 2026-11-16T07:09:36Z
 
-## APIs generated (69)
+## APIs generated (70)
 - chat-gpt-chat
 - google-gemini
 - bing-serp
@@ -81,6 +84,7 @@ Generated at: 2026-11-02T07:05:26Z
 - tripadvisor-search
 - web-scraping
 - youtube-channel-api
+- youtube-comments-api
 - youtube-search-api
 - youtube-transcript-api
 - youtube-video-api
