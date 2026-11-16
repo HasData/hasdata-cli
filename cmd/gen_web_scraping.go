@@ -72,7 +72,7 @@ func newWebScrapingCmd() *cobra.Command {
 				}
 			}
 			if c.Flags().Changed("proxy-country") {
-				if err := validateEnumString("proxy-country", p_proxyCountryVar, []string{"US", "UK", "DE", "IE", "FR", "IT", "SE", "BR", "CA", "JP", "SG", "IN", "ID"}); err != nil {
+				if err := validateEnumString("proxy-country", p_proxyCountryVar, []string{"US", "UK", "DE", "IE", "FR", "IT", "SE", "BR", "CA", "JP", "SG", "IN", "ID", "IL"}); err != nil {
 					return err
 				}
 			}
@@ -240,9 +240,9 @@ func newWebScrapingCmd() *cobra.Command {
 	_ = cmd.RegisterFlagCompletionFunc("output-format", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"json", "html", "markdown", "text"}, cobra.ShellCompDirectiveNoFileComp
 	})
-	cmd.Flags().StringVar(&p_proxyCountryVar, "proxy-country", "US", "proxyCountry Proxy Country: Optional proxy country code. [allowed: US|UK|DE|IE|FR|IT|SE|BR|CA|JP|SG|IN|ID]")
+	cmd.Flags().StringVar(&p_proxyCountryVar, "proxy-country", "US", "proxyCountry Proxy Country: Optional proxy country code. [allowed: US|UK|DE|IE|FR|IT|SE|BR|CA|JP|SG|IN|ID|IL]")
 	_ = cmd.RegisterFlagCompletionFunc("proxy-country", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
-		return []string{"US", "UK", "DE", "IE", "FR", "IT", "SE", "BR", "CA", "JP", "SG", "IN", "ID"}, cobra.ShellCompDirectiveNoFileComp
+		return []string{"US", "UK", "DE", "IE", "FR", "IT", "SE", "BR", "CA", "JP", "SG", "IN", "ID", "IL"}, cobra.ShellCompDirectiveNoFileComp
 	})
 	cmd.Flags().StringVar(&p_proxyTypeVar, "proxy-type", "datacenter", "proxyType Proxy Type: Type of proxy to use. [allowed: datacenter|residential]")
 	_ = cmd.RegisterFlagCompletionFunc("proxy-type", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
