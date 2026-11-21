@@ -61,5 +61,5 @@ func newTiktokCommentsCmd() *cobra.Command {
 }
 
 func init() {
-	RegisterAPICommand("social", "Social", newTiktokCommentsCmd())
+	RegisterAPICommand("tiktok", "TikTok", newTiktokCommentsCmd())
 }

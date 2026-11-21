@@ -112,5 +112,5 @@ func newGoogleShoppingCmd() *cobra.Command {
 }
 
 func init() {
-	RegisterAPICommand("google_serp", "Google SERP", newGoogleShoppingCmd())
+	RegisterAPICommand("google", "Google", newGoogleShoppingCmd())
 }
