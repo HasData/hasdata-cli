@@ -23,16 +23,22 @@ func newYoutubeCommentsApiCmd() *cobra.Command {
 	var p_glVar string
 	var p_hlVar string
 	var p_nextPageTokenVar string
+	var p_sortByVar string
 	var p_vVar string
 
 	cmd := &cobra.Command{
 		Use:   "youtube-comments-api",
 		Short: "YouTube Comments Scraper API  (10 credits/call)",
-		Long:  "The YouTube Comments Scraper API returns the comments of a YouTube video or short, with pagination.\n\nEndpoint: GET https://api.hasdata.com/scrape/youtube/comments\nCost: 10 credits per call.",
+		Long:  "The YouTube Comments Scraper API returns the comments of a YouTube video or short, and the replies to any of them, with pagination.\n\nEndpoint: GET https://api.hasdata.com/scrape/youtube/comments\nCost: 10 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			if c.Flags().Changed("device-type") {
 				if err := validateEnumString("device-type", p_deviceTypeVar, []string{"desktop", "mobile"}); err != nil {
+					return err
+				}
+			}
+			if c.Flags().Changed("sort-by") {
+				if err := validateEnumString("sort-by", p_sortByVar, []string{"top", "newest"}); err != nil {
 					return err
 				}
 			}
@@ -57,6 +63,9 @@ func newYoutubeCommentsApiCmd() *cobra.Command {
 			if c.Flags().Changed("next-page-token") {
 				params.Set("nextPageToken", p_nextPageTokenVar)
 			}
+			if c.Flags().Changed("sort-by") {
+				params.Set("sortBy", p_sortByVar)
+			}
 			if c.Flags().Changed("v-param") {
 				params.Set("v", p_vVar)
 			}
@@ -73,7 +82,11 @@ func newYoutubeCommentsApiCmd() *cobra.Command {
 	})
 	cmd.Flags().StringVar(&p_glVar, "gl", "", "gl Country: The two-letter country code for the country you want to limit the search to.")
 	cmd.Flags().StringVar(&p_hlVar, "hl", "", "hl Language: The two-letter language code for the language you want to use for the search.")
-	cmd.Flags().StringVar(&p_nextPageTokenVar, "next-page-token", "", "nextPageToken Next Page Token: Token to fetch the next page of comments. Pass the 'nextPageToken' from a previous response; omit it for the first page.")
+	cmd.Flags().StringVar(&p_nextPageTokenVar, "next-page-token", "", "nextPageToken Next Page Token: Next-page token from 'pagination.nextPageToken', or a comment's 'replies.nextPageToken' to fetch its replies.")
+	cmd.Flags().StringVar(&p_sortByVar, "sort-by", "", "sortBy Sort By: Comment order, 'top' (YouTube's Top comments) or 'newest'. [allowed: top|newest]")
+	_ = cmd.RegisterFlagCompletionFunc("sort-by", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
+		return []string{"top", "newest"}, cobra.ShellCompDirectiveNoFileComp
+	})
 	cmd.Flags().StringVar(&p_vVar, "v-param", "dQw4w9WgXcQ", "v Video ID: 11-character YouTube video ID — the value of the 'v=' query parameter in a watch URL (e.g. 'dQw4w9WgXcQ' for 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'). Required for the first page; omit it on continuation requests that pass 'nextPageToken'.")
 
 	return cmd
