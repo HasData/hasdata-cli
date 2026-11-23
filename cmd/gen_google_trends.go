@@ -86,5 +86,5 @@ func newGoogleTrendsCmd() *cobra.Command {
 }
 
 func init() {
-	RegisterAPICommand("google_trends", "Google Trends", newGoogleTrendsCmd())
+	RegisterAPICommand("google", "Google", newGoogleTrendsCmd())
 }

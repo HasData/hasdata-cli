@@ -51,5 +51,5 @@ func newGoogleEventsCmd() *cobra.Command {
 }
 
 func init() {
-	RegisterAPICommand("google_serp", "Google SERP", newGoogleEventsCmd())
+	RegisterAPICommand("google", "Google", newGoogleEventsCmd())
 }

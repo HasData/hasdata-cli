@@ -25,7 +25,7 @@ func newTripadvisorPlaceCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "tripadvisor-place",
 		Short: "Tripadvisor Place API  (10 credits/call)",
-		Long:  "The Tripadvisor Place API returns the details of a Tripadvisor place page - a destination, hotel, attraction, tour or restaurant - by its place ID.\n\nEndpoint: GET https://api.hasdata.com/scrape/tripadvisor/place\nCost: 10 credits per call.",
+		Long:  "The Tripadvisor Place API returns the details of a Tripadvisor place page - a destination, hotel, attraction, tour, restaurant or cruise ship - by its place ID.\n\nEndpoint: GET https://api.hasdata.com/scrape/tripadvisor/place\nCost: 10 credits per call.",
 		Args:  cobra.NoArgs,
 		PreRunE: func(c *cobra.Command, _ []string) error {
 			if c.Flags().Changed("domain") {
@@ -57,7 +57,7 @@ func newTripadvisorPlaceCmd() *cobra.Command {
 	_ = cmd.RegisterFlagCompletionFunc("domain", func(*cobra.Command, []string, string) ([]string, cobra.ShellCompDirective) {
 		return []string{"www.tripadvisor.com", "ar.tripadvisor.com", "www.tripadvisor.com.ar", "www.tripadvisor.com.au", "www.tripadvisor.at", "www.tripadvisor.be", "fr.tripadvisor.be", "www.tripadvisor.com.br", "www.tripadvisor.ca", "fr.tripadvisor.ca", "www.tripadvisor.cl", "cn.tripadvisor.com", "www.tripadvisor.co", "www.tripadvisor.com.pe", "www.tripadvisor.dk", "www.tripadvisor.com.eg", "www.tripadvisor.fr", "www.tripadvisor.de", "www.tripadvisor.com.gr", "www.tripadvisor.com.hk", "en.tripadvisor.com.hk", "www.tripadvisor.in", "www.tripadvisor.co.id", "www.tripadvisor.ie", "www.tripadvisor.co.il", "www.tripadvisor.it", "www.tripadvisor.jp", "www.tripadvisor.co.kr", "www.tripadvisor.com.my", "www.tripadvisor.com.mx", "www.tripadvisor.nl", "www.tripadvisor.co.nz", "no.tripadvisor.com", "www.tripadvisor.com.ph", "www.tripadvisor.pt", "www.tripadvisor.ru", "www.tripadvisor.com.sg", "www.tripadvisor.co.za", "www.tripadvisor.es", "www.tripadvisor.se", "fr.tripadvisor.ch", "www.tripadvisor.ch", "it.tripadvisor.ch", "www.tripadvisor.com.tw", "th.tripadvisor.com", "www.tripadvisor.com.tr", "www.tripadvisor.co.uk", "www.tripadvisor.com.ve", "www.tripadvisor.com.vn"}, cobra.ShellCompDirectiveNoFileComp
 	})
-	cmd.Flags().StringVar(&p_placeIdVar, "place-id", "190138", "placeId Place ID: Tripadvisor place ID, as returned by the Tripadvisor Search API. Works for destinations, hotels, attractions, tours and restaurants. (required)")
+	cmd.Flags().StringVar(&p_placeIdVar, "place-id", "190138", "placeId Place ID: Tripadvisor place ID, as returned by the Tripadvisor Search API. Works for destinations, hotels, attractions, tours, restaurants and cruise ships. (required)")
 	_ = cmd.MarkFlagRequired("place-id")
 
 	return cmd

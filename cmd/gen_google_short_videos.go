@@ -114,5 +114,5 @@ func newGoogleShortVideosCmd() *cobra.Command {
 }
 
 func init() {
-	RegisterAPICommand("google_serp", "Google SERP", newGoogleShortVideosCmd())
+	RegisterAPICommand("google", "Google", newGoogleShortVideosCmd())
 }
