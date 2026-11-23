@@ -1,11 +1,14 @@
 # Generation Report
 
-Generated at: 2026-11-16T07:09:36Z
+Generated at: 2026-11-23T07:04:48Z
 
-## APIs generated (70)
+## APIs generated (78)
 - chat-gpt-chat
 - google-gemini
 - bing-serp
+- trustpilot-company-api
+- trustpilot-reviews-api
+- trustpilot-search-api
 - yellowpages-place
 - yellowpages-search
 - yelp-place
@@ -21,25 +24,30 @@ Generated at: 2026-11-16T07:09:36Z
 - walmart-product
 - walmart-reviews
 - walmart-search
-- google-images
-- google-maps
-- google-maps-contributor-reviews
-- google-maps-photos
-- google-maps-place
-- google-maps-posts
-- google-maps-reviews
+- facebook-profile
 - google-ai-mode
 - google-events
 - google-finance
+- google-images
 - google-immersive-product
 - google-news
 - google-serp
 - google-serp-light
 - google-shopping
 - google-short-videos
+- google-trends
+- google-maps
+- google-maps-contributor-reviews
+- google-maps-photos
+- google-maps-place
+- google-maps-posts
+- google-maps-reviews
 - google-scholar
 - google-scholar-cite
-- google-trends
+- instagram-comments
+- instagram-posts
+- instagram-profile
+- instagram-reels
 - glassdoor-job
 - glassdoor-listing
 - indeed-job
@@ -48,15 +56,15 @@ Generated at: 2026-11-16T07:09:36Z
 - redfin-property
 - zillow-listing
 - zillow-property
-- facebook-profile
-- instagram-comments
-- instagram-posts
-- instagram-profile
-- instagram-reels
 - tiktok-comments
 - tiktok-posts
 - tiktok-profile
 - tiktok-search
+- tiktok-shop-category-api
+- tiktok-shop-product-api
+- tiktok-shop-search-api
+- tiktok-shop-store-api
+- tiktok-transcript-api
 - airbnb-listing
 - airbnb-property
 - booking-place

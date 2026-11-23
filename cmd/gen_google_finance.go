@@ -69,5 +69,5 @@ func newGoogleFinanceCmd() *cobra.Command {
 }
 
 func init() {
-	RegisterAPICommand("google_serp", "Google SERP", newGoogleFinanceCmd())
+	RegisterAPICommand("google", "Google", newGoogleFinanceCmd())
 }

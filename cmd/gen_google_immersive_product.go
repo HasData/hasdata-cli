@@ -61,5 +61,5 @@ func newGoogleImmersiveProductCmd() *cobra.Command {
 }
 
 func init() {
-	RegisterAPICommand("google_serp", "Google SERP", newGoogleImmersiveProductCmd())
+	RegisterAPICommand("google", "Google", newGoogleImmersiveProductCmd())
 }

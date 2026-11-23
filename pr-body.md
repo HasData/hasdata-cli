@@ -1,26 +1,44 @@
 ## Changes
 
- GENERATION_REPORT.md       |  5 +--
- cmd/gen_airbnb_listing.go  |  4 +--
- cmd/gen_booking_place.go   |  4 +--
- cmd/gen_booking_search.go  |  4 +--
- cmd/gen_chat_gpt_chat.go   | 17 ++++++----
- cmd/gen_google_flights.go  |  4 +--
- cmd/gen_google_hotels.go   |  4 +--
- cmd/gen_web_scraping.go    |  6 ++--
- internal/gen/spec-hash.txt |  2 +-
- pr-body.md                 | 84 ----------------------------------------------
- 10 files changed, 28 insertions(+), 106 deletions(-)
+ GENERATION_REPORT.md                | 38 +++++++++-------
+ cmd/gen_facebook_profile.go         |  2 +-
+ cmd/gen_google_ai_mode.go           |  2 +-
+ cmd/gen_google_events.go            |  2 +-
+ cmd/gen_google_finance.go           |  2 +-
+ cmd/gen_google_images.go            |  2 +-
+ cmd/gen_google_immersive_product.go |  2 +-
+ cmd/gen_google_news.go              |  2 +-
+ cmd/gen_google_serp.go              |  2 +-
+ cmd/gen_google_serp_light.go        |  2 +-
+ cmd/gen_google_shopping.go          |  2 +-
+ cmd/gen_google_short_videos.go      |  2 +-
+ cmd/gen_google_trends.go            |  2 +-
+ cmd/gen_instagram_comments.go       |  2 +-
+ cmd/gen_instagram_posts.go          |  2 +-
+ cmd/gen_instagram_profile.go        |  2 +-
+ cmd/gen_instagram_reels.go          |  2 +-
+ cmd/gen_tiktok_comments.go          |  2 +-
+ cmd/gen_tiktok_posts.go             |  2 +-
+ cmd/gen_tiktok_profile.go           |  2 +-
+ cmd/gen_tiktok_search.go            |  2 +-
+ cmd/gen_tripadvisor_place.go        |  4 +-
+ cmd/gen_youtube_comments_api.go     | 17 ++++++-
+ internal/gen/spec-hash.txt          |  2 +-
+ pr-body.md                          | 88 -------------------------------------
+ 25 files changed, 61 insertions(+), 128 deletions(-)
 
 ## Generation Report
 # Generation Report
 
-Generated at: 2026-11-16T07:09:36Z
+Generated at: 2026-11-23T07:04:48Z
 
-## APIs generated (70)
+## APIs generated (78)
 - chat-gpt-chat
 - google-gemini
 - bing-serp
+- trustpilot-company-api
+- trustpilot-reviews-api
+- trustpilot-search-api
 - yellowpages-place
 - yellowpages-search
 - yelp-place
@@ -36,25 +54,30 @@ Generated at: 2026-11-16T07:09:36Z
 - walmart-product
 - walmart-reviews
 - walmart-search
-- google-images
-- google-maps
-- google-maps-contributor-reviews
-- google-maps-photos
-- google-maps-place
-- google-maps-posts
-- google-maps-reviews
+- facebook-profile
 - google-ai-mode
 - google-events
 - google-finance
+- google-images
 - google-immersive-product
 - google-news
 - google-serp
 - google-serp-light
 - google-shopping
 - google-short-videos
+- google-trends
+- google-maps
+- google-maps-contributor-reviews
+- google-maps-photos
+- google-maps-place
+- google-maps-posts
+- google-maps-reviews
 - google-scholar
 - google-scholar-cite
-- google-trends
+- instagram-comments
+- instagram-posts
+- instagram-profile
+- instagram-reels
 - glassdoor-job
 - glassdoor-listing
 - indeed-job
@@ -63,15 +86,15 @@ Generated at: 2026-11-16T07:09:36Z
 - redfin-property
 - zillow-listing
 - zillow-property
-- facebook-profile
-- instagram-comments
-- instagram-posts
-- instagram-profile
-- instagram-reels
 - tiktok-comments
 - tiktok-posts
 - tiktok-profile
 - tiktok-search
+- tiktok-shop-category-api
+- tiktok-shop-product-api
+- tiktok-shop-search-api
+- tiktok-shop-store-api
+- tiktok-transcript-api
 - airbnb-listing
 - airbnb-property
 - booking-place
