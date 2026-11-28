@@ -86,5 +86,5 @@ func newBookingPlaceCmd() *cobra.Command {
 }
 
 func init() {
-	RegisterAPICommand("travel", "Travel", newBookingPlaceCmd())
+	RegisterAPICommand("booking", "Booking.com", newBookingPlaceCmd())
 }

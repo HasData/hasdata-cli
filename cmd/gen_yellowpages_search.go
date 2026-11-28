@@ -86,5 +86,5 @@ func newYellowpagesSearchCmd() *cobra.Command {
 }
 
 func init() {
-	RegisterAPICommand("business", "Business", newYellowpagesSearchCmd())
+	RegisterAPICommand("yellowpages", "Yellow Pages", newYellowpagesSearchCmd())
 }

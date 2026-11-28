@@ -112,5 +112,5 @@ func newYelpReviewsCmd() *cobra.Command {
 }
 
 func init() {
-	RegisterAPICommand("business", "Business", newYelpReviewsCmd())
+	RegisterAPICommand("yelp", "Yelp", newYelpReviewsCmd())
 }

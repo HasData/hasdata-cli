@@ -51,5 +51,5 @@ func newIndeedJobCmd() *cobra.Command {
 }
 
 func init() {
-	RegisterAPICommand("job", "Jobs", newIndeedJobCmd())
+	RegisterAPICommand("indeed", "Indeed", newIndeedJobCmd())
 }

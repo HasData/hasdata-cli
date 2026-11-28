@@ -61,5 +61,5 @@ func newChatGptChatCmd() *cobra.Command {
 }
 
 func init() {
-	RegisterAPICommand("ai", "AI", newChatGptChatCmd())
+	RegisterAPICommand("chatgpt", "ChatGPT", newChatGptChatCmd())
 }

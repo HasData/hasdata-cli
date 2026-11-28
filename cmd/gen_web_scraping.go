@@ -260,5 +260,5 @@ func newWebScrapingCmd() *cobra.Command {
 }
 
 func init() {
-	RegisterAPICommand("web_scraping", "Web Scraping", newWebScrapingCmd())
+	RegisterAPICommand("web_scraping", "Any Website", newWebScrapingCmd())
 }

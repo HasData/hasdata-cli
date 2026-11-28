@@ -87,5 +87,5 @@ func newGoogleNewsCmd() *cobra.Command {
 }
 
 func init() {
-	RegisterAPICommand("google", "Google", newGoogleNewsCmd())
+	RegisterAPICommand("google_search", "Google Search", newGoogleNewsCmd())
 }

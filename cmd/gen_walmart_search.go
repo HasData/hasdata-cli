@@ -134,5 +134,5 @@ func newWalmartSearchCmd() *cobra.Command {
 }
 
 func init() {
-	RegisterAPICommand("ecommerce", "E-commerce", newWalmartSearchCmd())
+	RegisterAPICommand("walmart", "Walmart", newWalmartSearchCmd())
 }

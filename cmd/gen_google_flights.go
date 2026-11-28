@@ -231,5 +231,5 @@ func newGoogleFlightsCmd() *cobra.Command {
 }
 
 func init() {
-	RegisterAPICommand("travel", "Travel", newGoogleFlightsCmd())
+	RegisterAPICommand("google_travel", "Google Travel", newGoogleFlightsCmd())
 }

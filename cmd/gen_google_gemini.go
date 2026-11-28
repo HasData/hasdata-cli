@@ -61,5 +61,5 @@ func newGoogleGeminiCmd() *cobra.Command {
 }
 
 func init() {
-	RegisterAPICommand("ai", "AI", newGoogleGeminiCmd())
+	RegisterAPICommand("gemini", "Gemini", newGoogleGeminiCmd())
 }

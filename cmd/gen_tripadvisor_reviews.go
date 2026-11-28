@@ -121,5 +121,5 @@ func newTripadvisorReviewsCmd() *cobra.Command {
 }
 
 func init() {
-	RegisterAPICommand("travel", "Travel", newTripadvisorReviewsCmd())
+	RegisterAPICommand("tripadvisor", "Tripadvisor", newTripadvisorReviewsCmd())
 }
