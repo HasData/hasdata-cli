@@ -122,5 +122,5 @@ func newTrustpilotReviewsApiCmd() *cobra.Command {
 }
 
 func init() {
-	RegisterAPICommand("business", "Business", newTrustpilotReviewsApiCmd())
+	RegisterAPICommand("trustpilot", "Trustpilot", newTrustpilotReviewsApiCmd())
 }

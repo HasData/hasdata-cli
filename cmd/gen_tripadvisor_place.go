@@ -64,5 +64,5 @@ func newTripadvisorPlaceCmd() *cobra.Command {
 }
 
 func init() {
-	RegisterAPICommand("travel", "Travel", newTripadvisorPlaceCmd())
+	RegisterAPICommand("tripadvisor", "Tripadvisor", newTripadvisorPlaceCmd())
 }

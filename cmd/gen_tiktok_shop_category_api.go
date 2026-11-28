@@ -62,5 +62,5 @@ func newTiktokShopCategoryApiCmd() *cobra.Command {
 }
 
 func init() {
-	RegisterAPICommand("tiktok", "TikTok", newTiktokShopCategoryApiCmd())
+	RegisterAPICommand("tiktok_shop", "TikTok Shop", newTiktokShopCategoryApiCmd())
 }

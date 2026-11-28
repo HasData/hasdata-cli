@@ -100,5 +100,5 @@ func newTrustpilotSearchApiCmd() *cobra.Command {
 }
 
 func init() {
-	RegisterAPICommand("business", "Business", newTrustpilotSearchApiCmd())
+	RegisterAPICommand("trustpilot", "Trustpilot", newTrustpilotSearchApiCmd())
 }

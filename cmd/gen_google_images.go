@@ -125,5 +125,5 @@ func newGoogleImagesCmd() *cobra.Command {
 }
 
 func init() {
-	RegisterAPICommand("google", "Google", newGoogleImagesCmd())
+	RegisterAPICommand("google_search", "Google Search", newGoogleImagesCmd())
 }

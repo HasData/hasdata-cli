@@ -51,5 +51,5 @@ func newAirbnbPropertyCmd() *cobra.Command {
 }
 
 func init() {
-	RegisterAPICommand("travel", "Travel", newAirbnbPropertyCmd())
+	RegisterAPICommand("airbnb", "Airbnb", newAirbnbPropertyCmd())
 }

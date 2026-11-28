@@ -69,5 +69,5 @@ func newAmazonSellerCmd() *cobra.Command {
 }
 
 func init() {
-	RegisterAPICommand("ecommerce", "E-commerce", newAmazonSellerCmd())
+	RegisterAPICommand("amazon", "Amazon", newAmazonSellerCmd())
 }

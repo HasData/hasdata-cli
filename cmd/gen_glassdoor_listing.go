@@ -136,5 +136,5 @@ func newGlassdoorListingCmd() *cobra.Command {
 }
 
 func init() {
-	RegisterAPICommand("job", "Jobs", newGlassdoorListingCmd())
+	RegisterAPICommand("glassdoor", "Glassdoor", newGlassdoorListingCmd())
 }

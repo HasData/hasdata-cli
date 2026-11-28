@@ -132,5 +132,5 @@ func newGoogleSerpLightCmd() *cobra.Command {
 }
 
 func init() {
-	RegisterAPICommand("google", "Google", newGoogleSerpLightCmd())
+	RegisterAPICommand("google_search", "Google Search", newGoogleSerpLightCmd())
 }
